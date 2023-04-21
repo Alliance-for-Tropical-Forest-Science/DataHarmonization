@@ -1,0 +1,64 @@
+Package: DataHarmonization
+Title: Forest Inventories Harmonization & Correction
+Version: 0.0.0.9000
+Date: 2022-02-10
+Authors@R: 
+    c(person(given = "Vincyane",
+           family = "Badouard",
+           role = c("aut", "cre"),
+           email = "vincyane.badouard@gmail.com"),
+      person(given = "Valentine",
+           family = "Herrmann",
+           role = "aut",
+           email = "HerrmannV@si.edu"),
+      person(given = "Nino",
+           family = "Page",
+           role = "aut",
+           email = "page.nino@gmail.com"),
+      person(given = "Camille",
+           family = "Piponiot",
+           role = "aut",
+           email = "camille.piponiot@gmail.com")
+           )
+Description: DataHarmonization harmonises and corrects forest inventories.
+URL: https://github.com/Alliance-for-Tropical-Forest-Science/DataHarmonization.git
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.4), 
+    bslib, 
+    shinytest,
+    lubridate,
+    markdown
+VignetteBuilder: knitr
+Depends: 
+    R (>= 3.6)
+Config/testthat/edition: 3
+Imports: 
+    kableExtra,
+    units,
+    htmlTable,
+    data.table (>= 1.14.2),
+    shiny (>= 1.6.0),
+    ggplot2 (>= 3.3.5),
+    ggforce (>= 0.3.3),
+    ggrepel (>= 0.9.1),
+    data.tree (>= 1.0.0),
+    stringdist (>= 0.9.8),
+    stats (>= 3.6.1),
+    utils (>= 3.6.1),
+    stringr,
+    taxize,
+    TNRS,
+    dplyr,
+    DT, 
+    shinydashboard,
+    shinycssloaders,
+    shinyjs,
+    shinyWidgets (>= 0.7.0)
+BugReports: https://github.com/Alliance-for-Tropical-Forest-Science/DataHarmonization/issues

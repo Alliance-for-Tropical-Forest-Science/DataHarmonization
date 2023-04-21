@@ -1,0 +1,8 @@
+*.html
+.Rproj.user
+inst/doc
+.Rhistory
+.httr-oauth
+.DS_Store
+Potentialimprovements
+.Rhistory

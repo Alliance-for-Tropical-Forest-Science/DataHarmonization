@@ -1,0 +1,6 @@
+URL: https://github.com/Alliance-for-Tropical-Forest-Science/DataHarmonization.git # final location of the site
+development:
+mode: auto
+template:
+  bootstrap: 5
+  bootswatch: cerulean # appearance of your site

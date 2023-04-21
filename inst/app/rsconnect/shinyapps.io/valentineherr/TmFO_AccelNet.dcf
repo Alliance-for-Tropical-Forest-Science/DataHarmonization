@@ -1,0 +1,14 @@
+name: TmFO_AccelNet
+title: TmFO_AccelNet
+username:
+account: valentineherr
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5708669
+bundleId: 7118983
+url: https://valentineherr.shinyapps.io/TmFO_AccelNet/
+when: 1682095073.76642
+lastSyncTime: 1682095073.76642
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: AppTutorial.pptx|README.md|README.Rhtml|simple_app_backup|tests|VegX_app_backup

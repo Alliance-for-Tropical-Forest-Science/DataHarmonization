@@ -1,0 +1,152 @@
+---
+title: "DataHarmonization"
+subtitle: "Forest Inventories Harmonization & Correction"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{DataHarmonization}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>", echo = T, message = T, warning = F, cache = T
+)
+```
+
+# Load DataHarmonization and datasets
+**Install DataHarmonization**
+```{r, eval=F}
+devtools::install_github("Alliance-for-Tropical-Forest-Science/DataHarmonization", build_vignettes = TRUE)
+```
+**Load the packages**
+```{r setup}
+library(DataHarmonization)
+library(knitr)
+library(kableExtra)
+library(shiny)
+library(shinydashboard)
+library(shinyjs)
+library(shinyWidgets)
+
+# library(ggplot2)
+```
+
+# Open the shiny app
+```{r, eval = F}
+# DataHarmonization::RunApp() # doest' work, why?
+shiny::runGitHub( "Alliance-for-Tropical-Forest-Science/DataHarmonization", subdir = "inst/app") # data.tree, stringdist
+```
+
+
+**Load the example dataset stored in the package**
+```{r}
+# data()
+```
+
+# Metadata of the output columns of the DataHarmonization package
+
+- *Comment* (character): error type informations  
+
+**Bota**  
+- *Family_DataHarmonizationCor* (character): corrected *Family* name  
+- *FamilyCorSource* (character): source of the *Family* correction  
+- *Genus_DataHarmonizationCor* (character): corrected *Genus* name  
+- *Species_DataHarmonizationCor* (character): corrected *Species* name  
+- *BotanicalCorrectionSource* (character): source of the *Genus* and *Species*
+correction  
+- *ScientificName_DataHarmonizationCor* (character): corrected *ScientificName*  
+- *VernName_DataHarmonizationCor* (character): completed if information available at *IdTree*
+level. 
+
+**Life Status**  
+- *LifeStatus_DataHarmonizationCor* (logical): corrected stem life status.  
+
+**Diameter**  
+- *Diameter_DataHarmonizationCor* (numeric): corrected trees diameter at default *HOM*  
+- *DiameterCorrectionMeth* (character): diameter correction methode = "*taper*"/"*local linear regression*"/"*weighted mean*"
+/phylogenetic hierarchical("*species*"/"*genus*"/"*family*"/"*stand*")/"*shift realignment*"/"*Same value*".  
+- *POM_DataHarmonizationCor* (factor): *POM* value at which the corrected diameters are proposed. Corresponds to the 1st *POM* value at which the stem was measured  
+- *HOM_DataHarmonizationCor* (numeric): *HOM* value at which the corrected diameters are proposed. Corresponds to the *DefaultHOM* if *Taper* correction applied. If not, corresponds to the 1st *HOM* value at which the stem was measured  
+
+**Recruitment**  
+- *CorrectedRecruit* (logical): TRUE: the row was added to represent the year when the stem was larger than the minimum diameter, but absent from the dataset. FALSE: original dataset row.  
+
+# All the functions of the package
+# Arguments presentation
+# Harmonise and correct your data
+## Results summary
+# Only harmonization
+
+# Decomposed corrections
+
+## General errors detection
+Detect errors
+ - Remove **duplicated rows**
+ - Check **missing value** in
+X-YTreeUTM/PlotArea/Plot/Subplot/Year/TreeFieldNum/
+IdTree/IdStem/Diameter/POM/HOM/Family/Genus/Species/VernName
+ - Check **missing value** (NA/0) in the measurement variables: "Diameter",
+"HOM", "TreeHeight", "StemHeight"
+ - Check of the **unique association of the IdTree with plot, subplot**
+**and TreeFieldNum** (at the site scale)
+ - Check **duplicated IdTree/IdStem** in a census (at the site scale)
+ - Check for trees **outside the subplot** (not implemented yet)
+ - Check **invariant coordinates per IdTree/IdStem**
+ - Check **fix Plot and Subplot number** (not implemented yet)
+
+## Botanical identification correction
+
+ - No special characters (typography)
+ - No family name in the Genus and Species columns (the suffix "aceae" is
+     specific to the family name.
+ - Correct spelling of botanical names (*Taxonstand or WorldFlora*)
+ - Family & Scientific names match (*BIOMASS::getTaxonomy or WorldFlora*)
+ - Update the scientific botanical names with the current phylogenetic
+     classification
+ - Check **invariant botanical informations per IdTree** (1 IdTree = 1 family,
+     1 scientific and 1 vernacular name)
+
+## Life status
+ - if UseSize argument chosen : if Diameter != NA -> Alive
+ If (the value in bold is modified by the value given after the arrow):
+ (the ">" gives the chronological order of the sequence)
+ 
+ - *Dead* > Alive -> NA
+ - add rows for the forgotten censuses between 2 'Alive' if chosen
+ - Alive > *Dead*/*NA* > Alive -> Alive
+ - Alive > *NA* > Dead -> NA
+ - Alive > *Dead* > NA -> Dead
+
+ - Alive > *NA* > *NA*:
+   if DeathConfirmation > unseens -> NA
+   if DeathConfirmation =< unseens -> Dead
+   
+## Taper correction
+Transform the tree diameter measured at a given height into the diameter
+corresponding to the default measurement height (HOM), using an allometry.
+
+
+## Diameter correction
+
+
+## Recruitment
+
+# Interesting other variables
+## Mortality rate
+## Recruitment rate
+## Growth rate
+## Basal area
+## Wood density
+## Biomass
+## Tree height
+## Disturbance intensity
+# Illustrations
+## Diagnostic graphs
+
+ - StatusCorrectionPlot() : plot life status correction result
+ - DiameterCorrectionPlot() : plot diameter correction result
+
+## Results graphs
+

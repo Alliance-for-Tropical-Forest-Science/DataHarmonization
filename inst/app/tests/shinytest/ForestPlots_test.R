@@ -1,0 +1,35 @@
+library(shinytest)
+#  viewTestDiff("inst/app/", "ForestPlots_test")
+#  snapshotUpdate("inst/app/", "ForestPlots_test")
+
+
+app <- ShinyDriver$new("../../")
+app$snapshotInit("ForestPlots_test")
+
+app$setInputs(nTable = 2)
+app$uploadFile(file1 = "ForestPlots_test2_trees_small.csv") # <-- This should be the path to the file, relative to the app's tests/shinytest directory
+app$uploadFile(file2 = "ForestPlots_test2_plots_small.csv") # <-- This should be the path to the file, relative to the app's tests/shinytest directory
+app$setInputs(submitTables = "click")
+app$setInputs(SkipStack = "click")
+app$setInputs(leftTable = "Table1")
+app$setInputs(selectLeft = "click")
+app$setInputs(leftKey = "PlotID")
+app$setInputs(rightTable = "Table2")
+app$setInputs(selectRight = "click")
+app$setInputs(rightKey = "Plot ID")
+app$setInputs(Merge = "click")
+app$setInputs(GoToTidy = "click")
+app$setInputs(SkipTidy = "click")
+app$uploadFile(profile = "ForestPlots_test2_trees_small_Profile.rds") # <-- This should be the path to the file, relative to the app's tests/shinytest directory
+app$setInputs(UseProfile = "click")
+app$setInputs(UseProfile = "click")
+app$setInputs(LaunchFormating = "click")
+app$setInputs(GoToCorrect = "click")
+app$setInputs(SkipCorrections = "click")
+app$setInputs(SkipCorrections = "click")
+app$setInputs(DontUseProfileOutput = "click", allowInputNoBinding_ = TRUE)
+app$snapshot()
+app$snapshotDownload("dbFile")
+# app$snapshotDownload("dbProfile")
+# app$snapshotDownload("dbCode")
+app$snapshotDownload("dbMetadata")

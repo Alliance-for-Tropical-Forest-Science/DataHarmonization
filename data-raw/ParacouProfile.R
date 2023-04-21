@@ -1,0 +1,176 @@
+## code to prepare `ParacouProfile` dataset goes here
+
+## 1st option to create (non-interactive) - may need to be updated if interactive_items.csv changes
+
+if (!interactive()) {
+  ParacouProfile <-
+    list(
+      TreeHeight = "none",
+      XTreeUTM = "none",
+      Date = "CensusDate",
+      SubplotAreaMan = -999L,
+      SpeciesVolume = "none",
+      POM = "none",
+      PlotAreaUnitMan = "ha",
+      BHOMUnitMan = "none",
+      PlotVolume = "none",
+      BD = "none",
+      PlotDensity = "none",
+      IdStem = "none",
+      YTreeSubplot = "none",
+      PlotMan = "",
+      YPlotUTM = "none",
+      IdMeasure = "none",
+      ScientificName = "none",
+      SpeciesBasalAreaDensityUnitMan = "none",
+      SubplotArea = "none",
+      IdCensus = "none",
+      XTreePlot = "none",
+      PlotAreaMan = -999L,
+      PlotElevation = "none",
+      BPOM = "none",
+      SpeciesDensityUnitMan = "none",
+      CommercialSp = "CommercialSp",
+      IsCommercialMan = "TRUE",
+      SpeciesBasalAreaDensity = "none",
+      YearMan = -999L,
+      Subspecies = "none",
+      Circ = "Circ",
+      SpeciesTotalBasalAreaUnitMan = "none",
+      PlotVolumeUnitMan = "none",
+      PlotNDead = "none",
+      XTreeSubplot = "none",
+      Site = "Forest",
+      Cluster = "none",
+      MinDBH = "none",
+      Day = "none",
+      TreeUTMUnitMan = "none",
+      PlotNLive = "none",
+      SpeciesVolumeUnitMan = "none",
+      BHOM = "none",
+      IdTree = "idTree",
+      LifeForm = "none",
+      TreeSubplotUnitMan = "none",
+      VernName = "VernName",
+      PlotSpeciesRichness = "none",
+      SiteMan = "",
+      XSubplotUTM = "none",
+      Authority = "none",
+      BCirc = "none",
+      PlotBasalAreaDensity = "none",
+      TreePlotUnitMan = "none",
+      Diameter = "none",
+      Month = "none",
+      HOMUnitMan = "none",
+      SpeciesTotalBasalArea = "none",
+      TreeHeightUnitMan = "none",
+      Variety = "none",
+      Family = "Family",
+      HOM = "none",
+      HOMMan = 1.3,
+      ScientificNameSepMan = "",
+      BDUnitMan = "none",
+      YSubplotUTM = "none",
+      SpeciesCoverageIndex = "none",
+      DiameterUnitMan = "none",
+      PlotElevationMan = -999L,
+      SubplotMan = "",
+      DateFormatMan = "yyyy-mm-dd",
+      Species = "Species",
+      SpeciesRelativeDensity = "none",
+      CircUnitMan = "cm",
+      IdLevel = "none",
+      XPlotUTM = "none",
+      TreeFieldNum = "TreeFieldNum",
+      YTreeUTM = "none",
+      TreeLon = "none",
+      BCircUnitMan = "none",
+      SubplotLon = "none",
+      Year = "CensusYear",
+      LifeStatus = "CodeAlive",
+      MinDBHMan = -999L,
+      PlotArea = "PlotArea",
+      PlotLon = "none",
+      YTreePlot = "none",
+      SpeciesRelativeDominance = "none",
+      Subplot = "SubPlot",
+      MinDBHUnitMan = "none",
+      PlotDensityUnitMan = "none",
+      PlotBasalAreaDensityUnitMan = "none",
+      Plot = "Plot",
+      SpeciesImportanceIndex = "none",
+      SubplotAreaUnitMan = "none",
+      Voucher = "none",
+      TreeLat = "none",
+      PlotLat = "none",
+      StemFieldNum = "none",
+      Genus = "Genus",
+      SpeciesAbundance = "none",
+      IsLiveMan = "TRUE",
+      IsDeadMan = "FALSE",
+      SubplotLat = "none",
+      SpeciesDensity = "none",
+      SpeciesRelativeFrequency = "none",
+      MeasLevel = "Tree",
+      Tidy = structure(0L, class = c("integer",
+                                     "shinyActionButtonValue")),
+      ClearValueName = structure(0L, class = c("integer",
+                                               "shinyActionButtonValue")),
+      TickedMelt3 = FALSE,
+      Variablecolumns1 = c("Xfield",
+                           "Yfield"),
+      ValueName4 = "",
+      TickedMelt1 = FALSE,
+      ValueName5 = "",
+      ValueName2 = "utm",
+      TickedMelt4 = FALSE,
+      TickedMelt5 = FALSE,
+      Variablecolumns3 = c("Lat", "Lon"),
+      ValueName3 = "L",
+      TickedMelt2 = FALSE,
+      Variablecolumns2 = c("Xutm", "Yutm"),
+      ValueName1 = "field",
+      AllCodes = structure(
+        list(
+          Column = "You have not selected columns for codes",
+          Value = "You have not selected columns for codes",
+          Definition = "You have not selected columns for codes",
+          DefinitionSelector = "<select id=\"slct1\"><optgroup label=\"\">\n  <option value=\"[select or enter a definition]\" title=\"unselectable option\" selected=\"selected\">[select or enter a definition]</option>\n</optgroup><optgroup label=\"Dead tree codes\">\n  <option value=\"dead, stem standing\" title=\"ForestGEO code DS\">dead, stem standing</option>\n  <option value=\"dead, stem fallen\" title=\"ForestGEO code DC\">dead, stem fallen</option>\n  <option value=\"dead, only tag found\" title=\"ForestGEO code DT\">dead, only tag found</option>\n  <option value=\"presumed dead, no tag nor stem\" title=\"ForestGEO code DN\">presumed dead, no tag nor stem</option>\n  <option value=\"dead, harvested\" title=\"\">dead, harvested</option>\n  <option value=\"dead, poisoned\" title=\"\">dead, poisoned</option>\n</optgroup><optgroup label=\"Other info\">\n  <option value=\"any problem requiring further attention\" title=\"ForestGEO code P\">any problem requiring further attention</option>\n</optgroup><optgroup label=\"POM info\">\n  <option value=\"large buttress, requiring ladder to measure\" title=\"ForestGEO code B\">large buttress, requiring ladder to measure</option>\n  <option value=\"POM at alternative height, not breast height\" title=\"ForestGEO code A\">POM at alternative height, not breast height</option>\n  <option value=\"stem irregular where measured\" title=\"ForestGEO code I\">stem irregular where measured</option>\n  <option value=\"POM has changed since prior census\" title=\"ForestGEO code C\">POM has changed since prior census</option>\n</optgroup><optgroup label=\"Stem info\">\n  <option value=\"stem broken below breast height\" title=\"ForestGEO code X\">stem broken below breast height</option>\n  <option value=\"multiple stems\" title=\"ForestGEO code M\">multiple stems</option>\n  <option value=\"stem leaning\" title=\"ForestGEO code L\">stem leaning</option>\n  <option value=\"stem broken above breast height\" title=\"ForestGEO code Q\">stem broken above breast height</option>\n  <option value=\"prostrate stem\" title=\"ForestGEO code Y\">prostrate stem</option>\n  <option value=\"resprout (main stem broken but resprouted since last census)\" title=\"ForestGEO code R\">resprout (main stem broken but resprouted since last census)</option>\n  <option value=\"injured (tree fall, lightning, etc)\" title=\"These are grouped codes from the Paracou and Mbaiki sites; we could separate them into different types of damage but that might be a bit too long\">injured (tree fall, lightning, etc)</option>\n  <option value=\"dying\" title=\"\">dying</option>\n</optgroup></select>"
+        ),
+        row.names = c(NA,-1L),
+        class = "data.frame"
+      )
+    )
+
+}
+
+# dput(ParacouProfile)
+
+#### Save this data in the package ####
+usethis::use_data(ParacouProfile, overwrite = TRUE)
+
+
+## For ParacouProfile.Rmd  run next line of code and paste in the item section of R/ParacouProfile.R
+x <- read.csv("inst/app/data/interactive_items.csv")
+
+write.csv(
+  paste0(
+    "#'   \\item{",
+    names(ParacouProfile),
+    "}",
+    ifelse(
+      is.na(x$Label[match(names(ParacouProfile), x$ItemID)]),
+      "{Some value created via interaction with the Shiny app",
+      paste0(
+        "{Value or column name in data set @ParacouSubset (",
+        ParacouProfile,
+        ") corresponding to ",
+        x$Label[match(names(ParacouProfile), x$ItemID)]
+      )
+    ),
+    "}"
+  ),
+  "clipboard",
+  quote = F,
+  row.names = F
+)

@@ -1,0 +1,27 @@
+OptionGroup,Definition,Source
+,[select or enter a definition],unselectable option
+Dead tree codes,"dead, stem standing",ForestGEO code DS
+Dead tree codes,"dead, stem fallen",ForestGEO code DC
+Dead tree codes,"dead, only tag found",ForestGEO code DT
+Dead tree codes,"presumed dead, no tag nor stem",ForestGEO code DN
+Dead tree codes,"dead, harvested",
+Dead tree codes,"dead, poisoned",
+POM info,"large buttress, requiring ladder to measure",ForestGEO code B
+POM info,"POM at alternative height, not breast height",ForestGEO code A
+POM info,stem irregular where measured,ForestGEO code I
+POM info,POM has changed since prior census,ForestGEO code C
+Stem info,Liana on stem,
+Stem info,multiple stems,ForestGEO code M
+Stem info,stem leaning,ForestGEO code L
+Stem info,stem broken below breast height,ForestGEO code X
+Stem info,stem broken above breast height,ForestGEO code Q
+Stem info,prostrate stem,ForestGEO code Y
+Stem info,resprout (main stem broken but resprouted since last census),ForestGEO code R
+Stem info,"injured (tree fall, lightning, rot, etc)",These are grouped codes from the Paracou and Mbaiki sites; we could separate them into different types of damage but that might be a bit too long
+Stem info,dying,
+Crown Position,Supressed,
+Crown Position,Co-dominant,
+Crown Position,Dominant,
+Crown Exposure,Understory,
+Crown Exposure,Canopy,
+Other info,any problem requiring further attention,ForestGEO code P
