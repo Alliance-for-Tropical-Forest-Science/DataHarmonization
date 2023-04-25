@@ -1,0 +1,87 @@
+---
+title: "Data Harmonization App Tutorial"
+output:
+  html_notebook:
+    df_print: paged
+    number_sections: true
+---
+
+
+Welcome to the ATFS (Alliance for Tropical Research Science) data harmonization app!
+
+
+# Intro
+
+The app is a tool meant to be used by 2 or more networks that are planing on joining their data for a common analysis.
+
+## Profiles
+
+The app relies on "Profiles" that indicate how the data is stored in the file(s) provided: names of columns indicating the DBH, the census ID, the tree tag, the units of measurements etc...
+
+A profile is a .rds file that is downloaded via the app once all the information about the data has been provided in the `Headers and Units` tab of the app.
+
+One same profile can be uploaded as "input profile" in the `Headers and Units` tab, to speed up the process once your network's data has been profiled, and/or as "output profile" in the `Output format` tab, to transform other networks' data into that profile.
+
+Some networks have their profile stored within the app.
+
+## Getting your data ready
+
+The app only accepts CSV files. 
+
+It performs best if all the information that you want to share is collated into one analytical file, so we recommend that you append your species and plot information to your measurement information beforehand, and upload that one bigger file into the app.
+
+That said, you can decide to utilize the app to do exactly that. There is no limit to the number of files you can upload but they all need to connect to each other in one way or another, so that by a stacking and/or merging them, it is possible to collate them down to one file. We will get to this in more detail in a moment.
+
+## R package
+
+The app relies on functions that are maintained in a GitHub R package located here: https://github.com/Alliance-for-Tropical-Forest-Science/DataHarmonization.
+
+## Getting the app to start
+
+### Running the app on your local machine
+
+We recommend to run the app on your local machine (via R and RStudio) if one of the following cases apply to you:
+
+ - You have poor internet connection
+ - You are working with large data files
+ - You are familiar with the development of Shiny apps and would like to troubleshoot any issues you may encounter yourself
+ 
+To open the app in R, you will need to install the DataHarmonization R package and launch Shiny with the following code.
+
+```{r}
+# install the R package
+
+devtools::install_github("Alliance-for-Tropical-Forest-Science/DataHarmonization", build_vignettes = TRUE)
+
+# run the app
+
+shiny::runGitHub( "Alliance-for-Tropical-Forest-Science/DataHarmonization", subdir = "inst/app")
+```
+
+Note that you may need to install `devtools` package first and that installing the DataHarmonization R package may ask you to update a list packages.
+
+**You'll want to re-install the package every once in a while, to get the latest version of the app.**
+
+### Running the app online
+
+If you don't have R and RStudio and if your data is not too big, you can choose to run the online version of the app by clicking on this [link](https://valentineherr.shinyapps.io/TmFO_AccelNet/). 
+Note online version may be lagging behind the GitHub version. 
+
+
+# Interacting with the app
+
+Once the app is launched you can start interacting with it.
+
+There are multiple tabs to go through. 
+Some tabs will be skipped automatically if they don't apply to your situation and you may skip others if you don't need/want them.
+
+When you land on a tab, **always advance with an action button (even if skipping) so your inputs are taken into account**. You may use the navigation panel to return to a previous tab but remember to click on an action button to update your updated entry.
+
+
+
+## Upload 
+You will be asked to indicate the "level of measurement" of your data. This is only related to the file that stores your measurements information, say your "stem measurements" file, and does not mean you should only upload that one file. You can/should also upload the "plot info" file along, and we will merge the plot information into the stem file at a later stage. 
+If you only have plot level measurement e.g. total basal area, species richness etc..., then you may only upload that one file and select "Plot".
+
+![Upload](Upload.gif)
+
