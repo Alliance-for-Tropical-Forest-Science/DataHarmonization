@@ -4,17 +4,15 @@
 
 [![codecov](https://codecov.io/gh/Alliance-for-Tropical-Forest-Science/DataHarmonization/branch/master/graph/badge.svg?token=Z1IWWYKH7X)](https://codecov.io/gh/Alliance-for-Tropical-Forest-Science/DataHarmonization)
 
-DataHarmonization: An R package to harmonize & correct forest data.
+# DataHarmonization: An R package to harmonize & correct forest data
 
 
-"DataHarmonization" is a provisional name.
-
-The package structure diagrams (DataHarmonization_Structure.drawio.html) can be found in the "documents" folder.
+[Click here to see the tuto!](https://htmlpreview.github.io/?https://github.com/Alliance-for-Tropical-Forest-Science/DataHarmonization/blob/main/inst/app/www/tuto.nb.html)
 
 
 # Installation (development version)
 
-```
+```r
 devtools::install_github("Alliance-for-Tropical-Forest-Science/DataHarmonization", build_vignettes = TRUE)
 ```
 
@@ -22,13 +20,13 @@ devtools::install_github("Alliance-for-Tropical-Forest-Science/DataHarmonization
 
 Click [here](https://valentineherr.shinyapps.io/TmFO_AccelNet/) for an online version or run the following code in an R Session:
 
-```
+```r
 shiny::runGitHub( "Alliance-for-Tropical-Forest-Science/DataHarmonization", subdir = "inst/app")
 ```
 
 
 # To cite package ‘DataHarmonization’ in publications use:
-```
+```r
 citation("DataHarmonization")
 ```
 
