@@ -100,11 +100,14 @@ body <- dashboardBody(
                 style = "stretch",
                 color = "success"),
 
-                  helpText(code('
-                   devtools::install_github("Alliance-for-Tropical-Forest-Science/DataHarmonization", build_vignettes = TRUE)
-                                shiny::runGitHub( "Alliance-for-Tropical-Forest-Science/DataHarmonization", subdir = "inst/app")')
-                           # br(),
-                           # br(),
+                  helpText(code('devtools::install_github("Alliance-for-Tropical-Forest-Science/DataHarmonization", build_vignettes = TRUE)'),
+                           br(),
+                           code('shiny::runGitHub( "Alliance-for-Tropical-Forest-Science/DataHarmonization", subdir = "inst/app")'),
+                           br(),
+                           br(),
+                           p("You may need to install devtools package first."),
+                           p("Installing the DataHarmonization R package may ask you to update a list packages."),
+                           strong("Please, re-install the package every once in a while, to get the latest version of the app.")
                            # '# If you have run this app in the past and you think/know the DataHarmonization package has been updated since, you may need to restart you R session and re-install DataHarmonization package (using code below) before running the app again',
                            # br(),
                            # code('devtools::install_github("Alliance-for-Tropical-Forest-Science/DataHarmonization", build_vignettes = TRUE)')
@@ -236,49 +239,45 @@ body <- dashboardBody(
 
       tabItem(tabName = "Stacking",
 
-              fluidRow(
-                # column(width = 12,
-                       actionBttn(
-                         inputId =  makeUniqueID("inactive"),
-                         label = " ! ",
-                         style = "pill",
-                         color = "danger"),
-                       strong("make sure you clicked on 'Submit' in Upload tab")
-                       # )
-              ),
-                fluidRow(
-                column(width = 12,
+              div(
+                actionBttn(
+                  inputId =  makeUniqueID("inactive"),
+                  label = " ! ",
+                  style = "pill",
+                  color = "danger"),
+                strong("make sure you clicked on 'Submit' in Upload tab"),
 
-                       h1("Stacking tables"),
-                       h3("Select the tables that have the same set of columns and can be stacked on top of each other (e.g. one table per census, or one table per plot etc...)"),
-                      code("If you have no tables to stack, skip this step."),
-                      checkboxGroupButtons("TablesToStack", choices = ""),
-                      actionBttn(
-                        inputId = "Stack",
-                        label = "Stack tables",
-                        style = "material-flat",
-                        color = "success"
-                      ),
-                      actionBttn(
-                        inputId = "SkipStack",
-                        label = "Skip this step",
-                        style = "material-flat",
-                        color = "warning"
-                      ),
-                      # insertUI("#Stack", "afterEnd",
-                     hidden( actionBttn(
-                        inputId = "GoToMerge",
-                        label = "Go To Merge",
-                        style = "material-flat",
-                        color = "success"
-                      ),
-                      actionBttn(
-                        inputId = "SkipMerge",
-                        label = "Skip Merging since all your data is now stacked",
-                        style = "material-flat",
-                        color = "warning"
-                      ))
-                      #)
+
+                column(width = 12,
+                       includeMarkdown("www/Stack.md"),
+
+                       code("If you have no tables to stack, skip this step."),
+                       checkboxGroupButtons("TablesToStack", choices = ""),
+                       actionBttn(
+                         inputId = "Stack",
+                         label = "Stack tables",
+                         style = "material-flat",
+                         color = "success"
+                       ),
+                       actionBttn(
+                         inputId = "SkipStack",
+                         label = "Skip this step",
+                         style = "material-flat",
+                         color = "warning"
+                       ),
+                       hidden( actionBttn(
+                         inputId = "GoToMerge",
+                         label = "Go To Merge",
+                         style = "material-flat",
+                         color = "success"
+                       ),
+                       actionBttn(
+                         inputId = "SkipMerge",
+                         label = "Skip Merging since all your data is now stacked",
+                         style = "material-flat",
+                         color = "warning"
+                       ))
+
                 )
                 ),
               fluidRow(
@@ -289,90 +288,71 @@ body <- dashboardBody(
                        h4("summary of your stacked tables:"),
                        verbatimTextOutput("StackedTablesSummary")
                 )
-                # ,
-                # actionButton("UpdateTable", label = "Update table!", style = "color: #fff; background-color: #009e60; border-color: #317256;   position: fixed")
               )
 
 
       ),  ## end of "Stacking" panel
+
+
     tabItem(tabName = "Merging",
 
-            fluidRow(
-              # column(width = 12,
-              h1("Merging tables"),
-                    column(width = 12,
-                           actionBttn(
-                             inputId =  makeUniqueID("inactive"),
-                             label = " ! ",
-                             style = "pill",
-                             size ='xs',
-                             color = "danger"),
-                           strong("make sure you clicked on 'Sumbit' in Upload tab (and `Stack tables` in Stack tab, if used) "),
-                           # )
+            div(
+              actionBttn(
+                inputId =  makeUniqueID("inactive"),
+                label = " ! ",
+                style = "pill",
+                size ='xs',
+                color = "danger"),
+              strong("make sure you clicked on 'Sumbit' in Upload tab (and `Stack tables` in Stack tab, if used) "),
 
+              column(width = 12,
+                     includeMarkdown("www/Merge.md"),
 
-                           br(),
-                           br(),
-                           p("1. In ",  strong("Merge this table"), ", select the main measurement table (the one onto which you want to merge extra information from other tables)."),
-                           p("2. In ",  strong("And this table"), ", Select the table that you want to bring info from."),
-                           p("3. click on both blue arrows", style = "color:#00c0ef"),
-                           p("4. In the two dropdown menus about the 'KEY column(s)', select the column(s) that allow to connect the to tables together.", strong("Select all columns that are common between tables, otherwise columns will be repeated in the output, with extension '.y' in the name of the second table.")),
-                           p("5. click on 'Merge tables'"),
-                           p("6. If you are still not down to one table, another box will appear. repeat 1-5 in that box."),
-                           br(),
-                           br(),
-                           p(strong("Tip: You can name your tables in the 'upload' tab so you know which tbale is which in the dropdown menus here")),
-                           # actionButton("addMerge", "Add a Merging relationship"),
-                           # uiOutput("MergeTablesUI"),
-                           # textOutput("test"),
-                           # verbatimTextOutput("test2"),
-                           # checkboxGroupButtons("TablesToMerge", choices = ""),
+                     box(width = 12,
 
-                           box(width = 12,
+                         fluidRow(column(3, pickerInput("leftTable", "Merge this table", choices = "")),
+                                  column(2, br(), actionButton("selectLeft", "", icon = icon("arrow-right"),class = "btn-info", style = "color: #fff")),
+                                  column(7,  hidden(shinyWidgets::virtualSelectInput("leftKey", div("Using this/these KEY column(s)", br(), em("Please, select all columns common to both tables. The order you select them matters")), choices = "", multiple = T, search = T, optionsCount = 6)))),
 
-                               fluidRow(column(3, pickerInput("leftTable", "Merge this table", choices = "")),
-                                        column(2, br(), actionButton("selectLeft", "", icon = icon("arrow-right"),class = "btn-info", style = "color: #fff")),
-                                        column(7,  hidden(shinyWidgets::virtualSelectInput("leftKey", div("Using this/these KEY column(s)", br(), em("Please, select all columns common to both tables. The order you select them matters")), choices = "", multiple = T, search = T, optionsCount = 6)))),
+                         fluidRow(column(3, pickerInput("rightTable", "And this table", choices = "")),
+                                  column(2, br(), actionButton("selectRight", "", icon = icon("arrow-right"),class = "btn-info", style = "color: #fff")),
+                                  column(7,  hidden(shinyWidgets::virtualSelectInput("rightKey", div("Using this/these KEY column(s)", br(), em("Please, select all columns common to both tables. The order you select them matters")), choices = "", multiple = T, search = T, optionsCount = 6)))),
 
-                               fluidRow(column(3, pickerInput("rightTable", "And this table", choices = "")),
-                                        column(2, br(), actionButton("selectRight", "", icon = icon("arrow-right"),class = "btn-info", style = "color: #fff")),
-                                        column(7,  hidden(shinyWidgets::virtualSelectInput("rightKey", div("Using this/these KEY column(s)", br(), em("Please, select all columns common to both tables. The order you select them matters")), choices = "", multiple = T, search = T, optionsCount = 6)))),
+                         actionBttn(
+                           inputId = "Merge",
+                           label = "Merge tables",
+                           style = "material-flat",
+                           color = "success")
+                     ),
+                     fluidRow(
+                       hidden(actionBttn(inputId = "addMerge",  label =  span(em("Add a Merging relationship", strong("(You need to end up with only one table)"))),
+                                         style = "material-flat",
+                                         color = "danger")),
+                     ),
+                     hidden(div(id ="Merge2Div", box(width = 12,
 
-                               actionBttn(
-                                 inputId = "Merge",
-                                 label = "Merge tables",
-                                 style = "material-flat",
-                                 color = "success")
-                           ),
-                           fluidRow(
-                             hidden(actionBttn(inputId = "addMerge",  label =  span(em("Add a Merging relationship", strong("(You need to end up with only one table)"))),
-                                               style = "material-flat",
-                                               color = "danger")),
-                           ),
-                           hidden(div(id ="Merge2Div", box(width = 12,
+                                                     fluidRow(column(3, pickerInput("leftTable2", "Merge this table", choices = "")),
+                                                              column(2, br(),actionButton("selectLeft2", "", icon = icon("arrow-right"),class = "btn-info", style = "color: #fff")),
+                                                              column(7,  hidden(shinyWidgets::virtualSelectInput("leftKey2", div("Using this/these KEY column(s)", br(), em("Please, select all columns common to both tables. The order you select them matters.")), choices = "", multiple = T, search = T, optionsCount = 6)))),
 
-                                                           fluidRow(column(3, pickerInput("leftTable2", "Merge this table", choices = "")),
-                                                                    column(2, br(),actionButton("selectLeft2", "", icon = icon("arrow-right"),class = "btn-info", style = "color: #fff")),
-                                                                    column(7,  hidden(shinyWidgets::virtualSelectInput("leftKey2", div("Using this/these KEY column(s)", br(), em("Please, select all columns common to both tables. The order you select them matters.")), choices = "", multiple = T, search = T, optionsCount = 6)))),
+                                                     fluidRow(column(3, pickerInput("rightTable2", "And this table", choices = "")),
+                                                              column(2, br(),actionButton("selectRight2", "", icon = icon("arrow-right"),class = "btn-info", style = "color: #fff")),
+                                                              column(7,  hidden(shinyWidgets::virtualSelectInput("rightKey2", div("Using this/these KEY column(s)", br(), em("Please, select all columns common to both tables. The order you select them matters")), choices = "", multiple = T, search = T, optionsCount = 6)))),
+                                                     actionBttn(
+                                                       inputId = "Merge2",
+                                                       label = "Merge tables",
+                                                       style = "material-flat",
+                                                       color = "success"
+                                                     )
+                     ))),
 
-                                                           fluidRow(column(3, pickerInput("rightTable2", "And this table", choices = "")),
-                                                                    column(2, br(),actionButton("selectRight2", "", icon = icon("arrow-right"),class = "btn-info", style = "color: #fff")),
-                                                                    column(7,  hidden(shinyWidgets::virtualSelectInput("rightKey2", div("Using this/these KEY column(s)", br(), em("Please, select all columns common to both tables. The order you select them matters")), choices = "", multiple = T, search = T, optionsCount = 6)))),
-                                                           actionBttn(
-                                                             inputId = "Merge2",
-                                                             label = "Merge tables",
-                                                             style = "material-flat",
-                                                             color = "success"
-                                                           )
-                           ))),
-
-                           hidden( actionBttn(
-                             inputId = "GoToTidy",
-                             label = "Go To Tidy",
-                             style = "material-flat",
-                             color = "success"
-                           ))
-                    )
+                     hidden( actionBttn(
+                       inputId = "GoToTidy",
+                       label = "Go To Tidy",
+                       style = "material-flat",
+                       color = "success"
+                     ))
+              )
             ),
             fluidRow(
 
@@ -382,18 +362,17 @@ body <- dashboardBody(
                      h4("summary of your merged tables:"),
                      verbatimTextOutput("mergedTablesSummary")
               )
-            #   # ,
-            #   # actionButton("UpdateTable", label = "Update table!", style = "color: #fff; background-color: #009e60; border-color: #317256;   position: fixed")
             )
 
 
     ),  ## end of "Merging" panel
 
     tabItem(tabName = "Tidying",
-            h3("This is where we want to make your data 'tidy'"),
-            p("This means that we want one row per observation. An observation is one measurement (of one stem, at one census, and one height)."),
-            p("If you have stored several measurements on a same row (for example, you have several DBH columns, one for each census), we need to tidy your data..."),
-            p("This is called wide-to-long reshaping. If you already have one observation per row, you can skip this step"),
+
+            includeMarkdown("www/Tidy.md"),
+
+            code("If you already have one observation per row, skip this step."),
+
             actionBttn(
               inputId = "SkipTidy",
               label = "Skip this step",
@@ -454,10 +433,12 @@ body <- dashboardBody(
             ), ## end of "Tidy" panel
     tabItem(tabName = "Headers",
             fluidRow(
+              column(width = 12,
+                     h3("Indicate the meaning of your headers and your units.")),
               # inform if profile already exists
               box(width = 12,
                   radioButtons(inputId = "predefinedProfile",
-                               label = div("Use a predifined format?", br(), em("(if your data follows one of the following network template)")),
+                               label = div("Use a predifined profile", br(), em("(if your data follows one of the following network template)")),
                                choices = list("No thanks!" = "No",
                                               # "ATDN: The Amazon Tree Diversity Network" = "ATDN",
                                               "ForestGEO: The Smithsonian Forest Global Earth Observatory" = "ForestGeo",
@@ -467,8 +448,10 @@ body <- dashboardBody(
                                selected = "No"),
 
                   # load a profile it one already exists
-                  fileInput(inputId = "profile", div("You may also load your own profile", br(), em("(if you already used this app and saved your profile (.rds))")), accept = ".rds"),
+                  fileInput(inputId = "profile", div("Upload your own profile", br(), em("(if you already used this app and saved your profile (.rds))")), accept = ".rds"),
                   span(textOutput("RDSWarning"), style="color:red"),
+                  strong("If you have never used this app before and your data does not follow a prefined profile, you need to manually interact with each drop-down menus below."),
+                  p("Work on column one first, then move to column 2."),
                   br(),
                   hidden(actionBttn(
                     inputId = "UseProfile",
@@ -602,10 +585,9 @@ body <- dashboardBody(
 
     )),
 tabItem("Codes",
-        h3("This is where we are going to try to understand the tree codes you have..."),
-        # strong(style = "color:red", "This is not functional yet, you can skip this step for now... (click on 'Apply Corrections' on the left pannel)"),
 
-        h4("Please, fill-out the", code("Definition"), "by selecting a pre-written denfinition or manually writting yours."),
+        includeMarkdown("www/Codes.md"),
+
         hidden(actionBttn(inputId = "UseProfileCodes" , label = "Use your profile")),
         actionBttn(
           inputId = "GoToCorrect",
@@ -683,7 +665,7 @@ tabItem("Codes",
 
             fluidRow(box(width = 12,
                          radioButtons(inputId = "predefinedProfileOutput",
-                                      label = div("Use a predifined format for your output?"),
+                                      label = div("Use a predifined output profile"),
                                       choices = list("No thanks! I'll upload a profile I have handy." = "No",
                                                      "This App's standard" = "App",
                                                      # "ATDN: The Amazon Tree Diversity Network" = "ATDN",
@@ -694,7 +676,7 @@ tabItem("Codes",
 
                          # load a profile it one already exists
                          div(id = "profileOutputfileInput",
-                           fileInput(inputId = "profileOutput", div("Load a profile you have on your machine", br(), em("(if you or a colleague already used this app and saved a profile (.rds))")), accept = ".rds")),
+                           fileInput(inputId = "profileOutput", div("Or, load a profile you have on your machine", br(), em("(if you or a colleague already used this app and saved a profile (.rds))")), accept = ".rds")),
                          span(textOutput("RDSOutputWarning"), style="color:red"),
                          br(),
                         actionBttn(

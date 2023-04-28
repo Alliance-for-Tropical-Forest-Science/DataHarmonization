@@ -1,30 +1,37 @@
 ---
 title: "Data Harmonization App Tutorial"
-output:
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+output: 
   html_notebook:
     df_print: paged
     number_sections: true
 ---
 
+```{r include=FALSE}
+library(fontawesome)
+``` 
+
+
+
 
 Welcome to the ATFS (Alliance for Tropical Research Science) data harmonization app!
 
 
-# Intro
+# Intro {#intro}
 
-The app is a tool meant to be used by 2 or more networks that are planing on joining their data for a common analysis.
+The app is a tool meant to be used by 2 or more networks that are planing on combining their data for a common analysis.
 
-## Profiles
+## Profiles {#profile}
 
-The app relies on "Profiles" that indicate how the data is stored in the file(s) provided: names of columns indicating the DBH, the census ID, the tree tag, the units of measurements etc...
+The app relies on "Profiles" that indicate how the data is stored in the file(s) provided: names of columns storing the DBH, the census ID, the tree tag, units of measurements etc...
 
-A profile is a .rds file that is downloaded via the app once all the information about the data has been provided in the `Headers and Units` tab of the app.
+A profile is a .rds file that is downloaded via the app once all the information about the data has been provided in the [`Headers and Units`](#Headers) tab of the app.
 
-One same profile can be uploaded as "input profile" in the `Headers and Units` tab, to speed up the process once your network's data has been profiled, and/or as "output profile" in the `Output format` tab, to transform other networks' data into that profile.
+One same profile can be uploaded as "input profile" in the [`Headers and Units`](#Headers) tab, to speed up the process once your network's data has been profiled, and/or as "output profile" in the [`Output format`](#OutputFormat) tab, to transform other networks' data into that profile.
 
 Some networks have their profile stored within the app.
 
-## Getting your data ready
+## Getting your data ready {#prepdata}
 
 The app only accepts CSV files. 
 
@@ -32,13 +39,17 @@ It performs best if all the information that you want to share is collated into 
 
 That said, you can decide to utilize the app to do exactly that. There is no limit to the number of files you can upload but they all need to connect to each other in one way or another, so that by a stacking and/or merging them, it is possible to collate them down to one file. We will get to this in more detail in a moment.
 
-## R package
+The app also relied on [tidy](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html#:~:text=Tidy%20data%20is%20a%20standard,Every%20column%20is%20a%20variable.) data, which means that every column is a variable, every row is an observation and every cell is a single value. For example, a data set with multiple column for the DBH measurement (e.g. DBH_2015, DBH_2020 etc...) is not a tidy data set. Instead, there should be a column for the variable `year` (which, in our example, will take a value of 2015 or 2020), and a column for `DBH`.
+If your data is not in a tidy format, the [`Tidy table`](#Tidying) tab will help you reshape your data. 
+
+
+## R package {#package}
 
 The app relies on functions that are maintained in a GitHub R package located here: https://github.com/Alliance-for-Tropical-Forest-Science/DataHarmonization.
 
-## Getting the app to start
+## Getting the app to start {#start}
 
-### Running the app on your local machine
+### Running the app on your local machine {#localRun}
 
 We recommend to run the app on your local machine (via R and RStudio) if one of the following cases apply to you:
 
@@ -46,7 +57,7 @@ We recommend to run the app on your local machine (via R and RStudio) if one of 
  - You are working with large data files
  - You are familiar with the development of Shiny apps and would like to troubleshoot any issues you may encounter yourself
  
-To open the app in R, you will need to install the DataHarmonization R package and launch Shiny with the following code.
+To open the app in R, you will need to install the DataHarmonization R package and launch Shiny with the following lines of code.
 
 ```{r}
 # install the R package
@@ -62,26 +73,80 @@ Note that you may need to install `devtools` package first and that installing t
 
 **You'll want to re-install the package every once in a while, to get the latest version of the app.**
 
-### Running the app online
+### Running the app online {#onlineRun}
 
 If you don't have R and RStudio and if your data is not too big, you can choose to run the online version of the app by clicking on this [link](https://valentineherr.shinyapps.io/TmFO_AccelNet/). 
-Note online version may be lagging behind the GitHub version. 
+Note that online version may be lagging behind the GitHub version. 
 
 
-# Interacting with the app
+# Interacting with the app {#interact}
 
 Once the app is launched you can start interacting with it.
 
 There are multiple tabs to go through. 
 Some tabs will be skipped automatically if they don't apply to your situation and you may skip others if you don't need/want them.
 
-When you land on a tab, **always advance with an action button (even if skipping) so your inputs are taken into account**. You may use the navigation panel to return to a previous tab but remember to click on an action button to update your updated entry.
+When you land on a tab, **always advance with an action button (even if skipping) so your inputs are taken into account**. You may use the navigation panel to return to a previous tab but remember to click on an action button to save your updated entries.
 
 
 
-## Upload 
-You will be asked to indicate the "level of measurement" of your data. This is only related to the file that stores your measurements information, say your "stem measurements" file, and does not mean you should only upload that one file. You can/should also upload the "plot info" file along, and we will merge the plot information into the stem file at a later stage. 
-If you only have plot level measurement e.g. total basal area, species richness etc..., then you may only upload that one file and select "Plot".
+## Upload your file(s) {#upload}
 
-![Upload](Upload.gif)
+This tab starts with information that we already covered in the [intro](#intro). The checklist is only a guideline to help you getting ready, and you don't actually need to check the boxes to keep going.
+
+The numbered tasks are the elements that you do need to complete to be able to move forward.
+
+ 1. Indicate how many tables you wish to upload
+ 2. Indicate the finest level of measurement in your data:
+ 
+    - Plot: if your data only consists of plot level measurements like species richness, total basal area, total number of stems etc...
+    - Species: if your data consists of species level measurements like abundance, basal area etc... This does not prevent you from uploading plot level information if, e.g. the area of the plots in which you measured species-level abundance are stored in a separate file.
+    - Tree: if your data consists of tree diameters, circumference,... and you are only measuring the main stem of each tree. This does not prevent you from uploading plot and species level information if, e.g. the area of the plots in which you measured your trees, and the Latin names of the species they belonged too are stored in a separate file.
+    - stem: if your data consists of stem diameters, circumference,... and you may have multiple stems belonging to a same tree. This does not prevent you from uploading plot and species level information if, e.g. the area of the plots in which you measured your trees, and the Latin names of the species they belonged too are stored in a separate file.
+ 
+Again, even if you are uploading plot level information, if you have a stem level data, you should upload that file along and indicate that your level of measurement is "Stem".
+
+ 3. Upload you tables. You'll have as meany upload boxes as you indicated needing in step 1. For each of them:
+ 
+    - click on `Browse...` and navigate to the csv file you want to upload
+    - Type a more meaningful name to replace the generic "Table1", "Table2" etc... This is particularly useful if you are uploading more than one fileh
+    - check on the right hand side that the columns and rows of your data are rendering properly. 
+    - In the unlickely event that your tables are not rendering properly, adjust the parameters (separator and header) by clicking on the little gear icon `r fa(name = "cog")`.
+
+
+**Click on SUBMIT** to proceed to the next step.
+     
+![](Upload.gif)
+
+
+## Stack tables {#Stacking}
+
+If you uploaded more than one table, you will be prompted to the `Stack tables` tab, but thid tab will be skipped if you only uploaded one table.
+
+You will need to stack 2 or more tables if you are collecting the same information in multiple files. This can be the case if, for example, you are keeping your measurements from different plots in different files. Or you are keeping one file per census.
+
+**It is important that the files you are stacking have the same set of columns.** 
+
+
+
+![](Stack.gif)
+
+## Merge tables {#Merging}
+
+## Tidy table {#Tidying}
+
+## Headers and Units {#Headers}
+
+## Codes {#Codes}
+
+## Corrections {#Correct}
+
+## Output format {#OutputFormat}
+
+## Visualise results {#Visualise}
+
+## Download {#Save}
+
+## Help {#Help}
+
 
