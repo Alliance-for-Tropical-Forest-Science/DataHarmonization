@@ -1059,7 +1059,7 @@ server <- function(input, output, session) { # server ####
 
     ExtraCodesInProfile <- setdiff(UserProfile()$AllCodes$Value, dat$Value)
 
-    if(length(ExtraCodesInProfile)>0) showNotification(paste("WARNING: The following codes are not in your profile, but are not currently in your data. They will be ignored:", paste(paste(ExtraCodesInProfile, "in column", UserProfile()$AllCodes$Column[match(ExtraCodesInProfile, UserProfile()$AllCodes$Value)]), collapse = ", ")), type = 'err', duration = NULL)
+    if(length(ExtraCodesInProfile)>0) showNotification(paste("WARNING: The following codes are in your profile, but are not currently in your data. They will be ignored:", paste(paste(ExtraCodesInProfile, "in column", UserProfile()$AllCodes$Column[match(ExtraCodesInProfile, UserProfile()$AllCodes$Value)]), collapse = ", ")), type = 'err', duration = NULL)
 
 
     dat$Definition <- UserProfile()$AllCodes$Definition[m]

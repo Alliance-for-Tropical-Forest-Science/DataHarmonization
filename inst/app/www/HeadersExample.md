@@ -1,32 +1,21 @@
 # Indicating the meaning of your headers and your units
 
-Here, we want to know in what column some key information is stored in your data.
+Here, we want to know in what column some key information is stored.
 
-## If...
+ 1. **If...**
 
-### ... your data follows one of our pre-loaded standards
+     - **A. ... your data follows one of our pre-loaded standards:** You can select it to help filing out some of the general information. But you should double check that accurately describe your particular data set.
+     - **B. ... you have already gone through this step and saved your profile (.rds file):** You can upload your profile. Double check that the information is filled out properly.
+     - **C. ...This is your first time on this page:** You have to go through all the drop-down menus:
+       - column 1: Go through this column before indicating more information in column 2. For each element, select the name of the field of your data, if any, that corresponds the best to what is asked. Leave "none" if none of your variable apply.
+       - column 2: Complete the information of that column after you are done with the information of column 1, because some field may appear/disappear depending on what you entered in 1.
+       - Once you are done, save your profile (a .rds file) so you won't need to go through all of this again (see B. above) 
+       
+ 2. **click on 'APPLY CHANGES'** and read any warnings that may popup, adjust your entries if possible (it is okay to ignore warnings) and re-apply your changes. Save (or update if needed) your profile (.rds file)
 
-You can select it to help filling out some of the general information. But you should double check that accurately describe your particular data set.
-
-(You need to click on the green button twice.)
-
-### ... you have already gone through this step and have save your profile (.rds file)
-
-You can upload your profile and click on the green button twice. Double check that the information is fille out properly.
-
-
-### This is your first time on this page
-
-You have to go down the lists of the left column before indicating more information in the right column.
-For each element, select the column that corresponds the best, if any, what is asked.
-Once you are done, save your profile (a .rds file) so you won't need to go through all of this again (see above) 
-
-
-# Standardizing data
-
-Once the fields are filled out to the best of your knowledge and you saved your profile (we recommend saving the profile first in case this steps fails), you can click on the "Apply changes" button. 
-Your standardized data will appear. The headers and units are following this app's standard for now, you can see what those are by clicking the little "info" button.
-
+ 3. Check your new formated data looks ok. The headers and units are now following ATFS's standard. You can see what those are by clicking the little `r fa(name = "info-circle")` button.
+ 
+ 5. **click on 'NEXT'**
 
 
 

@@ -100,32 +100,42 @@ The numbered tasks are the elements that you do need to complete to be able to m
  2. Indicate the finest level of measurement in your data:
  
     - Plot: if your data only consists of plot level measurements like species richness, total basal area, total number of stems etc...
-    - Species: if your data consists of species level measurements like abundance, basal area etc... This does not prevent you from uploading plot level information if, e.g. the area of the plots in which you measured species-level abundance are stored in a separate file.
-    - Tree: if your data consists of tree diameters, circumference,... and you are only measuring the main stem of each tree. This does not prevent you from uploading plot and species level information if, e.g. the area of the plots in which you measured your trees, and the Latin names of the species they belonged too are stored in a separate file.
-    - stem: if your data consists of stem diameters, circumference,... and you may have multiple stems belonging to a same tree. This does not prevent you from uploading plot and species level information if, e.g. the area of the plots in which you measured your trees, and the Latin names of the species they belonged too are stored in a separate file.
+    - Species: if your data consists of species level measurements like abundance, basal area etc... This does not prevent you from also uploading plot level information that is stored in a separate file.
+    - Tree: if your data consists of tree diameters, circumference,... and you are only measuring the main stem of each tree. This does not prevent you from also uploading plot and species level information if they are stored in separate file(s).
+    - Stem: if your data consists of stem diameters, circumference,... and some stems belong to a same tree. This does not prevent you from uploading plot and species level information if they are stored in a separate file(s).
  
-Again, even if you are uploading plot level information, if you have a stem level data, you should upload that file along and indicate that your level of measurement is "Stem".
+Again, even if you are uploading plot level information but have a stem level data, you should upload that file along and indicate that your level of measurement is "Stem".
 
- 3. Upload you tables. You'll have as meany upload boxes as you indicated needing in step 1. For each of them:
+ 3. Upload you tables. You'll have as many upload boxes as you indicated needing in step 1. For each of them:
  
-    - click on `Browse...` and navigate to the csv file you want to upload
-    - Type a more meaningful name to replace the generic "Table1", "Table2" etc... This is particularly useful if you are uploading more than one fileh
-    - check on the right hand side that the columns and rows of your data are rendering properly. 
-    - In the unlickely event that your tables are not rendering properly, adjust the parameters (separator and header) by clicking on the little gear icon `r fa(name = "cog")`.
+    - click on `Browse...` and navigate to the csv file you want to upload.
+    - Type a more meaningful name to replace the generic "Table1", "Table2" etc... This is particularly useful if you are uploading more than one file.
+    - Check on the right hand side that the columns and rows of your data are rendering properly. 
+    - In the unlikely event that your tables are not rendering properly, adjust the parameters (separator and header) by clicking on the little gear icon `r fa(name = "cog")`.
 
-
-**Click on SUBMIT** to proceed to the next step.
+ 4. **Click on SUBMIT** to proceed to the next step.
+ 
      
 ![](Upload.gif)
 
 
 ## Stack tables {#Stacking}
 
-If you uploaded more than one table, you will be prompted to the `Stack tables` tab, but thid tab will be skipped if you only uploaded one table.
+If you uploaded more than one table, you will be prompted to the `Stack tables` tab, but this tab will be skipped if you only uploaded one table.
 
 You will need to stack 2 or more tables if you are collecting the same information in multiple files. This can be the case if, for example, you are keeping your measurements from different plots in different files. Or you are keeping one file per census.
 
+If you don't need to stack tables, **click on SKIP THIS STEP**.
+
 **It is important that the files you are stacking have the same set of columns.** 
+
+ 1. Select all the tables that need to be stacked
+ 
+ 2. **Click on STACK TABLES**
+ 
+ 3. Double check your newly created table looks ok
+ 
+ 4. **Click on GO TO MERGE** to proceed to the next step. (Note: if you are down to one table at this stage the button's label will change, so **click SKIP MERGING SINCE ALL YOUR DATA IS NOW STACKED**).
 
 
 
@@ -133,11 +143,92 @@ You will need to stack 2 or more tables if you are collecting the same informati
 
 ## Merge tables {#Merging}
 
+If you uploaded more than one table and not all of them were stacked, you will be prompted to the `Merge tables` tab, but this tab will be skipped if you only uploaded one table, or if all your tables were stacked.
+
+At the end of this stage you have to be down to one table.
+
+You need to use merging if, e.g., your species or your plot information is stored in a different table than your measurement table, and there is at least one "key" column that you can use to connect the tables together.
+
+
+ 
+ 1. In **Merge this table**, select the main measurement table (the one onto which you want to merge extra information into, from other tables). Note that this may be your now stacked table.
+ 
+ 2. In **And this table**, Select the table that you want to bring information from.
+ 
+ 3. <span style="color:#00c0ef;">Click on both blue arrows.</span>
+ 
+ 4. In the two dropdown menus about the 'KEY column(s)', select the column(s) that allow to connect the to tables together.**Select all columns that are common between tables, otherwise columns will be repeated in the output, with extension '.y' in the name of the second table.**
+ 
+ 5. **click on 'MERGE TABLES'.**
+ 
+ 6. If you are still not down to one table, another box will appear. Repeat 1-5 with the remaining tables.
+ 
+ 7. **click on 'GO TO TIDY'.**
+ 
+
+![](Merge.gif)
+
 ## Tidy table {#Tidying}
+
+
+At this stage, we want to make sure your data has **one row per observation and one variable per column.**
+
+If you collected the same type of information in several columns (e.g. you added a column each time you visited a tree, or for each stem of the tree etc...), you need to "tidy" your table (also called wide-to-long reshaping). 
+
+ 1. In the top-most box, use the radio-buttons to indicate the reason you added new columns for a new observation.
+ 
+ 2. The next set of boxes are pre-filled with our best guesses at the columns that may contain the same variable (columns that have similar names like `dbh1`, `dbh2`, or  `year1`, `year2`...). Our guess may be terrible. Your role is to:
+ 
+      a. Indicate the name of the new column that you which your variable to be called (e.g. `dbh`) in the text box. Note that this should start by a letter and have no space.
+       
+      b. Select all the columns of your data that represent the variable indicated in step a. (e.g `dbh1` and `dbh2`) using the drop-down menu.
+
+      c. Tick the little tick-box on the upper-left corner of the box, to indicated that you do want to take into account what you selected.
+       
+ 3. Repeat a-c for the next variable(s), e.g. you may need a box to indicate `year` in the text box and `year1` and `year2` in the drop-down menu. Don't forget to tick the tick-box for those variables too.
+ 
+ 4. **Click on 'TIDY'**
+ 
+ 5. **Click on 'GO TO HEADERS'**
+
+![](Tidy.gif)
 
 ## Headers and Units {#Headers}
 
+Here, we want to know in what column some key information is stored.
+
+ 1. **If...**
+
+     - **A. ... your data follows one of our pre-loaded standards:** You can select it to help filing out some of the general information. But you should double check that accurately describe your particular data set.
+     - **B. ... you have already gone through this step and saved your profile (.rds file):** You can upload your profile. Double check that the information is filled out properly.
+     - **C. ...This is your first time on this page:** You have to go through all the drop-down menus:
+       - column 1: Go through this column before indicating more information in column 2. For each element, select the name of the field of your data, if any, that corresponds the best to what is asked. Leave "none" if none of your variable apply.
+       - column 2: Complete the information of that column after you are done with the information of column 1, because some field may appear/disappear depending on what you entered in 1.
+       - Once you are done, save your profile (a .rds file) so you won't need to go through all of this again (see B. above) 
+       
+ 2. **click on 'APPLY CHANGES'** and read any warnings that may popup, adjust your entries if possible (it is okay to ignore warnings) and re-apply your changes. Save (or update if needed) your profile (.rds file)
+
+ 3. Check your new formated data looks ok. The headers and units are now following ATFS's standard. You can see what those are by clicking the little `r fa(name = "info-circle")` button.
+ 
+ 5. **click on 'NEXT'**
+
+
+![](Headers.gif)
+
 ## Codes {#Codes}
+
+This stage is only required if you indicated column(s) for tree codes in the Tree Measurement section of the previous tab.
+
+The table shows the list of codes that are available in the column(s) you indicated.
+If you intend to translate these codes to match the ones of another profile (which you will be able to do at a later step), or vice-versa, you need to fill this table out.
+
+Once you are done with the table you can update your profile (by downloading and overwriting your .rds file). If you have already saved your profile after this step and used it to fill out the previous step, you can click on the "Use your profile" button to automatically fill the table.
+
+
+There is a list of predefined definitions, which, if used by you and your collaborator, will helps automatically translating your codes. But if you can't find a definition that matches yours, just type your own.
+
+
+![](Codes.gif)
 
 ## Corrections {#Correct}
 

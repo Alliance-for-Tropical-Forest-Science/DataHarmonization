@@ -16,6 +16,8 @@ If you collected the same type of information in several columns (e.g. you added
        
  3. Repeat a-c for the next variable(s), e.g. you may need a box to indicate `year` in the text box and `year1` and `year2` in the drop-down menu. Don't forget to tick the tick-box for those variables too.
  
- 4. **Click on 'Tidy'**
+ 4. **Click on 'TIDY'**
+ 
+ 5. **Click on 'GO TO HEADERS'**
        
 
