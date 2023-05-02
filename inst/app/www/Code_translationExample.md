@@ -6,4 +6,4 @@ If you hover over the column names, you will see the definitions of the output p
 
 click on "See definition" to double check that the mapping of codes is correct. When you are happy, you can apply the mapping and you will see columns added to your table. They will have the column names that the output profile expect and will be filled with their codes.
 
-**Tip: you can collapse the rows by clicling on th grey ones**
+**Tip: you can collapse the rows by clicking on the bold names**
