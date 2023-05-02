@@ -93,6 +93,8 @@ BotanicalCorrection <- function(Data,  Sources = c("tropicos", "usda", "wfo", "w
 
   rownames(M) <- original.name.ids
 
+  M <- unique(M)
+
   M <- gsub(".", ". ", M, fixed = TRUE)
   M <- gsub("_", " ", M, fixed = TRUE)
   M <- matrix(stringr::str_squish(M), nrow = nrow(M), dimnames = dimnames(M))
@@ -278,8 +280,8 @@ if(length(pass.this.unique) !=  nrow(tnrs)) stop("some species did not pass thro
 
   colnames(M) <- paste0(colnames(M), "_processed_by_app")
   M <- cbind(M, tnrs)
-  # where.in.M <- match(original.name.ids, rownames(M))
-  # M <- M[where.in.M,] # same number of rows as Data
+  where.in.M <- match(original.name.ids, rownames(M))
+  M <- M[where.in.M,] # same number of rows as Data
 
   extra.vars1 <- c("IdTree", "Site")
   extra.vars2 <- intersect(names(Data), c("IdStem", "Voucher", "IdLevel", "Authority", "VernName"))
