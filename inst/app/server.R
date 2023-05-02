@@ -1492,11 +1492,41 @@ server <- function(input, output, session) { # server ####
 
     missingItemsInOutputProfile <- setdiff(x$ItemID, names(profileOutput()))
 
+    # ignore the ones not needed (not perfect but is catchin most)
+    missingItemsInOutputProfile <- missingItemsInOutputProfile[profileOutput()[x$if_X1_is_none[x$ItemID %in% missingItemsInOutputProfile]] %in% "none" | x$if_X1_is_none[x$ItemID %in% missingItemsInOutputProfile] %in% "none"]
+    missingItemsInOutputProfile <- missingItemsInOutputProfile[profileOutput()[x$if_X2_is_none[x$ItemID %in% missingItemsInOutputProfile]] %in% "none" | x$if_X2_is_none[x$ItemID %in% missingItemsInOutputProfile] %in% "none"]
+    missingItemsInOutputProfile <- missingItemsInOutputProfile[!profileOutput()[x$if_X2_isnot_none[x$ItemID %in% missingItemsInOutputProfile]] %in% "none" | x$if_X2_isnot_none[x$ItemID %in% missingItemsInOutputProfile] %in% "none"]
+
+
+
     if(length(missingItemsInOutputProfile) > 0) {
       sendSweetAlert(
         session = session,
         title = "Sorry !",
-        text =  paste("The profile you selected is obsolete... It is missing",  paste0(paste(missingItemsInOutputProfile, ": ", x$Label[x$ItemID %in% missingItemsInOutputProfile]), collapse = "; "), ". If this is a preloaded profile, please contact us so we update it. If not, whoever built that profile needs to either update it by reprocessing their data in the app, or they can open the .rds file in R, and add those missing elements to the list."),
+        text =  tags$span(
+          "The profile you selected is obsolete... It is missing the following elements:",
+          tags$br(),
+          tags$br(),
+          tags$ul(
+
+            lapply(paste0(missingItemsInOutputProfile, ": ", x$Label[x$ItemID %in% missingItemsInOutputProfile], " (in ", x$Group[x$ItemID %in% missingItemsInOutputProfile], " section);"), tags$li)
+            #(Value should be a ", x$DefaultClass[x$ItemID %in% missingItemsInOutputProfile], " \"",  x$Default[x$ItemID %in% missingItemsInOutputProfile], "\");"), tags$li)
+
+           ),
+          tags$br(),
+          "If this is a preloaded profile, please post an issue", tags$a("here", href="https://github.com/Alliance-for-Tropical-Forest-Science/DataHarmonization/issues"), ". But If you uploaded the file yourself, whoever built that profile needs to update it by reprocessing their data in the app, or they can contact us and we can help adding the missing element(s) 'manually'."
+         #  tags$br(),
+         #  "Here is a code example:",
+         #
+         #  tags$ul(
+         #
+         # lapply(lapply(c("input <- readRDS(file)", paste0("input$", missingItemsInOutputProfile, "<- ", ifelse(!lapply(reactiveValuesToList(input)[missingItemsInOutputProfile], class) %in% c("numeric", "integer", "double"), "\"", ""), x$Default[x$ItemID %in% missingItemsInOutputProfile], ifelse(!lapply(reactiveValuesToList(input)[missingItemsInOutputProfile], class) %in% c("numeric", "integer", "double"), "\"", "")), "save(RDS, file)"), tags$code), tags$li),
+         # style="list-style-type: none"),
+         # style = "text-align: left"
+          ),
+
+
+        html = T,
         type = "error")
     }
 
