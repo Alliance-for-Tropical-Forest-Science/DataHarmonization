@@ -56,49 +56,7 @@
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A tibble</p><dl><dt>Site</dt>
-<dd><p>Site level name</p></dd>
-
-<dt>Plot</dt>
-<dd><p>Plot level name</p></dd>
-
-<dt>Subplot</dt>
-<dd><p>Subplot level name</p></dd>
-
-<dt>PlotLat</dt>
-<dd><p>Plot's latitude</p></dd>
-
-<dt>PlotLon</dt>
-<dd><p>Plot's longitude</p></dd>
-
-<dt>XPlotUTM</dt>
-<dd><p>Plot's X UTM coordinates</p></dd>
-
-<dt>YPlotUTM</dt>
-<dd><p>Plot's Y UTM coordinats</p></dd>
-
-<dt>PlotArea</dt>
-<dd><p>Size of the plot</p></dd>
-
-<dt>PlotElevation</dt>
-<dd><p>plot's elevation above sea level</p></dd>
-
-<dt>SubplotLat</dt>
-<dd><p>Subplot's latitude</p></dd>
-
-<dt>SubplotLon</dt>
-<dd><p>Subplot's longitude</p></dd>
-
-<dt>XSubplotUTM</dt>
-<dd><p>Subplot's X UTM coordinates</p></dd>
-
-<dt>YSubplotUTM</dt>
-<dd><p>Subplot's Y UTM coordinats</p></dd>
-
-<dt>SubplotArea</dt>
-<dd><p>Size of the plot</p></dd>
-
-<dt>MinDBH</dt>
+    <p>A tibble</p><dl><dt>MinDBH</dt>
 <dd><p>The minimum diameter of trees included in the inventory</p></dd>
 
 <dt>IdCensus</dt>
@@ -116,71 +74,53 @@
 <dt>Date, DateOriginal</dt>
 <dd><p>Date of measurement</p></dd>
 
-<dt>TreeFieldNum</dt>
-<dd><p>Tree unique identifiers, matching the tag number in the field.</p></dd>
+<dt>Site</dt>
+<dd><p>Site level name</p></dd>
 
-<dt>IdTree</dt>
-<dd><p>Tree unique identifiers. This was automatically generated if it was not provided in the input data (using plot and tree tag information).</p></dd>
+<dt>Cluster</dt>
+<dd><p>Cluster ID or name (This was created to accommodate ForestPlots network's cluster, which groups similar plots and is used by their data packages to create local allometries. Note that it is useful to also keep Site (PlotName) so as users able to check for duplicate datasets from multiple networks).</p></dd>
 
-<dt>StemFieldNum</dt>
-<dd><p>Stem identifiers within the tree.</p></dd>
+<dt>Plot</dt>
+<dd><p>Plot level name</p></dd>
 
-<dt>IdStem</dt>
-<dd><p>Stem unique identifiers. This was automatically generated if it was not provided in the input data (using plot tree and stem tag information).</p></dd>
+<dt>PlotArea</dt>
+<dd><p>Size of the plot</p></dd>
 
-<dt>LifeStatus, LifeStatusOriginal</dt>
-<dd><p>Logical: TRUE if tree was alive, FALSE if it was dead</p></dd>
+<dt>PlotElevation</dt>
+<dd><p>plot's elevation in meters above sea level</p></dd>
 
-<dt>Diameter</dt>
-<dd><p>Tree Diameter</p></dd>
+<dt>Subplot</dt>
+<dd><p>Subplot level name</p></dd>
 
-<dt>BD</dt>
-<dd><p>Basal diameter</p></dd>
+<dt>SubplotArea</dt>
+<dd><p>Size of the plot</p></dd>
 
-<dt>Circ</dt>
-<dd><p>Circumference</p></dd>
+<dt>PlotViewID</dt>
+<dd><p>additional plot protocol identifier useful to indicate if the plot protocol has changed and/or different soil type/disturbance... (This was created to accommodate ForestPlots network).</p></dd>
 
-<dt>BCirc</dt>
-<dd><p>Basal circumference</p></dd>
+<dt>PlotLat</dt>
+<dd><p>Plot's latitude in degrees</p></dd>
 
-<dt>HOM</dt>
-<dd><p>Height of measurement</p></dd>
+<dt>PlotLon</dt>
+<dd><p>Plot's longitude in degrees</p></dd>
 
-<dt>POM</dt>
-<dd><p>Code for point of measurement of tree diameter</p></dd>
+<dt>XPlotUTM</dt>
+<dd><p>Plot's X UTM coordinates</p></dd>
 
-<dt>BHOM</dt>
-<dd><p>Height of measurement of basal diameter</p></dd>
+<dt>YPlotUTM</dt>
+<dd><p>Plot's Y UTM coordinates</p></dd>
 
-<dt>BPOM</dt>
-<dd><p>Code for point of measurement of basal diameter</p></dd>
+<dt>SubplotLat</dt>
+<dd><p>Subplot's latitude in degrees</p></dd>
 
-<dt>TreeHeight</dt>
-<dd><p>Tree Height</p></dd>
+<dt>SubplotLon</dt>
+<dd><p>Subplot's longitude in degrees</p></dd>
 
-<dt>TreeLat</dt>
-<dd><p>Tree Latitude</p></dd>
+<dt>XSubplotUTM</dt>
+<dd><p>Subplot's X UTM coordinates</p></dd>
 
-<dt>TreeLon</dt>
-<dd><p>Tree Longitude</p></dd>
-
-<dt>XTreeUTM</dt>
-<dd><p>Tree X UTM coordinates</p></dd>
-
-<dt>YTreeUTM</dt>
-<dd><p>Tree Y UTM coordinats</p></dd>
-
-<dt>XTreePlot</dt>
-<dd><p>Tree X euclidean position in plot</p></dd>
-
-<dt>YTreePlot</dt>
-<dd><p>Tree Y euclidean position in plot</p></dd>
-
-<dt>XTreeSubplot</dt>
-<dd><p>Tree X euclidean position in subplot</p></dd>
-
-<dt>YTreeSubplot</dt>
-<dd><p>Tree Y euclidean position in subplot</p></dd>
+<dt>YSubplotUTM</dt>
+<dd><p>Subplot's Y UTM coordinates</p></dd>
 
 <dt>ScientificName</dt>
 <dd><p>Scientific name</p></dd>
@@ -218,14 +158,74 @@
 <dt>LifeForm</dt>
 <dd><p>Life form</p></dd>
 
-<dt>LifeStatusOriginal</dt>
-<dd><p>LifeStatus as it was given in the input table, without any correction or transformation</p></dd>
+<dt>TreeFieldNum, TreeFieldNumOriginal</dt>
+<dd><p>Tree unique identifiers, matching the tag number in the field.</p></dd>
 
-<dt>CommercialSpOriginal</dt>
-<dd><p>IsCommercial as it was given in the input table, without any correction or transformation</p></dd>
+<dt>IdTree, IdTreeOriginal</dt>
+<dd><p>Tree unique identifiers. This was automatically generated if it was not provided in the input data (using plot and tree tag information).</p></dd>
 
-<dt>DateOriginal</dt>
-<dd><p>Date as it was given in the input table, without any correction or transformation</p></dd>
+<dt>StemFieldNum</dt>
+<dd><p>Stem identifiers within the tree.</p></dd>
+
+<dt>IdStem</dt>
+<dd><p>Stem unique identifiers. This was automatically generated if it was not provided in the input data (using plot tree and stem tag information).</p></dd>
+
+<dt>TreeLat</dt>
+<dd><p>Tree Latitude in degrees</p></dd>
+
+<dt>TreeLon</dt>
+<dd><p>Tree Longitude in degrees</p></dd>
+
+<dt>XTreeUTM</dt>
+<dd><p>Tree X UTM coordinates</p></dd>
+
+<dt>YTreeUTM</dt>
+<dd><p>Tree Y UTM coordinates</p></dd>
+
+<dt>XTreePlot</dt>
+<dd><p>Tree X euclidean position in plot</p></dd>
+
+<dt>YTreePlot</dt>
+<dd><p>Tree Y euclidean position in plot</p></dd>
+
+<dt>XTreeSubplot</dt>
+<dd><p>Tree X euclidean position in subplot</p></dd>
+
+<dt>YTreeSubplot</dt>
+<dd><p>Tree Y euclidean position in subplot</p></dd>
+
+<dt>LifeStatus, LifeStatusOriginal</dt>
+<dd><p>Logical: TRUE if tree was alive, FALSE if it was dead</p></dd>
+
+<dt>DeadStatus</dt>
+<dd><p>-</p></dd>
+
+<dt>Diameter</dt>
+<dd><p>Tree Diameter</p></dd>
+
+<dt>BD</dt>
+<dd><p>Basal diameter</p></dd>
+
+<dt>Circ</dt>
+<dd><p>Circumference</p></dd>
+
+<dt>BCirc</dt>
+<dd><p>Basal circumference</p></dd>
+
+<dt>HOM</dt>
+<dd><p>Height of measurement</p></dd>
+
+<dt>POM</dt>
+<dd><p>Code for point of measurement of tree diameter</p></dd>
+
+<dt>BHOM</dt>
+<dd><p>Height of measurement of basal diameter</p></dd>
+
+<dt>BPOM</dt>
+<dd><p>Code for point of measurement of basal diameter</p></dd>
+
+<dt>TreeHeight</dt>
+<dd><p>Tree Height</p></dd>
 
 ...
 

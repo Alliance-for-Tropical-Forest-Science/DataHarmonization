@@ -59,110 +59,176 @@ in order to test their detection.</p>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A tibble with 4855 rows and 32 variables:</p><dl><dt>Site</dt>
-<dd><p>Site name (character)</p></dd>
+    <p>A tibble with 4855 rows and 32 variables:</p><dl><dt>MinDBH</dt>
+<dd><p>The minimum diameter of trees included in the inventory</p></dd>
 
-<dt>Plot</dt>
-<dd><p>Plot number (character)</p></dd>
-
-<dt>PlotArea</dt>
-<dd><p>Plot area, in hectare (numeric)</p></dd>
-
-<dt>Subplot</dt>
-<dd><p>Subplot number (character)</p></dd>
-
-<dt>SubSubplot</dt>
-<dd><p>Dummy sub-sub-plots created for the package (character)</p></dd>
-
-<dt>TreeFieldNum</dt>
-<dd><p>Tree unique identifiers within the subplot (matching
-the tag number in the field) (character)</p></dd>
-
-<dt>IdTree</dt>
-<dd><p>Unique tree identifier from the database (character)</p></dd>
-
-<dt>Protocole</dt>
-<dd><p>Protocole name (character)</p></dd>
-
-<dt>XTreePlot</dt>
-<dd><p>Euclidean position of the tree relative to
-the Southwestern corner of the subplot, in m (numeric)</p></dd>
-
-<dt>YTreePlot</dt>
-<dd><p>Euclidean position of the tree relative to
-the Southwestern corner of the subplot, in m (numeric)</p></dd>
-
-<dt>XTreeUTM</dt>
-<dd><p>Coordinate X for the tree in UTM 22 N (EPSG: 32 622) (numeric)</p></dd>
-
-<dt>YTreeUTM</dt>
-<dd><p>Coordinate Y for the tree in UTM 22 N (EPSG: 32 622) (numeric)</p></dd>
-
-<dt>UTMZone</dt>
-<dd><p>UTM Zone (integer)</p></dd>
-
-<dt>TreeLat</dt>
-<dd><p>Tree latitude (WGS 84, EPSG : 4326) (numeric)</p></dd>
-
-<dt>TreeLon</dt>
-<dd><p>Tree longitude (WGS 84, EPSG : 4326) (numeric)</p></dd>
-
-<dt>Family</dt>
-<dd><p>Botanical family (character)</p></dd>
-
-<dt>Genus</dt>
-<dd><p>Botanical genus (character)</p></dd>
-
-<dt>Species</dt>
-<dd><p>Botanical species (character)</p></dd>
-
-<dt>ScientificName</dt>
-<dd><p>Scientific name (character)</p></dd>
-
-<dt>BotaSource</dt>
-<dd><p>Source of botanical name (character)</p></dd>
-
-<dt>BotaCertainty</dt>
-<dd><p>Level of certainty
-for the botanical identification (numeric)</p></dd>
-
-<dt>idVern</dt>
-<dd><p>Unique vernacular identifier from the database (numeric)</p></dd>
-
-<dt>VernName</dt>
-<dd><p>Vernacular name (character)</p></dd>
-
-<dt>CommercialSp</dt>
-<dd><p>Is the tree considered as a commercial species
-according to the list of species that were logged during the sylvicultural
-treatment in Paracou (TRUE) or not (FALSE) ? (logical)</p></dd>
+<dt>IdCensus</dt>
+<dd><p>Census identifier</p></dd>
 
 <dt>Year</dt>
-<dd><p>Census year (numeric)</p></dd>
+<dd><p>Year of measurement</p></dd>
 
-<dt>Date</dt>
-<dd><p>Census Day (when available) (character)</p></dd>
+<dt>Month</dt>
+<dd><p>Month of measurement</p></dd>
 
-<dt>DateCertainty</dt>
-<dd><p>Is the Date precise (TRUE) or not (FALSE)?
-If FALSE, this information must not be considered for calculation (logical)</p></dd>
+<dt>Day</dt>
+<dd><p>Day of measurement</p></dd>
 
-<dt>LifeStatus</dt>
-<dd><p>Is the tree alive (TRUE) or dead (FALSE)? (logical)</p></dd>
+<dt>Date, DateOriginal</dt>
+<dd><p>Date of measurement</p></dd>
 
-<dt>POM</dt>
-<dd><p>Point Of Measurement as a code (integer)</p></dd>
+<dt>Site</dt>
+<dd><p>Site level name</p></dd>
+
+<dt>Cluster</dt>
+<dd><p>Cluster ID or name (This was created to accommodate ForestPlots network's cluster, which groups similar plots and is used by their data packages to create local allometries. Note that it is useful to also keep Site (PlotName) so as users able to check for duplicate datasets from multiple networks).</p></dd>
+
+<dt>Plot</dt>
+<dd><p>Plot level name</p></dd>
+
+<dt>PlotArea</dt>
+<dd><p>Size of the plot</p></dd>
+
+<dt>PlotElevation</dt>
+<dd><p>plot's elevation in meters above sea level</p></dd>
+
+<dt>Subplot</dt>
+<dd><p>Subplot level name</p></dd>
+
+<dt>SubplotArea</dt>
+<dd><p>Size of the plot</p></dd>
+
+<dt>PlotViewID</dt>
+<dd><p>additional plot protocol identifier useful to indicate if the plot protocol has changed and/or different soil type/disturbance... (This was created to accommodate ForestPlots network).</p></dd>
+
+<dt>PlotLat</dt>
+<dd><p>Plot's latitude in degrees</p></dd>
+
+<dt>PlotLon</dt>
+<dd><p>Plot's longitude in degrees</p></dd>
+
+<dt>XPlotUTM</dt>
+<dd><p>Plot's X UTM coordinates</p></dd>
+
+<dt>YPlotUTM</dt>
+<dd><p>Plot's Y UTM coordinates</p></dd>
+
+<dt>SubplotLat</dt>
+<dd><p>Subplot's latitude in degrees</p></dd>
+
+<dt>SubplotLon</dt>
+<dd><p>Subplot's longitude in degrees</p></dd>
+
+<dt>XSubplotUTM</dt>
+<dd><p>Subplot's X UTM coordinates</p></dd>
+
+<dt>YSubplotUTM</dt>
+<dd><p>Subplot's Y UTM coordinates</p></dd>
+
+<dt>ScientificName</dt>
+<dd><p>Scientific name</p></dd>
+
+<dt>VernName</dt>
+<dd><p>Vernacular name</p></dd>
+
+<dt>Family</dt>
+<dd><p>Family name</p></dd>
+
+<dt>Genus</dt>
+<dd><p>Genus name</p></dd>
+
+<dt>Species</dt>
+<dd><p>Species name</p></dd>
+
+<dt>Subspecies</dt>
+<dd><p>Subspecies name</p></dd>
+
+<dt>Variety</dt>
+<dd><p>Variety name</p></dd>
+
+<dt>Voucher</dt>
+<dd><p>Voucher code for the species</p></dd>
+
+<dt>IdLevel</dt>
+<dd><p>Deepest taxonomic level for which full identification is known</p></dd>
+
+<dt>Authority</dt>
+<dd><p>Taxonomic authority for the ID level</p></dd>
+
+<dt>CommercialSp, CommercialSpOriginal</dt>
+<dd><p>Logical: TRUE if species is considered commercial, FALSE if not</p></dd>
+
+<dt>LifeForm</dt>
+<dd><p>Life form</p></dd>
+
+<dt>TreeFieldNum, TreeFieldNumOriginal</dt>
+<dd><p>Tree unique identifiers, matching the tag number in the field.</p></dd>
+
+<dt>IdTree, IdTreeOriginal</dt>
+<dd><p>Tree unique identifiers. This was automatically generated if it was not provided in the input data (using plot and tree tag information).</p></dd>
+
+<dt>StemFieldNum</dt>
+<dd><p>Stem identifiers within the tree.</p></dd>
+
+<dt>IdStem</dt>
+<dd><p>Stem unique identifiers. This was automatically generated if it was not provided in the input data (using plot tree and stem tag information).</p></dd>
+
+<dt>TreeLat</dt>
+<dd><p>Tree Latitude in degrees</p></dd>
+
+<dt>TreeLon</dt>
+<dd><p>Tree Longitude in degrees</p></dd>
+
+<dt>XTreeUTM</dt>
+<dd><p>Tree X UTM coordinates</p></dd>
+
+<dt>YTreeUTM</dt>
+<dd><p>Tree Y UTM coordinates</p></dd>
+
+<dt>XTreePlot</dt>
+<dd><p>Tree X euclidean position in plot</p></dd>
+
+<dt>YTreePlot</dt>
+<dd><p>Tree Y euclidean position in plot</p></dd>
+
+<dt>XTreeSubplot</dt>
+<dd><p>Tree X euclidean position in subplot</p></dd>
+
+<dt>YTreeSubplot</dt>
+<dd><p>Tree Y euclidean position in subplot</p></dd>
+
+<dt>LifeStatus, LifeStatusOriginal</dt>
+<dd><p>Logical: TRUE if tree was alive, FALSE if it was dead</p></dd>
+
+<dt>DeadStatus</dt>
+<dd><p>-</p></dd>
 
 <dt>Diameter</dt>
-<dd><p>Tree diameter in cm (numeric)</p></dd>
+<dd><p>Tree Diameter</p></dd>
 
-<dt>CircCorr</dt>
-<dd><p>Corrected circumference
-(mathematical correction of abnormal circumferences), in cm (numeric)</p></dd>
+<dt>BD</dt>
+<dd><p>Basal diameter</p></dd>
 
-<dt>CorrCode</dt>
-<dd><p>Information on the reason why and how the circumference has
-been corrected, multiple values are possible(character)</p></dd>
+<dt>Circ</dt>
+<dd><p>Circumference</p></dd>
+
+<dt>BCirc</dt>
+<dd><p>Basal circumference</p></dd>
+
+<dt>HOM</dt>
+<dd><p>Height of measurement</p></dd>
+
+<dt>POM</dt>
+<dd><p>Code for point of measurement of tree diameter</p></dd>
+
+<dt>BHOM</dt>
+<dd><p>Height of measurement of basal diameter</p></dd>
+
+<dt>BPOM</dt>
+<dd><p>Code for point of measurement of basal diameter</p></dd>
+
+<dt>TreeHeight</dt>
+<dd><p>Tree Height</p></dd>
 
 ...
 
