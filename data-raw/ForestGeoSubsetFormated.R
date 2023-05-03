@@ -4,7 +4,8 @@ data("ForestGeoProfile")
 
 ForestGeoSubsetFormated <- RequiredFormat(
   ForestGeoSubset,
-  input = ForestGeoProfile)
+  input = ForestGeoProfile,
+  MeasLevel = "Stem")
 
 usethis::use_data(ForestGeoSubsetFormated, overwrite = TRUE)
 

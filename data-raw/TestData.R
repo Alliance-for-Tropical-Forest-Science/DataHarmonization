@@ -101,3 +101,11 @@ TestData <- Data
 
 usethis::use_data(TestData, overwrite = TRUE)
 
+
+## For TestData.Rmd  run next two line of code and paste in the item section of R/TestData.R
+x <- read.csv("inst/app/data/interactive_items.csv")
+idx = names(TestData) %in% x$ItemID
+write.csv(
+  paste0("#'   \\item{", names(TestData)[idx], ifelse(paste0(names(TestData)[idx], "Original") %in% names(TestData), paste0(", ", names(TestData)[idx], "Original"), ""), "}{", x$Description[match(names(TestData)[idx], x$ItemID)], "}"), "clipboard",
+  quote = F, row.names = F)
+

@@ -38,7 +38,8 @@ data(ParacouSubset)
 data(ParacouProfile)
 ParacouSubsetFormated <- RequiredFormat(
   ParacouSubset,
-  input = ParacouProfile)
+  input = ParacouProfile,
+  MeasLevel = "Tree")
                }
 
 }

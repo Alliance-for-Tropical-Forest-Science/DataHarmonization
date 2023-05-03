@@ -34,7 +34,8 @@
 #' data(ParacouProfile)
 #' ParacouSubsetFormated <- RequiredFormat(
 #'   ParacouSubset,
-#'   input = ParacouProfile)
+#'   input = ParacouProfile,
+#'   MeasLevel = "Tree")
 #'                }
 #'
 
@@ -139,6 +140,7 @@ RequiredFormat <- function(
 
   for(j in names(DoubleFctColumn)) {
     if(all(is.na(Data[, j]))) Data[, j] <- Data[, names(DoubleFctColumn[DoubleFctColumn %in% DoubleFctColumn[[j]] & !names(DoubleFctColumn) %in% j])]
+    if( !paste0(j, "Original") %in% names(Data)) Data[, paste0(j, "Original")] <- Data[, j]
   }
 
 
@@ -168,15 +170,20 @@ RequiredFormat <- function(
   ### as.logical
   ## Here we have to use user input to know what is TRUE and what is not
 
-  ### Life status
+  ### Life/Dead status
   if( !is.null(input$LifeStatus)) {
-    if(!input$LifeStatus %in% "none") {
+    if(is.null(input$DeadStatus)) {
+      stop("Your profile is missing 'DeadStatus'")
+    } else {
+      if(!input$LifeStatus %in% "none" & !input$DeadStatus %in% "none") {
 
-      # Data[, LifeStatusOriginal := LifeStatus]
-      Data[LifeStatusOriginal %in% input$IsLiveMan, LifeStatus := TRUE]
-      Data[LifeStatusOriginal %in% input$IsDeadMan, LifeStatus := FALSE]
+        # Data[, LifeStatusOriginal := LifeStatus]
+        Data[LifeStatusOriginal %in% input$IsLiveMan, LifeStatus := TRUE]
+        Data[DeadStatusOriginal %in% input$IsDeadMan, LifeStatus := FALSE]
 
-      Data[, LifeStatus := as.logical(LifeStatus)] # any other thing that "TRUE" and "FALSE" will be converted to NA.
+        Data[, LifeStatus := as.logical(LifeStatus)] # any other thing that "TRUE" and "FALSE" will be converted to NA.
+        Data[, DeadStatus := NULL] # delete that as we don't need it.
+      }
 
     }
   }

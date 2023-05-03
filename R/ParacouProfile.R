@@ -65,6 +65,7 @@
 #'   \item{Variety}{Value or column name in data set @ParacouSubset (none) corresponding to Variety name}
 #'   \item{Family}{Value or column name in data set @ParacouSubset (Family) corresponding to Family name}
 #'   \item{HOM}{Value or column name in data set @ParacouSubset (none) corresponding to HOM}
+#'   \item{HOMMan}{Value or column name in data set @ParacouSubset (1.3) corresponding to What is the height of diameter measurement in your inventory?}
 #'   \item{ScientificNameSepMan}{Value or column name in data set @ParacouSubset () corresponding to Character separating Genus and Species in Scientific name}
 #'   \item{BDUnitMan}{Value or column name in data set @ParacouSubset (none) corresponding to What is your BD unit ?}
 #'   \item{YSubplotUTM}{Value or column name in data set @ParacouSubset (none) corresponding to Subplot Y UTM coordinate}
@@ -84,7 +85,8 @@
 #'   \item{BCircUnitMan}{Value or column name in data set @ParacouSubset (none) corresponding to What is your basal circumference unit?}
 #'   \item{SubplotLon}{Value or column name in data set @ParacouSubset (none) corresponding to Subplot longitude}
 #'   \item{Year}{Value or column name in data set @ParacouSubset (CensusYear) corresponding to Year of measurement}
-#'   \item{LifeStatus}{Value or column name in data set @ParacouSubset (CodeAlive) corresponding to Life status}
+#'   \item{LifeStatus}{Value or column name in data set @ParacouSubset (CodeAlive) corresponding to Live status}
+#'   \item{DeadStatus}{Value or column name in data set @ParacouSubset (CodeAlive) corresponding to Dead status }
 #'   \item{MinDBHMan}{Value or column name in data set @ParacouSubset (-999) corresponding to What is the minimum diameter of trees included in your inventory?}
 #'   \item{PlotArea}{Value or column name in data set @ParacouSubset (PlotArea) corresponding to Plot area}
 #'   \item{PlotLon}{Value or column name in data set @ParacouSubset (none) corresponding to Plot longitude}
@@ -104,6 +106,7 @@
 #'   \item{Genus}{Value or column name in data set @ParacouSubset (Genus) corresponding to Genus name}
 #'   \item{SpeciesAbundance}{Value or column name in data set @ParacouSubset (none) corresponding to Species abundance}
 #'   \item{IsLiveMan}{Value or column name in data set @ParacouSubset (TRUE) corresponding to Which of your status(es) represent a LIVE tree?}
+#'   \item{IsDeadMan}{Value or column name in data set @ParacouSubset (FALSE) corresponding to Which of your status(es) represent a DEAD tree?}
 #'   \item{SubplotLat}{Value or column name in data set @ParacouSubset (none) corresponding to Subplot latitude}
 #'   \item{SpeciesDensity}{Value or column name in data set @ParacouSubset (none) corresponding to Species density}
 #'   \item{SpeciesRelativeFrequency}{Value or column name in data set @ParacouSubset (none) corresponding to Species Relative Frequency}

@@ -1,6 +1,6 @@
 ## code to prepare `SCBISubsetFormated` dataset goes here
 
-SCBISubsetFormated <- readRDS("C:/Users/herrmannV/Dropbox (Smithsonian)/GitHub/Alliance-for-Tropical-Forest-Science/demo/scbi_formated.rds")
+SCBISubsetFormated <- readRDS("C:/Users/herrmannV/Dropbox (Smithsonian)/GitHub/VincyaneBadouard/demo/scbi_formated.rds")
 
 SCBISubsetFormated[c(1, 2, 15, 389), c("LifeStatus", "LifeStatusOriginal")] <- NA # making some NA's
 SCBISubsetFormated[151006,  c("LifeStatus", "LifeStatusOriginal")] <- FALSE #making some dead

@@ -36,9 +36,11 @@
 #'   \item{IdCensus}{Value or column name in data set @ForestGeoSubset (CensusID) corresponding to Census ID}
 #'   \item{PlotAreaMan}{Value or column name in data set @ForestGeoSubset (-999) corresponding to What is your plot area in hectare?}
 #'   \item{Year}{Value or column name in data set @ForestGeoSubset (none) corresponding to Year of measurement}
-#'   \item{LifeStatus}{Value or column name in data set @ForestGeoSubset (DFstatus) corresponding to Life status}
+#'   \item{LifeStatus}{Value or column name in data set @ForestGeoSubset (DFstatus) corresponding to Live status}
+#'   \item{DeadStatus}{Value or column name in data set @ForestGeoSubset (DFstatus) corresponding to Dead status }
 #'   \item{PlotArea}{Value or column name in data set @ForestGeoSubset (none) corresponding to Plot area}
 #'   \item{CommercialSp}{Value or column name in data set @ForestGeoSubset (none) corresponding to Commercial species indicator}
+#'   \item{IsCommercialMan}{Value or column name in data set @ForestGeoSubset (FALSE) corresponding to Which of the following(s) indicate a commercial species?}
 #'   \item{SubplotAreaUnitMan}{Value or column name in data set @ForestGeoSubset (none) corresponding to What is the unit for Subplot area?}
 #'   \item{YTreeUTM}{Value or column name in data set @ForestGeoSubset (none) corresponding to Tree Y UTM coordinate}
 #'   \item{TreeUTMUnitMan}{Value or column name in data set @ForestGeoSubset (none) corresponding to Tree UTM units}
@@ -48,9 +50,12 @@
 #'   \item{SubplotMan}{Value or column name in data set @ForestGeoSubset () corresponding to What is your Subplot name ?}
 #'   \item{Site}{Value or column name in data set @ForestGeoSubset (none) corresponding to Site name}
 #'   \item{TreeLon}{Value or column name in data set @ForestGeoSubset (none) corresponding to Tree longitude}
+#'   \item{Cluster}{Value or column name in data set @ForestGeoSubset (none) corresponding to Cluster of plots}
+#'   \item{PlotViewID}{Value or column name in data set @ForestGeoSubset (none) corresponding to Plot View ID}
 #'   \item{Plot}{Value or column name in data set @ForestGeoSubset (none) corresponding to Plot name}
 #'   \item{IdTree}{Value or column name in data set @ForestGeoSubset (treeID) corresponding to Individual ID}
 #'   \item{LifeForm}{Value or column name in data set @ForestGeoSubset (none) corresponding to Life form}
+#'   \item{LifeFormMan}{Value or column name in data set @ForestGeoSubset (c("trees", "shrubs", "lianas and/or vines")) corresponding to Life form(s) included in your data}
 #'   \item{VernName}{Value or column name in data set @ForestGeoSubset (none) corresponding to Vernacular name}
 #'   \item{SubplotArea}{Value or column name in data set @ForestGeoSubset (none) corresponding to Subplot area}
 #'   \item{SiteMan}{Value or column name in data set @ForestGeoSubset () corresponding to What is your site name ?}
@@ -84,6 +89,8 @@
 #'   \item{PlotVolume}{Value or column name in data set @ForestGeoSubset (none) corresponding to Plot volume}
 #'   \item{PlotDensity}{Value or column name in data set @ForestGeoSubset (none) corresponding to Tree Density}
 #'   \item{YPlotUTM}{Value or column name in data set @ForestGeoSubset (none) corresponding to Plot Y UTM coordinate}
+#'   \item{PlotUTMUnitMan}{Value or column name in data set @ForestGeoSubset (m) corresponding to Plot UTM units}
+#'   \item{SubplotUTMUnitMan}{Value or column name in data set @ForestGeoSubset (m) corresponding to Plot UTM units}
 #'   \item{PlotElevation}{Value or column name in data set @ForestGeoSubset (none) corresponding to Plot elevation}
 #'   \item{SpeciesDensityUnitMan}{Value or column name in data set @ForestGeoSubset (none) corresponding to What is your species density unit?}
 #'   \item{Subspecies}{Value or column name in data set @ForestGeoSubset (none) corresponding to Subspecies name}

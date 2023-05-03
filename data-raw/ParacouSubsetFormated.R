@@ -6,7 +6,8 @@ data("ParacouProfile")
 # format to App's standards
 ParacouSubsetFormated <- RequiredFormat(
   ParacouSubset,
-  input = ParacouProfile)
+  input = ParacouProfile,
+  MeasLevel = "Tree")
 
 usethis::use_data(ParacouSubsetFormated, overwrite = TRUE)
 # usethis::use_R(ParacouSubsetFormated, overwrite = TRUE)

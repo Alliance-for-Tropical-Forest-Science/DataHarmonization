@@ -37,10 +37,12 @@ test_that("StatusCorrection", {
                                           Date = "none",
                                           Diameter = "Diameter",
                                           LifeStatus = "LifeStatus",
+                                          DeadStatus = "LifeStatus",
                                           DiameterUnitMan = "cm",
                                           PlotArea = "none",
                                           SubplotArea = "none",
-                                          IsLiveMan = T),
+                                          IsLiveMan = T,
+                                          IsDeadMan = F),
                              MeasLevel = "Stem")
   )
 

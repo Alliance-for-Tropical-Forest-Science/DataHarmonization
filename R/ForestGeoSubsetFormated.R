@@ -4,37 +4,29 @@
 #'
 #' @format A tibble
 #' \describe{
-#'   \item{Site}{Site level name}
-#'   \item{Plot}{Plot level name}
-#'   \item{SubPlot}{SubPlot level name}
-#'   \item{PlotArea}{Size of the plot}
-#'   \item{SubPlotArea}{Size of the plot}
-#'   \item{IdCensus}{Year of measurement}
+#'   \item{MinDBH}{The minimum diameter of trees included in the inventory}
+#'   \item{IdCensus}{Census identifier}
 #'   \item{Year}{Year of measurement}
+#'   \item{Month}{Month of measurement}
+#'   \item{Day}{Day of measurement}
 #'   \item{Date, DateOriginal}{Date of measurement}
-#'   \item{TreeFieldNum}{Tree unique identifiers, matching the tag number in the field.}
-#'   \item{IdTree}{Tree unique identifiers. This was automatically generated if it was not provided in the input data (using plot and tree tag information).}
-#'   \item{IdStem}{Stem unique identifier}
-#'   \item{IdMeasure}{measure unique identifier if you had more than one measure per stem per year}
-#'   \item{LifeStatus, LifeStatusOriginal}{Logical: TRUE if tree was alive, FALSE if it was dead}
-#'   \item{Diameter}{Tree Diameter}
-#'   \item{BD}{Basal diameter}
-#'   \item{Circ}{Circumference}
-#'   \item{BCirc}{Basal circumference}
-#'   \item{HOM}{Height of measurement}
-#'   \item{POM}{Code for point of measurement of tree diameter}
-#'   \item{BHOM}{Height of measurement of basal diameter}
-#'   \item{BPOM}{Code for point of measurement of basal diameter}
-#'   \item{TreeHeight}{Tree Height}
-#'   \item{Lat}{Latitude}
-#'   \item{Lon}{Longitude}
-#'   \item{Xutm}{X UTM coordinates}
-#'   \item{Yutm}{Y UTM coordinats}
-#'   \item{Xplot}{Tree X euclidean position in plot}
-#'   \item{Yplot}{Tree Y euclidean position in plot}
-#'   \item{Xsubplot}{Tree X euclidean position in subplot}
-#'   \item{Ysubplot}{Tree Y euclidean position in subplot}
-#'   \item{ScientificName}{Scientific name}
+#'   \item{Site}{Site level name}
+#'   \item{Cluster}{Cluster ID or name (This was created to accommodate ForestPlots network's cluster, which groups similar plots and is used by their data packages to create local allometries. Note that it is useful to also keep Site (PlotName) so as users able to check for duplicate datasets from multiple networks).}
+#'   \item{Plot}{Plot level name}
+#'   \item{PlotArea}{Size of the plot}
+#'   \item{PlotElevation}{plot's elevation in meters above sea level}
+#'   \item{Subplot}{Subplot level name}
+#'   \item{SubplotArea}{Size of the plot}
+#'   \item{PlotViewID}{additional plot protocol identifier useful to indicate if the plot protocol has changed and/or different soil type/disturbance... (This was created to accommodate ForestPlots network).}
+#'   \item{PlotLat}{Plot's latitude in degrees}
+#'   \item{PlotLon}{Plot's longitude in degrees}
+#'   \item{XPlotUTM}{Plot's X UTM coordinates}
+#'   \item{YPlotUTM}{Plot's Y UTM coordinates}
+#'   \item{SubplotLat}{Subplot's latitude in degrees}
+#'   \item{SubplotLon}{Subplot's longitude in degrees}
+#'   \item{XSubplotUTM}{Subplot's X UTM coordinates}
+#'   \item{YSubplotUTM}{Subplot's Y UTM coordinates}
+#'   \item{ScientificName, ScientificNameOriginal}{Scientific name}
 #'   \item{VernName}{Vernacular name}
 #'   \item{Family}{Family name}
 #'   \item{Genus}{Genus name}
@@ -46,8 +38,30 @@
 #'   \item{Authority}{Taxonomic authority for the ID level}
 #'   \item{CommercialSp}{Logical: TRUE if species is considered commercial, FALSE if not}
 #'   \item{LifeForm}{Life form}
-#'   \item{DateOriginal}{Date as it was given in the input table, without any correction or transformation}
-#'   \item{LifeStatusOriginal}{LifeStatus as it was given in the input table, without any correction or transformation}
+#'   \item{TreeFieldNum, TreeFieldNumOriginal}{Tree unique identifiers, matching the tag number in the field.}
+#'   \item{IdTree, IdTreeOriginal}{Tree unique identifiers. This was automatically generated if it was not provided in the input data (using plot and tree tag information).}
+#'   \item{StemFieldNum, StemFieldNumOriginal}{Stem identifiers within the tree.}
+#'   \item{IdStem, IdStemOriginal}{Stem unique identifiers. This was automatically generated if it was not provided in the input data (using plot tree and stem tag information).}
+#'   \item{IdMeasure}{measure unique identifier if you had more than one measure per stem per year}
+#'   \item{TreeLat}{Tree Latitude in degrees}
+#'   \item{TreeLon}{Tree Longitude in degrees}
+#'   \item{XTreeUTM}{Tree X UTM coordinates}
+#'   \item{YTreeUTM}{Tree Y UTM coordinates}
+#'   \item{XTreePlot}{Tree X euclidean position in plot}
+#'   \item{YTreePlot}{Tree Y euclidean position in plot}
+#'   \item{XTreeSubplot}{Tree X euclidean position in subplot}
+#'   \item{YTreeSubplot}{Tree Y euclidean position in subplot}
+#'   \item{LifeStatus, LifeStatusOriginal}{Logical: TRUE if tree was alive, FALSE if it was dead}
+#'   \item{Diameter}{Tree Diameter}
+#'   \item{BD}{Basal diameter}
+#'   \item{Circ}{Circumference}
+#'   \item{BCirc}{Basal circumference}
+#'   \item{HOM}{Height of measurement}
+#'   \item{POM}{Code for point of measurement of tree diameter}
+#'   \item{BHOM}{Height of measurement of basal diameter}
+#'   \item{BPOM}{Code for point of measurement of basal diameter}
+#'   \item{TreeHeight}{Tree Height}
+#'   \item{TreeCodes}{Codes associated to tree, separated by commas. The definition of each code is given in ...}
 #'   ...
 #' }
 

@@ -15,47 +15,63 @@
 #'
 #' @format A tibble with 4855 rows and 32 variables:
 #' \describe{
-#'   \item{Site}{Site name (character)}
-#'   \item{Plot}{Plot number (character)}
-#'   \item{PlotArea}{Plot area, in hectare (numeric)}
-#'   \item{Subplot}{Subplot number (character)}
-#'   \item{SubSubplot}{Dummy sub-sub-plots created for the package (character)}
-#'   \item{TreeFieldNum}{Tree unique identifiers within the subplot (matching
-#'    the tag number in the field) (character)}
-#'   \item{IdTree}{Unique tree identifier from the database (character)}
-#'   \item{Protocole}{Protocole name (character)}
-#'   \item{XTreePlot}{Euclidean position of the tree relative to
-#'   the Southwestern corner of the subplot, in m (numeric)}
-#'   \item{YTreePlot}{Euclidean position of the tree relative to
-#'   the Southwestern corner of the subplot, in m (numeric)}
-#'   \item{XTreeUTM}{Coordinate X for the tree in UTM 22 N (EPSG: 32 622) (numeric)}
-#'   \item{YTreeUTM}{Coordinate Y for the tree in UTM 22 N (EPSG: 32 622) (numeric)}
-#'   \item{UTMZone}{UTM Zone (integer)}
-#'   \item{TreeLat}{Tree latitude (WGS 84, EPSG : 4326) (numeric)}
-#'   \item{TreeLon}{Tree longitude (WGS 84, EPSG : 4326) (numeric)}
-#'   \item{Family}{Botanical family (character)}
-#'   \item{Genus}{Botanical genus (character)}
-#'   \item{Species}{Botanical species (character)}
-#'   \item{ScientificName}{Scientific name (character)}
-#'   \item{BotaSource}{Source of botanical name (character)}
-#'   \item{BotaCertainty}{Level of certainty
-#'   for the botanical identification (numeric)}
-#'   \item{idVern}{Unique vernacular identifier from the database (numeric)}
-#'   \item{VernName}{Vernacular name (character)}
-#'   \item{CommercialSp}{Is the tree considered as a commercial species
-#'   according to the list of species that were logged during the sylvicultural
-#'   treatment in Paracou (TRUE) or not (FALSE) ? (logical)}
-#'   \item{Year}{Census year (numeric)}
-#'   \item{Date}{Census Day (when available) (character)}
-#'   \item{DateCertainty}{Is the Date precise (TRUE) or not (FALSE)?
-#'   If FALSE, this information must not be considered for calculation (logical)}
-#'   \item{LifeStatus}{Is the tree alive (TRUE) or dead (FALSE)? (logical)}
-#'   \item{POM}{Point Of Measurement as a code (integer)}
-#'   \item{Diameter}{Tree diameter in cm (numeric)}
-#'   \item{CircCorr}{Corrected circumference
-#'   (mathematical correction of abnormal circumferences), in cm (numeric)}
-#'   \item{CorrCode}{Information on the reason why and how the circumference has
-#'   been corrected, multiple values are possible(character)}
+#'   \item{MinDBH}{The minimum diameter of trees included in the inventory}
+#'   \item{IdCensus}{Census identifier}
+#'   \item{Year}{Year of measurement}
+#'   \item{Month}{Month of measurement}
+#'   \item{Day}{Day of measurement}
+#'   \item{Date, DateOriginal}{Date of measurement}
+#'   \item{Site}{Site level name}
+#'   \item{Cluster}{Cluster ID or name (This was created to accommodate ForestPlots network's cluster, which groups similar plots and is used by their data packages to create local allometries. Note that it is useful to also keep Site (PlotName) so as users able to check for duplicate datasets from multiple networks).}
+#'   \item{Plot}{Plot level name}
+#'   \item{PlotArea}{Size of the plot}
+#'   \item{PlotElevation}{plot's elevation in meters above sea level}
+#'   \item{Subplot}{Subplot level name}
+#'   \item{SubplotArea}{Size of the plot}
+#'   \item{PlotViewID}{additional plot protocol identifier useful to indicate if the plot protocol has changed and/or different soil type/disturbance... (This was created to accommodate ForestPlots network).}
+#'   \item{PlotLat}{Plot's latitude in degrees}
+#'   \item{PlotLon}{Plot's longitude in degrees}
+#'   \item{XPlotUTM}{Plot's X UTM coordinates}
+#'   \item{YPlotUTM}{Plot's Y UTM coordinates}
+#'   \item{SubplotLat}{Subplot's latitude in degrees}
+#'   \item{SubplotLon}{Subplot's longitude in degrees}
+#'   \item{XSubplotUTM}{Subplot's X UTM coordinates}
+#'   \item{YSubplotUTM}{Subplot's Y UTM coordinates}
+#'   \item{ScientificName}{Scientific name}
+#'   \item{VernName}{Vernacular name}
+#'   \item{Family}{Family name}
+#'   \item{Genus}{Genus name}
+#'   \item{Species}{Species name}
+#'   \item{Subspecies}{Subspecies name}
+#'   \item{Variety}{Variety name}
+#'   \item{Voucher}{Voucher code for the species}
+#'   \item{IdLevel}{Deepest taxonomic level for which full identification is known}
+#'   \item{Authority}{Taxonomic authority for the ID level}
+#'   \item{CommercialSp, CommercialSpOriginal}{Logical: TRUE if species is considered commercial, FALSE if not}
+#'   \item{LifeForm}{Life form}
+#'   \item{TreeFieldNum, TreeFieldNumOriginal}{Tree unique identifiers, matching the tag number in the field.}
+#'   \item{IdTree, IdTreeOriginal}{Tree unique identifiers. This was automatically generated if it was not provided in the input data (using plot and tree tag information).}
+#'   \item{StemFieldNum}{Stem identifiers within the tree.}
+#'   \item{IdStem}{Stem unique identifiers. This was automatically generated if it was not provided in the input data (using plot tree and stem tag information).}
+#'   \item{TreeLat}{Tree Latitude in degrees}
+#'   \item{TreeLon}{Tree Longitude in degrees}
+#'   \item{XTreeUTM}{Tree X UTM coordinates}
+#'   \item{YTreeUTM}{Tree Y UTM coordinates}
+#'   \item{XTreePlot}{Tree X euclidean position in plot}
+#'   \item{YTreePlot}{Tree Y euclidean position in plot}
+#'   \item{XTreeSubplot}{Tree X euclidean position in subplot}
+#'   \item{YTreeSubplot}{Tree Y euclidean position in subplot}
+#'   \item{LifeStatus, LifeStatusOriginal}{Logical: TRUE if tree was alive, FALSE if it was dead}
+#'   \item{DeadStatus}{-}
+#'   \item{Diameter}{Tree Diameter}
+#'   \item{BD}{Basal diameter}
+#'   \item{Circ}{Circumference}
+#'   \item{BCirc}{Basal circumference}
+#'   \item{HOM}{Height of measurement}
+#'   \item{POM}{Code for point of measurement of tree diameter}
+#'   \item{BHOM}{Height of measurement of basal diameter}
+#'   \item{BPOM}{Code for point of measurement of basal diameter}
+#'   \item{TreeHeight}{Tree Height}
 #'   ...
 #' }
 #' @source \url{http://paracou.cirad.fr} ;

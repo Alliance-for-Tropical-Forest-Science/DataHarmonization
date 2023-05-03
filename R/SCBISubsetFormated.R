@@ -13,11 +13,11 @@
 #'   \item{Site}{Site level name}
 #'   \item{Cluster}{Cluster ID or name (This was created to accommodate ForestPlots network's cluster, which groups similar plots and is used by their data packages to create local allometries. Note that it is useful to also keep Site (PlotName) so as users able to check for duplicate datasets from multiple networks).}
 #'   \item{Plot}{Plot level name}
-#'   \item{PlotViewID}{additional plot protocol identifier useful to indicate if the plot protocol has changed and/or different soil type/disturbance... (This was created to accommodate ForestPlots network).}
-#'   \item{Subplot}{Subplot level name}
 #'   \item{PlotArea}{Size of the plot}
 #'   \item{PlotElevation}{plot's elevation in meters above sea level}
+#'   \item{Subplot}{Subplot level name}
 #'   \item{SubplotArea}{Size of the plot}
+#'   \item{PlotViewID}{additional plot protocol identifier useful to indicate if the plot protocol has changed and/or different soil type/disturbance... (This was created to accommodate ForestPlots network).}
 #'   \item{PlotLat}{Plot's latitude in degrees}
 #'   \item{PlotLon}{Plot's longitude in degrees}
 #'   \item{XPlotUTM}{Plot's X UTM coordinates}

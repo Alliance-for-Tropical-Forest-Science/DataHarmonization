@@ -36,6 +36,7 @@ ForestGeoProfile <-
     PlotAreaMan = -999,
     Year = "none",
     LifeStatus = "DFstatus",
+    DeadStatus = "DFstatus",
     PlotArea = "none",
     CommercialSp = "none",
     IsCommercialMan = FALSE,
@@ -200,6 +201,7 @@ usethis::use_data(ForestGeoProfile, overwrite = TRUE)
 
 # also save for the app
 saveRDS(ForestGeoProfile, "inst/app/data/ForestGeoProfile.rds")
+saveRDS(ForestGeoProfile, "inst/app/tests/shinytest/ForestGeoProfile.rds")
 
 ## For ForestGeoProfile.Rmd  run next line of code and paste in the item section of R/ForestGeoProfile.R
 x <- read.csv("inst/app/data/interactive_items.csv")
