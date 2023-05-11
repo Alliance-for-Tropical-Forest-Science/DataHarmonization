@@ -1999,142 +1999,161 @@ server <- function(input, output, session) { # server ####
   # Save all output as zip file
 
   output$dbZIP <- downloadHandler(
+
     filename = function() {
       paste(gsub(".csv", "", input$file1$name), '.zip', sep = '')
     },
+
     content = function(file) {
 
-      # list all files that are currently in wd (so we can compare with the ones that are created in this step and save only those)
-      before_files <- list.files()
-
-      # Profile ##
-
-      inputs_to_save <- c(names(input)[names(input) %in% x$ItemID], "MeasLevel", "Tidy", "VariableName", grep("Variablecolumns|TickedMelt|ValueName", names(input), value = T)) # names(input)
-
-      Profile <- list()
-      for(input.i in inputs_to_save){
-        Profile[[input.i]] <-  input[[input.i]]
-      }
-
-      Profile[["AllCodes"]] <- AllCodes()
-      Profile[["CodeTranslationFinal"]] <- CodeTranslationFinal$output
+      withProgress(message = 'Compiling your files',
+                   detail = 'This may take a while...', value = 0,
+                   {
 
 
-      saveRDS(Profile, file = "profile.rds")
+                     # list all files that are currently in wd (so we can compare with the ones that are created in this step and save only those)
+                     before_files <- list.files()
+
+                     incProgress(1/15)
+
+                     # Profile ##
+
+                     inputs_to_save <- c(names(input)[names(input) %in% x$ItemID], "MeasLevel", "Tidy", "VariableName", grep("Variablecolumns|TickedMelt|ValueName", names(input), value = T)) # names(input)
+
+                     Profile <- list()
+                     for(input.i in inputs_to_save){
+                       Profile[[input.i]] <-  input[[input.i]]
+                     }
+
+                     Profile[["AllCodes"]] <- AllCodes()
+                     Profile[["CodeTranslationFinal"]] <- CodeTranslationFinal$output
 
 
-      # Metadata ##
+                     saveRDS(Profile, file = "profile.rds")
 
-      OurStandardColumn <- colnames(DataDone())
-
-      idxOriginal <- grep("Original$", OurStandardColumn)
-      idxTreeCodes <- grep("^Original_", OurStandardColumn)
-
-      CTwasApplied <- ifelse(is.null(input$ApplyCodeTranslation), FALSE, input$ApplyCodeTranslation > input$RevertCodeTranslation) # this is to know if we need to deal with code translation at all
-
-      if(!is.null(profileOutput()$TreeCodes) & CTwasApplied){
-
-        idxTreeCodesOut <- grep(paste(paste0("^", profileOutput()$TreeCodes, "$"), collapse = "|"), colnames(DataOutput()))
-        OurStandardColumn[idxTreeCodesOut] <- NA
-      }
+                     incProgress(1/15)
 
 
-      YourInputColumn <- reactiveValuesToList(input)[xall$ItemID[match(OurStandardColumn, xall$ItemID)]]
-      YourInputColumn[idxTreeCodes] <- gsub("Original_", "", OurStandardColumn[idxTreeCodes])
-      YourInputColumn[idxOriginal] <- reactiveValuesToList(input)[gsub("Original", "", OurStandardColumn[idxOriginal])]
-      if(!is.null(profileOutput()$TreeCodes) & CTwasApplied) YourInputColumn[idxTreeCodesOut] <- paste(YourInputColumn[idxTreeCodes], collapse = " and/or ")
+                     # Metadata ##
+
+                     OurStandardColumn <- colnames(DataDone())
+
+                     idxOriginal <- grep("Original$", OurStandardColumn)
+                     idxTreeCodes <- grep("^Original_", OurStandardColumn)
+
+                     CTwasApplied <- ifelse(is.null(input$ApplyCodeTranslation), FALSE, input$ApplyCodeTranslation > input$RevertCodeTranslation) # this is to know if we need to deal with code translation at all
+
+                     if(!is.null(profileOutput()$TreeCodes) & CTwasApplied){
+
+                       idxTreeCodesOut <- grep(paste(paste0("^", profileOutput()$TreeCodes, "$"), collapse = "|"), colnames(DataOutput()))
+                       OurStandardColumn[idxTreeCodesOut] <- NA
+                     }
 
 
-      m <- match(OurStandardColumn, xall$ItemID)
-
-      # if(!is.null(profileOutput())) {
-        OutputColumn <-  profileOutput()[xall$ItemID[m]]
-      # } else {
-      #   OutputColumn <- OurStandardColumn
-      # }
-
-      m[idxOriginal] <- which(xall$ItemID %in% "XXXOriginal")
-      m[idxTreeCodes] <- which(xall$ItemID %in% "Original_XXX")
-      if(!is.null(profileOutput()$TreeCodes) & CTwasApplied) m[idxTreeCodesOut] <- which(xall$ItemID %in% "TreeCodesOutput")
-
-      OutputColumn[idxOriginal] <- OurStandardColumn[idxOriginal] # xall$ItemID[m[which(is.na(names(OutputColumn)))]]
-      OutputColumn[idxTreeCodes] <- OurStandardColumn[idxTreeCodes] # xall$ItemID[m[which(is.na(names(OutputColumn)))]]
-      if(!is.null(profileOutput()$TreeCodes) & CTwasApplied) OutputColumn[idxTreeCodesOut] <- colnames(DataOutput())[idxTreeCodesOut] # xall$ItemID[m[which(is.na(names(OutputColumn)))]]
+                     YourInputColumn <- reactiveValuesToList(input)[xall$ItemID[match(OurStandardColumn, xall$ItemID)]]
+                     YourInputColumn[idxTreeCodes] <- gsub("Original_", "", OurStandardColumn[idxTreeCodes])
+                     YourInputColumn[idxOriginal] <- reactiveValuesToList(input)[gsub("Original", "", OurStandardColumn[idxOriginal])]
+                     if(!is.null(profileOutput()$TreeCodes) & CTwasApplied) YourInputColumn[idxTreeCodesOut] <- paste(YourInputColumn[idxTreeCodes], collapse = " and/or ")
 
 
-      # if(length(profileOutput()) > 0) {
-        Description = paste0(xall$Description[m], ifelse(xall$EvalUnit[m], paste(" in", profileOutput()[paste0(gsub("^X|^Y", "", xall$ItemID[m]),"UnitMan")]), ""))
+                     m <- match(OurStandardColumn, xall$ItemID)
 
-      # } else {
-      #   Description = paste0(xall$Description[m], ifelse(!xall$EvalUnit[m], paste(" in", xall$Unit[m]), ""))
-      # }
+                     # if(!is.null(profileOutput())) {
+                     OutputColumn <-  profileOutput()[xall$ItemID[m]]
+                     # } else {
+                     #   OutputColumn <- OurStandardColumn
+                     # }
 
-      YourInputColumn[sapply(YourInputColumn, is.null) | YourInputColumn%in%"none"] <- NA
-      names(YourInputColumn)[is.na(names(YourInputColumn))] <- "NA"
-      OutputColumn[sapply(OutputColumn, is.null) | OutputColumn%in%"none"] <- NA
+                     m[idxOriginal] <- which(xall$ItemID %in% "XXXOriginal")
+                     m[idxTreeCodes] <- which(xall$ItemID %in% "Original_XXX")
+                     if(!is.null(profileOutput()$TreeCodes) & CTwasApplied) m[idxTreeCodesOut] <- which(xall$ItemID %in% "TreeCodesOutput")
 
+                     OutputColumn[idxOriginal] <- OurStandardColumn[idxOriginal] # xall$ItemID[m[which(is.na(names(OutputColumn)))]]
+                     OutputColumn[idxTreeCodes] <- OurStandardColumn[idxTreeCodes] # xall$ItemID[m[which(is.na(names(OutputColumn)))]]
+                     if(!is.null(profileOutput()$TreeCodes) & CTwasApplied) OutputColumn[idxTreeCodesOut] <- colnames(DataOutput())[idxTreeCodesOut] # xall$ItemID[m[which(is.na(names(OutputColumn)))]]
 
-      Metadata <- data.frame(YourInputColumn = unlist(YourInputColumn),
-                             OurStandardColumn,
-                             OutputColumn = unlist(OutputColumn),
-                             Description = Description)
+                     incProgress(1/15)
 
+                     # if(length(profileOutput()) > 0) {
+                     Description = paste0(xall$Description[m], ifelse(xall$EvalUnit[m], paste(" in", profileOutput()[paste0(gsub("^X|^Y", "", xall$ItemID[m]),"UnitMan")]), ""))
 
-      Metadata <- Metadata[!(is.na(Metadata$YourInputColumn) & is.na(Metadata$OutputColumn)),] #remove lines with for columns that are missing in input and output
-
-      # if(length(profileOutput()) > 0) {
-      Metadata <- Metadata[!profileOutput()[Metadata$OurStandardColumn] %in% "none", ]  # remove lines that don't even exist in output ptofile
-      # }
-
-
-      Metadata <- Metadata[apply(DataOutput()[,Metadata$OutputColumn, with = F], 2, function(x) !all(is.na(x))), ] # keep only the columns that are not all NAs
+                     # } else {
+                     #   Description = paste0(xall$Description[m], ifelse(!xall$EvalUnit[m], paste(" in", xall$Unit[m]), ""))
+                     # }
 
 
-      write.csv(Metadata, file = "metadata.csv", row.names = F)
+                     incProgress(1/15)
 
-      # Formatted data ##
-
-      DataToSave <- DataOutput()
-      setDF(DataToSave)
-
-      write.csv(DataToSave[,Metadata$OutputColumn], file = "data.csv", row.names = FALSE)
-
-      # Tree Codes definitions ##
-      if(length(input$TreeCodes) > 0) write.csv(AllCodes()[, c("Column", "Value", "Definition")
-      ], "tree_codes_metadata.csv", row.names = FALSE)
-
-      # Tree Codes Translation ##
-
-      if(!is.null(input$ApplyCodeTranslation) & length(input$ApplyCodeTranslation ) > 0 & length(CodeTranslationFinal$output) > 0) {
-
-        CodeTranslationFinal$output$OutputValue <- sapply(CodeTranslationFinal$output$OutputValue, function(x) ifelse(is.null(x), NA, x)) # this is to avoid having a list
-
-        write.csv(CodeTranslationFinal$output[c("InputColumn", "InputValue", "OutputColumn", "OutputValue", "InputDefinition", "OutputDefinition")], "tree_codes_translation.csv", row.names = FALSE)
-      }
+                     YourInputColumn[sapply(YourInputColumn, is.null) | YourInputColumn%in%"none"] <- NA
+                     names(YourInputColumn)[is.na(names(YourInputColumn))] <- "NA"
+                     OutputColumn[sapply(OutputColumn, is.null) | OutputColumn%in%"none"] <- NA
 
 
-      # save ZIP
+                     incProgress(1/15)
+                     Metadata <- data.frame(YourInputColumn = unlist(YourInputColumn),
+                                            OurStandardColumn,
+                                            OutputColumn = unlist(OutputColumn),
+                                            Description = Description)
 
-      FilesToZip <- setdiff(list.files(), before_files)
+                     incProgress(1/15)
 
-      zip(zipfile=file, files=FilesToZip)
+                     Metadata <- Metadata[!(is.na(Metadata$YourInputColumn) & is.na(Metadata$OutputColumn)),] #remove lines with for columns that are missing in input and output
 
-      file.remove(FilesToZip)
 
+                     incProgress(1/15)
+
+                     # if(length(profileOutput()) > 0) {
+                     Metadata <- Metadata[!profileOutput()[Metadata$OurStandardColumn] %in% "none", ]  # remove lines that don't even exist in output ptofile
+                     # }
+
+                     incProgress(1/15)
+
+                     Metadata <- Metadata[apply(setDT(DataOutput())[, Metadata$OutputColumn, with = F], 2, function(x) !all(is.na(x))), ] # keep only the columns that are not all NAs
+
+
+                     write.csv(Metadata, file = "metadata.csv", row.names = F)
+
+                     incProgress(1/15)
+
+                     # Formatted data ##
+
+                     DataToSave <- DataOutput()
+                     setDF(DataToSave)
+
+                     write.csv(DataToSave[,Metadata$OutputColumn], file = "data.csv", row.names = FALSE)
+
+                     incProgress(1/15)
+
+                     # Tree Codes definitions ##
+                     if(length(input$TreeCodes) > 0) write.csv(AllCodes()[, c("Column", "Value", "Definition")
+                     ], "tree_codes_metadata.csv", row.names = FALSE)
+
+                     incProgress(1/15)
+
+                     # Tree Codes Translation ##
+
+                     if(!is.null(input$ApplyCodeTranslation) & length(input$ApplyCodeTranslation ) > 0 & length(CodeTranslationFinal$output) > 0) {
+
+                       CodeTranslationFinal$output$OutputValue <- sapply(CodeTranslationFinal$output$OutputValue, function(x) ifelse(is.null(x), NA, x)) # this is to avoid having a list
+
+                       write.csv(CodeTranslationFinal$output[c("InputColumn", "InputValue", "OutputColumn", "OutputValue", "InputDefinition", "OutputDefinition")], "tree_codes_translation.csv", row.names = FALSE)
+                     }
+
+                     incProgress(1/15)
+
+                     # save ZIP
+
+                     FilesToZip <- setdiff(list.files(), before_files)
+
+                     zip(zipfile=file, files=FilesToZip)
+
+                     file.remove(FilesToZip)
+
+                   })
     },
     contentType = "application/zip"
 
   )
-
-  # # Save output data .csv
-  # output$dbFile <- downloadHandler(
-  #   filename = function() {
-  #     paste(gsub(".csv", "", input$file1$name), '_formated.csv', sep = '')
-  #   },
-  #   content = function(file) {
-  #     write.csv(DataOutput(), file, row.names = FALSE)
-  #   }
-  # )
 
   # Save profile .Rdata
 
