@@ -2031,6 +2031,8 @@ server <- function(input, output, session) { # server ####
 
                      saveRDS(Profile, file = "profile.rds")
 
+                     if("profile.rds" %in% list.files()) cat("profile.rds was saved\n")
+
                      incProgress(1/15)
 
 
@@ -2112,6 +2114,7 @@ server <- function(input, output, session) { # server ####
 
 
                      write.csv(Metadata, file = "metadata.csv", row.names = F)
+                     if("metadata.csv" %in% list.files()) cat("metadata.csv was saved\n")
 
                      incProgress(1/15)
 
@@ -2121,6 +2124,7 @@ server <- function(input, output, session) { # server ####
                      setDF(DataToSave)
 
                      write.csv(DataToSave[,Metadata$OutputColumn], file = "data.csv", row.names = FALSE)
+                     if("data.csv" %in% list.files()) cat("data.csv was saved\n")
 
                      incProgress(1/15)
 
@@ -2137,6 +2141,9 @@ server <- function(input, output, session) { # server ####
                        CodeTranslationFinal$output$OutputValue <- sapply(CodeTranslationFinal$output$OutputValue, function(x) ifelse(is.null(x), NA, x)) # this is to avoid having a list
 
                        write.csv(CodeTranslationFinal$output[c("InputColumn", "InputValue", "OutputColumn", "OutputValue", "InputDefinition", "OutputDefinition")], "tree_codes_translation.csv", row.names = FALSE)
+
+                       if("tree_codes_translation.csv" %in% list.files()) cat("tree_codes_translation.csv was saved\n")
+
                      }
 
                      incProgress(1/15)
