@@ -2018,18 +2018,18 @@ server <- function(input, output, session) { # server ####
 
                      # Profile ##
 
-                     # inputs_to_save <- c(names(input)[names(input) %in% x$ItemID], "MeasLevel", "Tidy", "VariableName", grep("Variablecolumns|TickedMelt|ValueName", names(input), value = T)) # names(input)
-                     #
-                     # Profile <- list()
-                     # for(input.i in inputs_to_save){
-                     #   Profile[[input.i]] <-  input[[input.i]]
-                     # }
-                     #
-                     # Profile[["AllCodes"]] <- AllCodes()
-                     # Profile[["CodeTranslationFinal"]] <- CodeTranslationFinal$output
-                     #
-                     #
-                     # saveRDS(Profile, file = "profile.rds")
+                     inputs_to_save <- c(names(input)[names(input) %in% x$ItemID], "MeasLevel", "Tidy", "VariableName", grep("Variablecolumns|TickedMelt|ValueName", names(input), value = T)) # names(input)
+
+                     Profile <- list()
+                     for(input.i in inputs_to_save){
+                       Profile[[input.i]] <-  input[[input.i]]
+                     }
+
+                     Profile[["AllCodes"]] <- AllCodes()
+                     Profile[["CodeTranslationFinal"]] <- CodeTranslationFinal$output
+
+
+                     saveRDS(Profile, file = "profile.rds")
 
                      incProgress(1/15)
 
