@@ -992,6 +992,7 @@ server <- function(input, output, session) { # server ####
   # format data
   DataFormated <- reactiveVal()
 
+
   observeEvent(input$LaunchFormating | input$UpdateTable, {
   # DataFormated <- eventReactive(input$LaunchFormating | input$UpdateTable, {
 
@@ -1010,9 +1011,18 @@ server <- function(input, output, session) { # server ####
   }, ignoreInit = T)
 
   FormatedColumnOptions <- reactiveVal()
-  observe({FormatedColumnOptions(names(DataFormated()))})
+  observe({
+    input$LaunchFormating
+    FormatedColumnOptions(names(DataFormated()))
+    })
+
+
   FormatedScientificNameOptions <- reactiveVal()
-  observe({FormatedScientificNameOptions(sort(unique(DataFormated()$ScientificName)))})
+  observe({
+    input$LaunchFormating
+    if("ScientificName_DataHarmonizationCor" %in% names(DataFormated())) FormatedScientificNameOptions(sort(unique(DataFormated()$ScientificName_DataHarmonizationCor))) else
+    FormatedScientificNameOptions(sort(unique(DataFormated()$ScientificName)))
+    })
 
 
   # Visualize output
