@@ -753,7 +753,8 @@ tabItem(tabName = "Save",
                  #     )
                  # )
           )
-        )), # end of "save" panel
+        ),
+        includeMarkdown("www/Download.md")), # end of "save" panel
     tabItem(tabName = "Help",
             tabsetPanel(
               tabPanel(title = "General",

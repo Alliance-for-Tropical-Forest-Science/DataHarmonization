@@ -4,8 +4,8 @@ You can stack multiple tables on top of each other, if they have the **same set 
 
 You need to do that if multiple tables represent same measurements made on different sets of trees (e.g. at different plots), or different censuses.
 
-In this example, we uploaded four tables. Three of them are individual census tables, with the same set of columns (Tables `Census1`, `Census2`, and `Census3`. 
+In this example, we uploaded three tables. Two of them are individual census tables, with the same set of columns (Tables `Stem1` and `Stem2`. 
 
-To stack our three tables, we select each of them and click `Stack Tables`. The new `unified` table appears at the bottom of the page.")
+To stack the two tables, we select each of them and click `Stack Tables`. The new `unified` table appears at the bottom of the page.
 
-(The fourth table, `SpeciesTable`, is different, and we will merge its information at the next step.)
+The third table, `Species`, is different, and we will merge its information at the next step.

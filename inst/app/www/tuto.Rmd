@@ -39,7 +39,7 @@ It performs best if all the information that you want to share is collated into 
 
 That said, you can decide to utilize the app to do exactly that. There is no limit to the number of files you can upload but they all need to connect to each other in one way or another, so that by a stacking and/or merging them, it is possible to collate them down to one file. We will get to this in more detail in a moment.
 
-The app also relied on [tidy](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html#:~:text=Tidy%20data%20is%20a%20standard,Every%20column%20is%20a%20variable.) data, which means that every column is a variable, every row is an observation and every cell is a single value. For example, a data set with multiple column for the DBH measurement (e.g. DBH_2015, DBH_2020 etc...) is not a tidy data set. Instead, there should be a column for the variable `year` (which, in our example, will take a value of 2015 or 2020), and a column for `DBH`.
+The app also relies on [tidy](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html#:~:text=Tidy%20data%20is%20a%20standard,Every%20column%20is%20a%20variable.) data, which means that every column is a variable, every row is an observation and every cell is a single value. For example, a data set with multiple column for the DBH measurement (e.g. DBH_2015, DBH_2020 etc...) is not a tidy data set. Instead, there should be a column for the variable `year` (which, in our example, will take a value of 2015 or 2020), and a column for `DBH`.
 If your data is not in a tidy format, the [`Tidy table`](#Tidying) tab will help you reshape your data. 
 
 
@@ -92,17 +92,17 @@ When you land on a tab, **always advance with an action button (even if skipping
 
 ## Upload your file(s) {#upload}
 
-This tab starts with information that we already covered in the [intro](#intro). The checklist is only a guideline to help you getting ready, and you don't actually need to check the boxes to keep going.
+This tab starts with information that we already covered in the [intro](#intro). The checklist is only a guideline to help you getting ready, and you don't actually need to check the boxes to move on.
 
 The numbered tasks are the elements that you do need to complete to be able to move forward.
 
  1. Indicate how many tables you wish to upload
  2. Indicate the finest level of measurement in your data:
  
-    - Plot: if your data only consists of plot level measurements like species richness, total basal area, total number of stems etc...
-    - Species: if your data consists of species level measurements like abundance, basal area etc... This does not prevent you from also uploading plot level information that is stored in a separate file.
-    - Tree: if your data consists of tree diameters, circumference,... and you are only measuring the main stem of each tree. This does not prevent you from also uploading plot and species level information if they are stored in separate file(s).
-    - Stem: if your data consists of stem diameters, circumference,... and some stems belong to a same tree. This does not prevent you from uploading plot and species level information if they are stored in a separate file(s).
+    - **Plot**: if your data only consists of plot level measurements like species richness, total basal area, total number of stems etc...
+    - **Species**: if your data consists of species level measurements like abundance, basal area etc... This does not prevent you from also uploading plot level information that is stored in a separate file.
+    - **Tree**: if your data consists of tree diameters, circumference,... and you are only measuring the main stem of each tree. This does not prevent you from also uploading plot and species level information if they are stored in separate file(s).
+    - **Stem**: if your data consists of stem diameters, circumference,... and some stems belong to a same tree. This does not prevent you from uploading plot and species level information if they are stored in a separate file(s).
  
 Again, even if you are uploading plot level information but have a stem level data, you should upload that file along and indicate that your level of measurement is "Stem".
 
@@ -179,7 +179,7 @@ If you collected the same type of information in several columns (e.g. you added
  
  2. The next set of boxes are pre-filled with our best guesses at the columns that may contain the same variable (columns that have similar names like `dbh1`, `dbh2`, or  `year1`, `year2`...). Our guess may be terrible. Your role is to:
  
-      a. Indicate the name of the new column that you which your variable to be called (e.g. `dbh`) in the text box. Note that this should start by a letter and have no space.
+      a. Indicate the name of the new column that you wish your variable to be called (e.g. `dbh`) in the text box. Note that this should start by a letter and have no space.
        
       b. Select all the columns of your data that represent the variable indicated in step a. (e.g `dbh1` and `dbh2`) using the drop-down menu.
 
@@ -234,10 +234,10 @@ There is a list of predefined definitions, which, if used by you and your collab
 
 Corrections may be applied to botanical names, life status and/or diameters.
 
-If you are planing on using corrections, we recommend that you coordinate with your collaborator, because it may make more sense to first skip them and apply them in a new app session ib which the collated data set is uploaded, to ensure uniformity across data sets.
+If you are planing on using corrections, we recommend that you coordinate with your collaborator(s), because it may make more sense to first skip them and apply them in a new app session in which the collated data set is uploaded, to ensure uniformity of corrections across data sets.
 
 
-If you select "Yes" to any of the corrections, you will be able to change the default parameters. We recommend to keep most parameters to the default values.
+If you select "Yes" to any of the corrections, you will be able to change the default parameters. We recommend to keep most parameters to their default values.
 
 The functions will add new columns to your data (indicated with `_DataHarmonizationCor` suffix) and won't alter your original columns.
 
@@ -266,7 +266,7 @@ This section of the tab will only appear if you had to fill in the code table in
 
 If you hover over the column names, you will see the definitions of the output profile.
 
-click on "See definition" to double check that the mapping of codes is what you intended. 
+Click on "See definition" to double check that the mapping of codes is what you intended. 
 
 When you are happy, apply the mapping and you will see columns added to your table. They will have the column names that the output profile expects and will be filled with the output codes, based on the codes in your column(s) and the mapping you indicated.
 
@@ -276,7 +276,7 @@ When you are happy, apply the mapping and you will see columns added to your tab
 ## Download the output data and metadata {#Save}
 
 Clicking on "save all" generates a zip file with all the files you should need. 
-If you have tree codes and applied a tree code mapping, the zip will include a .csv file with the translation table (which you can upload in the code translation step to speed up the process next time.)
+If you have tree codes and applied a tree code mapping, the zip will include a CSV file with the translation table (which you can upload in the code translation step to speed up the process next time.)
 
 
 ![](Download.gif)
@@ -291,7 +291,7 @@ This a simplified version of this tutorial.
 
 If your output profile (.rds file) is obsolete there are two options, which should be done by the person who created the profile in the first place:
 
-- For R savvy people: open the .rsd file in R. It is a `list`. Add the missing element(s) that were listed in the pop up window that said that the profile was obsolete by giving them the value that applies to the output profile.
+- For R savvy people: open the .rds file in R. It is a `list`. Add the missing element(s) that were listed in the pop up window that said that the profile was obsolete by giving them the value that applies to the output profile.
 For example, if "Cluster" was missing you can do:
 
         profile <- readRDS("[YOUR PATH]/[YOUR PROFILENAME].rds")
@@ -299,5 +299,5 @@ For example, if "Cluster" was missing you can do:
         saveRDS(profile, "[YOUR PATH]/[YOUR PROFILENAME].rds")
 
 
-- For non-R savvy people: go through the app again. It should go fast as you will be able to upload your profile as an input. Make sure to save and overwrite your profile. If the elements missing did not apply to you, they will now exist with value "none" in your profile.
+- For non-R savvy people: go through the app again. It should go fast as you will be able to upload your obsolete profile as an input. Make sure to save and overwrite your profile. If the elements missing did not apply to you, they will now exist with value "none" in your profile.
 

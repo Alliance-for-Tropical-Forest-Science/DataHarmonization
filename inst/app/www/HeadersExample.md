@@ -13,7 +13,7 @@ Here, we want to know in what column some key information is stored.
        
  2. **click on 'APPLY CHANGES'** and read any warnings that may popup, adjust your entries if possible (it is okay to ignore warnings) and re-apply your changes. Save (or update if needed) your profile (.rds file)
 
- 3. Check your new formated data looks ok. The headers and units are now following ATFS's standard. You can see what those are by clicking the little `r fa(name = "info-circle")` button.
+ 3. Check that your new formatted data looks ok. The headers and units are now following ATFS's standard. You can see what those are by clicking the little `r fa(name = "info-circle")` button.
  
  5. **click on 'NEXT'**
 

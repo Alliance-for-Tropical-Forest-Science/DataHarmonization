@@ -1,6 +1,6 @@
 # Translating your tree codes
 
-If your profile has tree codes and the profile you selected as an output also do, you can look through both sets of codes and indicate when they are equivalent by checking the radio button.
+If your profile has tree codes and the profile you selected as an output also do, you can now indicate what codes are equivalent by ticking radio buttons.
 
 If you hover over the column names, you will see the definitions of the output profile.
 
