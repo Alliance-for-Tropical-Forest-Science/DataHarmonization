@@ -66,7 +66,7 @@ devtools::install_github("Alliance-for-Tropical-Forest-Science/DataHarmonization
 
 # run the app
 
-shiny::runGitHub( "Alliance-for-Tropical-Forest-Science/DataHarmonization", subdir = "inst/app")
+shiny::runGitHub( "Alliance-for-Tropical-Forest-Science/DataHarmonization", subdir = "inst/app") ### DZ: this is not being displayed in the HTML tutorial.
 ```
 
 Note that you may need to install `devtools` package first and that installing the DataHarmonization R package may ask you to update a list packages.
