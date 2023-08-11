@@ -102,7 +102,7 @@ body <- dashboardBody(
 
                   helpText(code('devtools::install_github("Alliance-for-Tropical-Forest-Science/DataHarmonization", build_vignettes = TRUE)'),
                            br(),
-                           code('shiny::runGitHub( "Alliance-for-Tropical-Forest-Science/DataHarmonization", subdir = "inst/app")'),
+                           code('DataHarmonization::run_app()'),
                            br(),
                            br(),
                            p("You may need to install devtools package first."),
