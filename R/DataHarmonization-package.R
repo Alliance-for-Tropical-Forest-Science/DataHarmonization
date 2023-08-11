@@ -28,7 +28,8 @@ utils::globalVariables(c("Site", "Plot", "Subplot", "PlotArea", "SubplotArea", "
                          "Family", "VernName", "Genus", "Species", "Subspecies", "ScientificName",
 
 
-                         "LifeStatus", "CommercialSp", "LifeStatusOriginal", "CommercialSpOriginal",
+                         "LifeStatus", "DeadStatus", "CommercialSp",
+                         "LifeStatusOriginal", "DeadStatusOriginal", "CommercialSpOriginal",
 
 
 
