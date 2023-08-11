@@ -389,7 +389,7 @@ body <- dashboardBody(
                 radioButtons(
               "VariableName",
               "Why do you have repeated column?",
-              choices = c("One column per census" = "CensusID", "One column per height of measurement, measurement method, ..." = "MeasureID", "One column per stem" = "StemID", "One column per year" = "Year"),
+              choices = c("One column per census (new column name will be 'CensusID')" = "CensusID", "One column per height of measurement, measurement method, ... (new column name will be 'MeasureID')" = "MeasureID", "One column per stem (new column name will be 'StemID')" = "StemID", "One column per year (new column name will be 'Year')" = "Year"),
               selected = "",
               inline = FALSE
             ),

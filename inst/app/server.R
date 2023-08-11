@@ -506,21 +506,22 @@ server <- function(input, output, session) { # server ####
       lapply(c(1:length(groupNames)), function(i)
       {
         box(width = 12,
-            column(1,         awesomeCheckbox(
-              inputId = paste0("TickedMelt", i),
-              label = "",
-              value = FALSE,
-              status = "info"
-            )),
-            column(11, textInput(paste0("ValueName", i), "What type of measurement is repeated horizontally? (Give a column name without space)", value = names(groupNames)[i]),
                    pickerInput(
                      inputId = paste0("Variablecolumns", i),
-                     label = "Select the columns that are repeats of measurements",
+                     label = paste("List variables that belong to the same group or measurement at different [", input$VariableName, "]. For example, 'dbh_in_cm_1' and 'dbh_in_cm_2'."),
                      choices = colnames(OneTable()),
                      selected = groupNames[[i]],
                      multiple = T
-                   )
-            ))
+                   ),
+            column(11, textInput(paste0("ValueName", i), "Under which name do you want to group these variables? For example, 'dbh_in_cm' (Give a column name without space)", value = names(groupNames)[i])
+            ),
+
+               awesomeCheckbox(
+                 inputId = paste0("TickedMelt", i),
+                 label = "Tick me if you want to apply this grouping",
+                 value = FALSE,
+                 status = "info"
+               ))
       })
 
     })
