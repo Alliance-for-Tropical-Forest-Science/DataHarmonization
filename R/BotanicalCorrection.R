@@ -10,7 +10,6 @@ toUpperFirst <- function(x) {
 #' Botanical Correction
 #'
 #' @param Data Dataset (data.frame or data.table); it must contain Site and IdTree
-#' @param Sources Character vector. Taxonomic source(s) to use. Options are c("tropicos", "usda", "wfo", "wcvp") and default is all of them.
 #'
 #' @return A list with a complete log of the botanical corrections and Data with new columns:
 #'   - `Accepted_family_DataHarmonizationCor` (character): corrected family name
@@ -22,6 +21,7 @@ toUpperFirst <- function(x) {
 #'
 #'@details
 #' - The function uses TNRS package provided by BIEN, https://bien.nceas.ucsb.edu/bien/tools/tnrs/
+#' - It resolves plant taxonomic names using World Flora Online
 #' - No special characters (typography)
 #' - The suffix "aceae" is restricted to families, and words ending with "aceae" are deleted anywhere else
 #' - Correct spelling of botanical names
@@ -43,7 +43,7 @@ toUpperFirst <- function(x) {
 #'}
 #'
 #'
-BotanicalCorrection <- function(Data,  Sources = c("tropicos", "usda", "wfo", "wcvp")) {
+BotanicalCorrection <- function(Data) {
 
   ThisIsShinyApp =  shiny::isRunning() # this is for internal use when function used by Shiny app
 
@@ -250,8 +250,8 @@ BotanicalCorrection <- function(Data,  Sources = c("tropicos", "usda", "wfo", "w
   pass.this.unique <- unique(pass.this)
 
   tnrs <- TNRS::TNRS(pass.this.unique,
-                     sources = Sources,
-                     classification = "tropicos")
+                     sources = "wfo",
+                     classification = "wfo")
 if(length(pass.this.unique) !=  nrow(tnrs)) stop("some species did not pass through") else tnrs$Name_submitted <- pass.this.unique # this necessary when there is special characters
 
   if(ThisIsShinyApp) incProgress(1/15)

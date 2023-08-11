@@ -4,12 +4,10 @@
 \alias{BotanicalCorrection}
 \title{Botanical Correction}
 \usage{
-BotanicalCorrection(Data, Sources = c("tropicos", "usda", "wfo", "wcvp"))
+BotanicalCorrection(Data)
 }
 \arguments{
 \item{Data}{Dataset (data.frame or data.table); it must contain Site and IdTree}
-
-\item{Sources}{Character vector. Taxonomic source(s) to use. Options are c("tropicos", "usda", "wfo", "wcvp") and default is all of them.}
 }
 \value{
 A list with a complete log of the botanical corrections and Data with new columns:
@@ -27,6 +25,7 @@ Botanical Correction
 \details{
 \itemize{
 \item The function uses TNRS package provided by BIEN, https://bien.nceas.ucsb.edu/bien/tools/tnrs/
+\item It resolves plant taxonomic names using World Flora Online
 \item No special characters (typography)
 \item The suffix "aceae" is restricted to families, and words ending with "aceae" are deleted anywhere else
 \item Correct spelling of botanical names
