@@ -21,7 +21,7 @@ devtools::install_github("Alliance-for-Tropical-Forest-Science/DataHarmonization
 Click [here](https://valentineherr.shinyapps.io/TmFO_AccelNet/) for an online version or run the following code in an R Session:
 
 ```r
-shiny::runGitHub( "Alliance-for-Tropical-Forest-Science/DataHarmonization", subdir = "inst/app")
+DataHarmonization::run_app()
 ```
 
 
