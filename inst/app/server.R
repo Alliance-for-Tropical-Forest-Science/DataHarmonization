@@ -6,8 +6,8 @@
 library(DataHarmonization)
 
 
-# increase size limit to 10MB
-options(shiny.maxRequestSize=100*1024^2)
+# increase size limit to 191MB
+options(shiny.maxRequestSize=1910*1024^2)
 
 # my function to change first letter in uppercase (e.g for updatePickerInput)
 firstUpper <- function(x) {
@@ -572,6 +572,12 @@ server <- function(input, output, session) { # server ####
 
     output$TidyTableSummary <- renderPrint(summary(TidyTable()))
   })
+
+  output$VizForHeaders <- DT::renderDT(TidyTable(), rownames = FALSE,
+                                       options = list(pageLength = 8, scrollX=TRUE,
+                                                      autoWidth = TRUE),
+                                       container = FooterWithHeader(TidyTable()),
+                                       selection = "none")
 
   # move on to next tab
   observeEvent(input$SkipTidy, {

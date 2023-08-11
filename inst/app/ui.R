@@ -469,11 +469,25 @@ body <- dashboardBody(
                               strong("pay attention to your Date format and double check it in step 2, even if you imported a profile."),
                               p("A sample or your dates look like this:"),
                               textOutput("sampleDates")))),
-
-              column(width = 6,
+              column(width = 12,
                      actionBttn(
                        inputId = makeUniqueID("inactive"),
                        label = "1",
+                       style = "pill",
+                       color = "warning"),
+                     strong("  Visualization of your headers and content"),
+                     br(),
+                     br(),
+                     box(
+                       width = NULL,
+                       DT::DTOutput(outputId = "VizForHeaders")
+                       )
+              ),
+
+              column(width = 12,
+                     actionBttn(
+                       inputId = makeUniqueID("inactive"),
+                       label = "2",
                        style = "pill",
                        color = "warning"),
                      strong("  Match your columns to ours (when you can)"),
@@ -515,12 +529,12 @@ body <- dashboardBody(
                          # actionBttn("Header1Next", "next", style = "fill", color = "primary")
                          )
               ),
-              column(width = 6,
+              column(width = 12,
 
                      div(
                        actionBttn(
                          inputId = makeUniqueID("inactive"),
-                         label = "2",
+                         label = "3",
                          style = "pill",
                          color = "warning")
                        ,   strong("  Fill in information that is not in your columns"),
