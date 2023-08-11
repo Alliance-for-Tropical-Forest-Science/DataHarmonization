@@ -155,6 +155,12 @@ body <- dashboardBody(
                      # value = TRUE,
                      status = "warning"
                    ),
+                 prettyCheckbox(
+                   inputId = makeUniqueID("ChckLst"),
+                   label = "Remove 'empty' columns without column names",
+                   # value = TRUE,
+                   status = "warning"
+                 ),
                    prettyCheckbox(
                      inputId = makeUniqueID("ChckLst"),
                      label = "...",
