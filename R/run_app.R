@@ -11,5 +11,5 @@
 #'
 
 run_app <- function() {
-  runApp("inst/app")
+  shiny::runApp("inst/app")
 }
