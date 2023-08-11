@@ -41,7 +41,7 @@ Order,Group,GroupSecondColumn,ItemType,Argument,Default,AppDefaultProfile,ItemID
 5,Species information,NA,pickerInput,choices,none,VernName,VernName,Vernacular name,,none,none,none,ColumnOptions,list(`live-search` = TRUE),FALSE,TRUE,TRUE,FALSE,character,-,FALSE,Vernacular name
 5,Species information,NA,pickerInput,choices,none,Family,Family,Family name,,none,none,none,ColumnOptions,list(`live-search` = TRUE),FALSE,TRUE,TRUE,FALSE,character,-,FALSE,Family name
 5,Species information,NA,pickerInput,choices,none,Genus,Genus,Genus name,,none,none,none,ColumnOptions,list(`live-search` = TRUE),FALSE,TRUE,TRUE,FALSE,character,-,FALSE,Genus name
-5,Species information,NA,pickerInput,choices,none,Species,Species,Species name,one word,none,none,none,ColumnOptions,list(`live-search` = TRUE),FALSE,TRUE,TRUE,FALSE,character,-,FALSE,Species name
+5,Species information,NA,pickerInput,choices,none,Species,Species,Specific epithet,one word,none,none,none,ColumnOptions,list(`live-search` = TRUE),FALSE,TRUE,TRUE,FALSE,character,-,FALSE,Species specific epithet
 5,Species information,NA,pickerInput,choices,none,Subspecies,Subspecies,Subspecies name,,none,none,none,ColumnOptions,list(`live-search` = TRUE),FALSE,TRUE,TRUE,FALSE,character,-,FALSE,Subspecies name
 5,Species information,NA,pickerInput,choices,none,Variety,Variety,Variety name,,none,none,none,ColumnOptions,list(`live-search` = TRUE),FALSE,TRUE,TRUE,FALSE,character,-,FALSE,Variety name
 5,Species information,NA,pickerInput,choices,none,Voucher,Voucher,Voucher code,,none,none,none,ColumnOptions,list(`live-search` = TRUE),FALSE,TRUE,TRUE,FALSE,character,-,FALSE,Voucher code for the species
