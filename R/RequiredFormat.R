@@ -269,7 +269,7 @@ RequiredFormat <- function(
     }
 
     # send warning if some dates translated as NA
-    if(any(!is.na(Data$DateOriginal) & is.na(Data$Date))) AllWarnings <- c(AllWarnings, "Some dates were translated as NA... Either your data format does not corresponf to the format of your date column, or you do not have a consistent format across all your dates.")
+    if(any(!is.na(Data$DateOriginal) & is.na(Data$Date))) AllWarnings <- c(AllWarnings, "Some dates were translated as NA... Either your data format does not correspond to the format of your date column, or you do not have a consistent format across all your dates.")
 
   }
 
