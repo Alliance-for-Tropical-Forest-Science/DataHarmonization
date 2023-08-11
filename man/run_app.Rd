@@ -9,7 +9,3 @@ run_app()
 \description{
 Runs the Data harmonization app
 }
-\examples{
-run_app()
-
-}

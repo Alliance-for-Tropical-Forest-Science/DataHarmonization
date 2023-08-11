@@ -6,10 +6,7 @@
 #'
 #' @export
 #'
-#' @examples
-#' run_app()
 #'
-
 run_app <- function() {
   shiny::runApp("app")
 }
