@@ -564,13 +564,19 @@ body <- dashboardBody(
 
 
                            )
-                           })
+                           }))
                        ,
+                       div(actionBttn(
+                         inputId = makeUniqueID("inactive"),
+                         label = "4",
+                         style = "pill",
+                         color = "warning"),
+                         strong("  Finalize"),
                      box(title = "Save your profile",
                          width = NULL,
                          status = "primary",
                          solidHeader = TRUE,
-                         downloadButton(outputId = "dbProfile", label = "Save profile"))),
+                         downloadButton(outputId = "dbProfile", label = "Save profile")),
 
                        actionBttn("LaunchFormating", label = "Apply changes!", style = "material-flat", color = "success") #style = "color: #fff; background-color: #009e60; border-color: #317256")
                      ),
@@ -579,7 +585,7 @@ body <- dashboardBody(
                        label = "Next",
                        style = "material-flat",
                        color = "success"
-                     ))),
+                     )))),
 
                      box(width = 12,
 
