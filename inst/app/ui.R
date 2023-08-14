@@ -229,12 +229,13 @@ body <- dashboardBody(
                        label = "4",
                        style = "pill",
                        color = "warning"),
-                     actionBttn(
+                     strong("Click on Submit when it appears"),
+                     hidden(actionBttn(
                        inputId = "submitTables",
                        label = "submit",
                        style = "material-flat",
                        color = "success"
-                     )),
+                     ))),
               column(6,
                      uiOutput("uiViewTables"))
 

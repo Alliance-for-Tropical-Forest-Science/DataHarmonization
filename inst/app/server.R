@@ -202,6 +202,8 @@ server <- function(input, output, session) { # server ####
                                                               container = FooterWithHeader(Data()[[i]]),
                                                               selection = "none")
     )
+
+    shinyjs::show("submitTables")
   })
 
 
