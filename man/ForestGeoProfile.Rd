@@ -7,6 +7,7 @@
 \format{
 A named list
 \describe{
+\item{ProfileName}{Some value created via interaction with the Shiny app}
 \item{TreeHeightUnitMan}{Value or column name in data set @ForestGeoSubset (none) corresponding to What is your tree height unit?}
 \item{Family}{Value or column name in data set @ForestGeoSubset (Family) corresponding to Family name}
 \item{TreeHeight}{Value or column name in data set @ForestGeoSubset (none) corresponding to Tree height}

@@ -12,6 +12,8 @@ AppProfile$AllCodes <- data.frame(Column = "You have not selected columns for co
                                   Value = "You have not selected columns for codes",
                                   Definition = "You have not selected columns for codes")
 
+# add ProfileName
+AppProfile$ProfileName <- "App"
 
 # save
 saveRDS(AppProfile, "inst/app/data/AppProfile.rds")

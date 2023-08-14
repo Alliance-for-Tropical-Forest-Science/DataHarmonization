@@ -7,6 +7,7 @@
 \format{
 A named list
 \describe{
+\item{ProfileName}{Some value created via interaction with the Shiny app}
 \item{TreeHeight}{Value or column name in data set @ParacouSubset (none) corresponding to Tree height}
 \item{XTreeUTM}{Value or column name in data set @ParacouSubset (none) corresponding to Tree X UTM coordinate}
 \item{Date}{Value or column name in data set @ParacouSubset (CensusDate) corresponding to Date of measurement}

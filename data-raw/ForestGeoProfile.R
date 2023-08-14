@@ -2,6 +2,7 @@
 
 ForestGeoProfile <-
   list(
+    ProfileName = "ForestGeo",
     TreeHeightUnitMan = "none",
     Family = "Family",
     TreeHeight = "none",

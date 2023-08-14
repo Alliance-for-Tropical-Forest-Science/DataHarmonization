@@ -4,6 +4,7 @@
 
 ParacouProfile <-
   list(
+    ProfileName = "Paracou",
     TreeHeight = "none",
     XTreeUTM = "none",
     Date = "CensusDate",

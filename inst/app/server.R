@@ -928,7 +928,8 @@ server <- function(input, output, session) { # server ####
 
     if(length(InValidItemID) > 0 ) { #& gimme_value() == 1) {
 
-      if(length(InValidItemID) < 20 & input$predefinedProfile  %in% "App") NULL else  showNotification(paste("The profile you selected does not seem to correspond to your data. The items that do not match your data are:", paste0(InValidItemID, " (in ", x$Group[match(InValidItemID, x$ItemID)], ")",  collapse = ",\n"), ".\n Please, fill out those items by hand (or make sure you picked the right profile). Also, please double check that the info in the second column is filled out properly."), type = 'err', duration = NULL)
+      if(!(length(InValidItemID) < 50 & (input$predefinedProfile %in% "App"|profile$ProfileName %in% "App"))) {
+        showNotification(paste("The profile you selected does not seem to correspond to your data. The items that do not match your data are:", paste0(InValidItemID, " (in ", x$Group[match(InValidItemID, x$ItemID)], ")",  collapse = ",\n"), ".\n Please, fill out those items by hand (or make sure you picked the right profile). Also, please double check that the info in the second column is filled out properly."), type = 'err', duration = NULL)}
     }
     #
     # for(i in which(x$ItemID %in% names(profile) & reactiveValuesToList(input)[x$ItemID] %in% names(TidyTable()))) {
@@ -2047,6 +2048,8 @@ server <- function(input, output, session) { # server ####
                      Profile[["AllCodes"]] <- AllCodes()
                      Profile[["CodeTranslationFinal"]] <- CodeTranslationFinal$output
 
+                     Profile$ProfileName <- ifelse(input$predefinedProfile %in% "No", "Custom", input$predefinedProfile)
+
 
                      saveRDS(Profile, file = "original/input_profile.rds")
 
@@ -2055,6 +2058,9 @@ server <- function(input, output, session) { # server ####
                      incProgress(1/15)
 
                      # Output profile ####
+                     profileOutput <- profileOutput()
+                     profileOutput$ProfileName <- ifelse(input$predefinedProfileOutput %in% "No", "Custom", input$predefinedProfileOutput)
+
 
                      saveRDS(profileOutput(), file = "processed/output_profile.rds")
 
@@ -2210,6 +2216,7 @@ server <- function(input, output, session) { # server ####
       }
       Profile[["AllCodes"]] <- AllCodes()
       Profile[["CodeTranslationFinal"]] <- CodeTranslationFinal$output
+      Profile[["ProfileName"]] <- "Custom"
       saveRDS( Profile, file = file)
     }
   )
