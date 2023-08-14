@@ -179,8 +179,7 @@ server <- function(input, output, session) { # server ####
         ext <- tools::file_ext(file$datapath)
 
         req(file)
-        validate(need(ext == "csv", "Please upload a csv file"))
-
+        shiny::validate(need(ext == "csv", "Please upload a csv file"))
         x <- data.table::fread(file$datapath,
                                header = input[[paste0("header", i)]],
                                sep = input[[paste0("cbSeparator", i)]],
@@ -2027,9 +2026,12 @@ server <- function(input, output, session) { # server ####
                    detail = 'This may take a while...', value = 0,
                    {
 
+                     dir.create("original")
+                     dir.create("processed")
+
 
                      # list all files that are currently in wd (so we can compare with the ones that are created in this step and save only those)
-                     before_files <- list.files()
+                     before_files <- list.files(recursive = T)
 
                      incProgress(1/15)
 
@@ -2046,12 +2048,19 @@ server <- function(input, output, session) { # server ####
                      Profile[["CodeTranslationFinal"]] <- CodeTranslationFinal$output
 
 
-                     saveRDS(Profile, file = "profile.rds")
+                     saveRDS(Profile, file = "original/inputProfile.rds")
 
-                     if("profile.rds" %in% list.files()) cat("profile.rds was saved\n")
+                     if("original/inputProfile.rds" %in% list.files(recursive = T)) cat("original/inputProfile.rds was saved\n")
 
                      incProgress(1/15)
 
+                     # Output profile ####
+
+                     saveRDS(profileOutput(), file = "processed/outputProfile.rds")
+
+                     if("processed/outputProfile.rds" %in% list.files(recursive = T)) cat("processed/outputProfile.rds was saved\n")
+
+                     incProgress(1/15)
 
                      # Metadata ##
 
@@ -2130,24 +2139,27 @@ server <- function(input, output, session) { # server ####
                      Metadata <- Metadata[apply(setDT(DataOutput())[, Metadata$OutputColumn, with = F], 2, function(x) !all(is.na(x))), ] # keep only the columns that are not all NAs
 
 
-                     write.csv(Metadata, file = "metadata.csv", row.names = F)
-                     if("metadata.csv" %in% list.files()) cat("metadata.csv was saved\n")
+                     write.csv(Metadata, file = "processed/metadata.csv", row.names = F)
+                     if("processed/metadata.csv" %in% list.files(recursive = T)) cat("processed/metadata.csv was saved\n")
 
                      incProgress(1/15)
 
-                     # Formatted data ##
 
+                     # Intput data ####
+
+                     lapply(names(Data()), function(i) write.csv(Data()[[i]], paste0("original/", i, ".csv"), row.names = F))
+                     # Formatted data ###
                      DataToSave <- DataOutput()
                      setDF(DataToSave)
 
-                     write.csv(DataToSave[,Metadata$OutputColumn], file = "data.csv", row.names = FALSE)
-                     if("data.csv" %in% list.files()) cat("data.csv was saved\n")
+                     write.csv(DataToSave[,Metadata$OutputColumn], file = "processed/output_data.csv", row.names = FALSE)
+                     if("processed/output_data.csv" %in% list.files(recursive = T)) cat("processed/output_data.csv was saved\n")
 
                      incProgress(1/15)
 
                      # Tree Codes definitions ##
                      if(length(input$TreeCodes) > 0) write.csv(AllCodes()[, c("Column", "Value", "Definition")
-                     ], "tree_codes_metadata.csv", row.names = FALSE)
+                     ], "original/tree_codes_metadata.csv", row.names = FALSE)
 
                      incProgress(1/15)
 
@@ -2157,9 +2169,9 @@ server <- function(input, output, session) { # server ####
 
                        CodeTranslationFinal$output$OutputValue <- sapply(CodeTranslationFinal$output$OutputValue, function(x) ifelse(is.null(x), NA, x)) # this is to avoid having a list
 
-                       write.csv(CodeTranslationFinal$output[c("InputColumn", "InputValue", "OutputColumn", "OutputValue", "InputDefinition", "OutputDefinition")], "tree_codes_translation.csv", row.names = FALSE)
+                       write.csv(CodeTranslationFinal$output[c("InputColumn", "InputValue", "OutputColumn", "OutputValue", "InputDefinition", "OutputDefinition")], "processed/tree_codes_translation.csv", row.names = FALSE)
 
-                       if("tree_codes_translation.csv" %in% list.files()) cat("tree_codes_translation.csv was saved\n")
+                       if("processed/tree_codes_translation.csv" %in% list.files(recursive = T)) cat("processed/tree_codes_translation.csv was saved\n")
 
                      }
 
@@ -2167,11 +2179,16 @@ server <- function(input, output, session) { # server ####
 
                      # save ZIP
 
-                     FilesToZip <- setdiff(list.files(), before_files)
+                     FilesToZip <- setdiff(list.files(recursive = T), before_files)
 
                      zip(zipfile=file, files=FilesToZip)
 
+
+                     # remove files and folders from the app
                      file.remove(FilesToZip)
+                     unlink("original")
+                     unlink("processed")
+
 
                    })
     },
