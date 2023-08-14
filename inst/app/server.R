@@ -2048,17 +2048,17 @@ server <- function(input, output, session) { # server ####
                      Profile[["CodeTranslationFinal"]] <- CodeTranslationFinal$output
 
 
-                     saveRDS(Profile, file = "original/inputProfile.rds")
+                     saveRDS(Profile, file = "original/input_profile.rds")
 
-                     if("original/inputProfile.rds" %in% list.files(recursive = T)) cat("original/inputProfile.rds was saved\n")
+                     if("original/input_profile.rds" %in% list.files(recursive = T)) cat("original/input_profile.rds was saved\n")
 
                      incProgress(1/15)
 
                      # Output profile ####
 
-                     saveRDS(profileOutput(), file = "processed/outputProfile.rds")
+                     saveRDS(profileOutput(), file = "processed/output_profile.rds")
 
-                     if("processed/outputProfile.rds" %in% list.files(recursive = T)) cat("processed/outputProfile.rds was saved\n")
+                     if("processed/output_profile.rds" %in% list.files(recursive = T)) cat("processed/output_profile.rds was saved\n")
 
                      incProgress(1/15)
 
