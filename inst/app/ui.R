@@ -107,14 +107,7 @@ body <- dashboardBody(
                            br(),
                            p("You may need to install devtools package first."),
                            p("Installing the DataHarmonization R package may ask you to update a list packages."),
-                           strong("Please, re-install the package every once in a while, to get the latest version of the app.")
-                           # '# If you have run this app in the past and you think/know the DataHarmonization package has been updated since, you may need to restart you R session and re-install DataHarmonization package (using code below) before running the app again',
-                           # br(),
-                           # code('devtools::install_github("Alliance-for-Tropical-Forest-Science/DataHarmonization", build_vignettes = TRUE)')
-
-
-                           ),
-                  # textOutput("CodeRunApp"),
+                           strong("Please, re-install the package every once in a while, to get the latest version of the app.")),
                   tags$head(tags$style("#CodeRunApp{
                   color: red;
                   font-family: courier;
@@ -173,12 +166,16 @@ body <- dashboardBody(
                 icon = icon("cog"),
                 inline =T,
                 tooltip = tooltipOptions(title = "Click to see checklist !")
-                # )
-                # ,
-                # span("Checklist before you upload")
+
                 ),
               br(),
               br(),
+
+              box(width = 12,
+                  solidHeader = T,
+                  status = "primary",
+                  title = "I - Load your data",
+
               column(width = 6,
                      actionBttn(
                        inputId =  makeUniqueID("inactive"),
@@ -209,9 +206,9 @@ body <- dashboardBody(
                        choices = c("Plot", "Species", "Tree", "Stem"),
                        selected  = character(0)
                      )
-              )),
+              ),
 
-            fluidRow(
+
               column(width = 6,
                      actionBttn(
                        inputId =  makeUniqueID("inactive"),
@@ -222,25 +219,72 @@ body <- dashboardBody(
 
                      p("To keep track of your tables in the next steps, you can rename them at the top of each box."),
 
-                     uiOutput("uiUploadTables"),
-
-                     actionBttn(
-                       inputId =  makeUniqueID("inactive"),
-                       label = "4",
-                       style = "pill",
-                       color = "warning"),
-                     strong("Click on Submit when it appears"),
-                     hidden(actionBttn(
-                       inputId = "submitTables",
-                       label = "submit",
-                       style = "material-flat",
-                       color = "success"
-                     ))),
+                     uiOutput("uiUploadTables")),
               column(6,
                      uiOutput("uiViewTables"))
 
-            )
+            ),
+            box(width = 12,
+                solidHeader = T,
+                status = "primary",
+                title = "II - Load your profiles",
+                box( width = 12, status = "success",
+                     title = "A - INPUT profile",
+                    strong("Does your data already have a description in this app?"),
+                        h4("If yes, pick from the list below"),
+box(width = 12,
+                    radioButtons(inputId = "predefinedProfile",
+                                 label = div("Use a predifined INPUT profile", br(), em("(if your data follows one of the following network template)")),
+                                 choices = list("No thanks, I'll upload a .rds file or start from scratch!" = "No",
+                                                # "ATDN: The Amazon Tree Diversity Network" = "ATDN",
+                                                "ForestGEO: The Smithsonian Forest Global Earth Observatory" = "ForestGeo",
+                                                "App's profile (if the data you upload was downloaded from this app, using this app's standards)" = "App"#,
+                                                # "RBA: Red de Bosques Andinos" = "RBA"
+                                 ),
+                                 selected = "No"),
+                    # load a profile it one already exists
+                    fileInput(inputId = "profile", div("Upload your own INPUT profile", br(), em("(if you already used this app and saved your profile (.rds))")), accept = ".rds"),
+                    span(textOutput("RDSWarning"), style="color:red")),
 
+                    h4("If no, you'll built your own profile in the in tab 'headers and units' ")),
+                box( width = 12, status = "warning",
+                     title = "B - OUTPUT profile",
+                     strong("Pick or upload description of your desired output"),
+                     p("Pick from the list, or provide a .rds object. This is typically a consensus format in collaborations, and may be provided to you by the person(s) responsible for data aggregation. It could also be the format of a network or repository in which you want to integrate your data."),
+                     box(width = 12,
+                     radioButtons(inputId = "predefinedProfileOutput",
+                                  label = div("Use a predifined OUTPUT profile"),
+                                  choices = list("No thanks! I'll upload a profile I have handy." = "No",
+                                                 "This App's standard" = "App",
+                                                 # "ATDN: The Amazon Tree Diversity Network" = "ATDN",
+                                                 "ForestGEO: The Smithsonian Forest Global Earth Observatory" = "ForestGeo"#,
+                                                 # "RBA: Red de Bosques Andinos" = "RBA"
+                                  ),
+                                  selected = "No"),
+
+                     # load a profile it one already exists
+                     div(id = "profileOutputfileInput",
+                         fileInput(inputId = "profileOutput", div("Or, load a profile you have on your machine", br(), em("(if you or a colleague already used this app and saved a profile (.rds))")), accept = ".rds"))),
+                     span(textOutput("RDSOutputWarning"), style="color:red"))),
+box(width = 12,
+    solidHeader = T,
+    status = "primary",
+    title = "III - Submit",
+
+    # actionBttn(
+    #   inputId =  makeUniqueID("inactive"),
+    #   label = "4",
+    #   style = "pill",
+    #   color = "warning"),
+    # strong("Click on Submit when it appears"),
+    hidden(actionBttn(
+      inputId = "submitTables",
+      label = "submit",
+      style = "material-flat",
+      color = "success"
+    ))
+)
+)
     ),  ## end of "upload" panel
 
 
@@ -400,18 +444,6 @@ body <- dashboardBody(
 
             uiOutput("uiMelt"),
 
-            # box(
-            # textInput("ValueName", "What type of measurement is repeated horizontally? (Give a column name without space)", value = "DBH"),
-            # radioButtons(
-            #   "VariableName",
-            #   "What is the meaning of the repeated column?",
-            #   choices = c("CensusID", "Year", "POM", "StemID"),
-            #   selected = "",
-            #   inline = FALSE
-            # ),
-            # actionButton("ClearValueName","Clear"),
-            # pickerInput("Variablecolumns", label = "Select the columns that are repeats of measurements", choices = "", multiple = T, options = list(size = 10)),
-            # ),
             actionBttn(
               inputId = "Tidy",
               label = "Tidy",
@@ -440,71 +472,47 @@ body <- dashboardBody(
             ), ## end of "Tidy" panel
     tabItem(tabName = "Headers",
             fluidRow(
-              column(width = 12,
-                     h3("Indicate the meaning of your headers and your units.")),
-              # inform if profile already exists
-              box(width = 12,
-                  radioButtons(inputId = "predefinedProfile",
-                               label = div("Use a predifined profile", br(), em("(if your data follows one of the following network template)")),
-                               choices = list("No thanks!" = "No",
-                                              # "ATDN: The Amazon Tree Diversity Network" = "ATDN",
-                                              "ForestGEO: The Smithsonian Forest Global Earth Observatory" = "ForestGeo",
-                                              "App's profile (if the data you upload was downloaded from this app, using this app's standards)" = "App"#,
-                                              # "RBA: Red de Bosques Andinos" = "RBA"
-                               ),
-                               selected = "No"),
+              # column(width = 12,
+              #        h3("Indicate the meaning of your headers and your units.")),
+              # # inform if profile already exists
+              # box(width = 12,
+              #     radioButtons(inputId = "predefinedProfile",
+              #                  label = div("Use a predifined profile", br(), em("(if your data follows one of the following network template)")),
+              #                  choices = list("No thanks!" = "No",
+              #                                 # "ATDN: The Amazon Tree Diversity Network" = "ATDN",
+              #                                 "ForestGEO: The Smithsonian Forest Global Earth Observatory" = "ForestGeo",
+              #                                 "App's profile (if the data you upload was downloaded from this app, using this app's standards)" = "App"#,
+              #                                 # "RBA: Red de Bosques Andinos" = "RBA"
+              #                  ),
+              #                  selected = "No"),
+              #
+              #     # load a profile it one already exists
+              #     fileInput(inputId = "profile", div("Upload your own profile", br(), em("(if you already used this app and saved your profile (.rds))")), accept = ".rds"),
+              #     span(textOutput("RDSWarning"), style="color:red"),
+              # ),
 
-                  # load a profile it one already exists
-                  fileInput(inputId = "profile", div("Upload your own profile", br(), em("(if you already used this app and saved your profile (.rds))")), accept = ".rds"),
-                  span(textOutput("RDSWarning"), style="color:red"),
-                  strong("If you have never used this app before and your data does not follow a prefined profile, you need to manually interact with each drop-down menus below."),
-                  p("Work on column one first, then move to column 2."),
-                  br(),
-                  hidden(actionBttn(
-                    inputId = "UseProfile",
-                    label = "Click here to use Profile",
-                    style = "pill",
-                    color = "success")
-                  )),
-              hidden(div( id = "AttentionDates",
-                          box(width = 12,
-                              actionBttn(
-                                inputId =  makeUniqueID("inactive"),
-                                label = "!",
-                                style = "pill",
-                                color = "danger"),
-                              strong("pay attention to your Date format and double check it in step 2, even if you imported a profile."),
-                              p("A sample or your dates look like this:"),
-                              textOutput("sampleDates")))),
-              column(width = 12,
+              column(width = 6,
                      actionBttn(
                        inputId = makeUniqueID("inactive"),
                        label = "1",
                        style = "pill",
                        color = "warning"),
-                     strong("  Visualization of your headers and content"),
-                     br(),
-                     br(),
-                     box(
-                       width = NULL,
-                       DT::DTOutput(outputId = "VizForHeaders")
-                       )
-              ),
-
-              column(width = 12,
-                     actionBttn(
-                       inputId = makeUniqueID("inactive"),
-                       label = "2",
-                       style = "pill",
-                       color = "warning"),
                      strong("  Match your columns to ours (when you can)"),
                      br(),
                      br(),
+
+                     hidden(actionBttn(
+                       inputId = "UseProfile",
+                       label = "Click to use your INPUT profile",
+                       style = "pill",
+                       color = "success")
+                     ),
+                     br(),
+                     h4("Check (or fill out if you did not upload a profile) each drop-down menus below."),
+                     h4("Work one step at a time."),
+                     br(),
                      box(
-                       # title = "Match your columns to ours (if you can)",
                          width = NULL,
-                         # status = "primary",
-                         # solidHeader = TRUE,
                          # uiOutput("ui1"),
                          div(id="mainWrapper",
 
@@ -534,18 +542,44 @@ body <- dashboardBody(
                            # })
 
                          # actionBttn("Header1Next", "next", style = "fill", color = "primary")
-                         )
+                         ),
+              ),
+
+              column(width = 6,
+                     actionBttn(
+                       inputId = makeUniqueID("inactive"),
+                       label = "Info",
+                       style = "pill",
+                       color = "default"),
+                     strong("  Visualization of your original headers and content"),
+                     br(),
+                     br(),
+                     box(
+                       width = NULL,
+                       DT::DTOutput(outputId = "VizForHeaders")
+                     )
               ),
               column(width = 12,
-
                      div(
                        actionBttn(
                          inputId = makeUniqueID("inactive"),
-                         label = "3",
+                         label = "2",
                          style = "pill",
                          color = "warning")
                        ,   strong("  Fill in information that is not in your columns"),
                        p("ATTENTION: do this after completing step 1 otherwise this will get overwritten."),
+                       br(),
+                       hidden(div( id = "AttentionDates",
+                                   box(width = 12,
+                                       actionBttn(
+                                         inputId =  makeUniqueID("inactive"),
+                                         label = "!",
+                                         style = "pill",
+                                         color = "danger"),
+                                       strong("pay attention to your Date format and double check it in step 2, even if you imported a profile."),
+                                       p("A sample or your dates look like this:"),
+                                       textOutput("sampleDates")))),
+                       br(),
 
 
                        # lapply(which(x$ItemID %in% unlist(lapply(list(x2, x3, x4, x5, x6), "[[", "ItemID"))), function(i) {
@@ -575,7 +609,7 @@ body <- dashboardBody(
                        ,
                        div(actionBttn(
                          inputId = makeUniqueID("inactive"),
-                         label = "4",
+                         label = "3",
                          style = "pill",
                          color = "warning"),
                          strong("  Finalize"),
@@ -615,7 +649,7 @@ tabItem("Codes",
 
         includeMarkdown("www/Codes.md"),
 
-        hidden(actionBttn(inputId = "UseProfileCodes" , label = "Use your profile")),
+        hidden(actionBttn(inputId = "UseProfileCodes" , label = "Use your INPUT profile")),
         actionBttn(
           inputId = "GoToCorrect",
           label = "Go To Correct",
@@ -691,29 +725,29 @@ tabItem("Codes",
     tabItem(tabName = "OutputFormat",
 
             fluidRow(box(width = 12,
-                         radioButtons(inputId = "predefinedProfileOutput",
-                                      label = div("Use a predifined output profile"),
-                                      choices = list("No thanks! I'll upload a profile I have handy." = "No",
-                                                     "This App's standard" = "App",
-                                                     # "ATDN: The Amazon Tree Diversity Network" = "ATDN",
-                                                     "ForestGEO: The Smithsonian Forest Global Earth Observatory" = "ForestGeo"#,
-                                                     # "RBA: Red de Bosques Andinos" = "RBA"
-                                      ),
-                                      selected = "No"),
-
-                         # load a profile it one already exists
-                         div(id = "profileOutputfileInput",
-                           fileInput(inputId = "profileOutput", div("Or, load a profile you have on your machine", br(), em("(if you or a colleague already used this app and saved a profile (.rds))")), accept = ".rds")),
-                         span(textOutput("RDSOutputWarning"), style="color:red"),
+                         # radioButtons(inputId = "predefinedProfileOutput",
+                         #              label = div("Use a predifined output profile"),
+                         #              choices = list("No thanks! I'll upload a profile I have handy." = "No",
+                         #                             "This App's standard" = "App",
+                         #                             # "ATDN: The Amazon Tree Diversity Network" = "ATDN",
+                         #                             "ForestGEO: The Smithsonian Forest Global Earth Observatory" = "ForestGeo"#,
+                         #                             # "RBA: Red de Bosques Andinos" = "RBA"
+                         #              ),
+                         #              selected = "No"),
+                         #
+                         # # load a profile it one already exists
+                         # div(id = "profileOutputfileInput",
+                         #   fileInput(inputId = "profileOutput", div("Or, load a profile you have on your machine", br(), em("(if you or a colleague already used this app and saved a profile (.rds))")), accept = ".rds")),
+                         # span(textOutput("RDSOutputWarning"), style="color:red"),
                          br(),
                         actionBttn(
                            inputId = "UseProfileOutput",
-                           label = "Apply Profile",
+                           label = "Apply OUTPUT Profile",
                            style = "pill",
                            color = "success"),
                         hidden(actionBttn(
                            inputId = "DontUseProfileOutput",
-                           label = "Don't use profile",
+                           label = "Don't use OUTPUT profile",
                            style = "pill",
                            color = "warning")),
                          hidden(actionBttn(
@@ -751,35 +785,7 @@ tabItem(tabName = "Save",
                      status = "primary",
                      solidHeader = T,
                      downloadButton(outputId = "dbZIP", label = "Save all"))
-                 # box(title =  "Save files independantly",
-                 #     width = NULL,
-                 #     solidHeader = T,
-                 #     box(title = "Save file",
-                 #         width = NULL,
-                 #         # status = "primary",
-                 #         solidHeader = F,
-                 #         downloadButton(outputId = "dbFile", label = "Save file")),
-                 #     box(title = "Save your profile",
-                 #         width = NULL,
-                 #         # status = "primary",
-                 #         solidHeader = F,
-                 #         downloadButton(outputId = "dbProfile2", label = "Save profile"),
-                 #         p("(You can overwrite what you saved before)")),
-                 #     # box(title = "Save R code",
-                 #     #     width = NULL,
-                 #     #     # status = "primary",
-                 #     #     solidHeader = F,
-                 #     #     downloadButton(outputId = "dbCode", label = "Save R code")),
-                 #
-                 #     # p("ATTENTION:, LifeStatus and CommercialSp were not converted to your desired output profile because we cannot interprete TRU/FALSE to your desired profile's code system!"),
-                 #     box(title = "Save metadata",
-                 #         width = NULL,
-                 #         # status = "primary",
-                 #         solidHeader = F,
-                 #         downloadButton(outputId = "dbMetadata", label = "Save metadata")
-                 #     )
-                 # )
-          )
+                 )
         ),
         includeMarkdown("www/Download.md")), # end of "save" panel
     tabItem(tabName = "Help",
