@@ -8,5 +8,7 @@
 #'
 #'
 run_app <- function() {
-  shiny::runApp("app")
+
+  appDir <- system.file("app", package = "DataHarmonization")
+  shiny::runApp(appDir)
 }
