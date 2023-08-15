@@ -79,6 +79,8 @@ js <- c( # --- this is to edit CODES table
 # start server code here
 
 server <- function(input, output, session) { # server ####
+  onStop(function() {cat("Session stopped\n") ;close_sink_and_quit()})
+
 
   # open browser #
 
@@ -1092,11 +1094,27 @@ server <- function(input, output, session) { # server ####
     dat <- AllCodes()
     m <- match(paste(dat$Column, dat$Value), paste(UserProfile()$AllCodes$Column, UserProfile()$AllCodes$Value))
 
-    if(any(is.na(m))) showNotification(paste("WARNING: The following codes are not in your profile, you will need to fill them manually in the table:", paste(paste(dat$Value[is.na(m)], "in column", dat$Column[is.na(m)]), collapse = ", ")), type = 'err', duration = NULL)
+
+
+    withCallingHandlers({
+      if(any(is.na(m))) warning(paste(paste("WARNING: The following codes are not in your profile, you will need to fill them manually in the table:", paste(paste(dat$Value[is.na(m)], "in column", dat$Column[is.na(m)]), collapse = "\n")), collapse = ". "))    },
+    warning = function(warn){
+      showNotification(paste(gsub("Warning in withCallingHandlers\\(\\{ \\:", "", warn), collapse = ". "), type = 'warning', duration = NULL)
+    })
+
+
+    # if(any(is.na(m))) showNotification(paste("WARNING: The following codes are not in your profile, you will need to fill them manually in the table:", paste(paste(dat$Value[is.na(m)], "in column", dat$Column[is.na(m)]), collapse = ", ")), type = 'err', duration = NULL)
 
     ExtraCodesInProfile <- setdiff(UserProfile()$AllCodes$Value, dat$Value)
 
-    if(length(ExtraCodesInProfile)>0) showNotification(paste("WARNING: The following codes are in your profile, but are not currently in your data. They will be ignored:", paste(paste(ExtraCodesInProfile, "in column", UserProfile()$AllCodes$Column[match(ExtraCodesInProfile, UserProfile()$AllCodes$Value)]), collapse = ", ")), type = 'err', duration = NULL)
+
+    withCallingHandlers({
+      if(length(ExtraCodesInProfile)>0) warning(paste(paste("WARNING: The following codes are in your profile, but are not currently in your data. They will be ignored:", paste(paste(ExtraCodesInProfile, "in column", UserProfile()$AllCodes$Column[match(ExtraCodesInProfile, UserProfile()$AllCodes$Value)]), collapse = "\n ")), collapse = ". "))    },
+      warning = function(warn){
+        showNotification(paste(gsub("Warning in withCallingHandlers\\(\\{ \\:", "", warn), collapse = ". "), type = 'warning', duration = NULL)
+      })
+
+    # if(length(ExtraCodesInProfile)>0) showNotification(paste("WARNING: The following codes are in your profile, but are not currently in your data. They will be ignored:", paste(paste(ExtraCodesInProfile, "in column", UserProfile()$AllCodes$Column[match(ExtraCodesInProfile, UserProfile()$AllCodes$Value)]), collapse = ", ")), type = 'err', duration = NULL)
 
 
     dat$Definition <- UserProfile()$AllCodes$Definition[m]
@@ -2029,8 +2047,8 @@ server <- function(input, output, session) { # server ####
                    detail = 'This may take a while...', value = 0,
                    {
 
-                     dir.create("original")
-                     dir.create("processed")
+                     dir.create("original", showWarnings = F)
+                     dir.create("processed", showWarnings = F)
 
 
                      # list all files that are currently in wd (so we can compare with the ones that are created in this step and save only those)
@@ -2187,15 +2205,15 @@ server <- function(input, output, session) { # server ####
 
                      # save ZIP
 
-                     FilesToZip <- setdiff(list.files(recursive = T), before_files)
+                     FilesToZip <-  setdiff(list.files(recursive = T), before_files)
 
-                     zip(zipfile=file, files=FilesToZip)
+                     zip(zipfile=file, files=c("log.txt",FilesToZip))
 
 
                      # remove files and folders from the app
                      file.remove(FilesToZip)
-                     unlink("original")
-                     unlink("processed")
+                     unlink("original", recursive = T)
+                     unlink("processed", recursive = T)
 
 
                    })
@@ -2222,6 +2240,7 @@ server <- function(input, output, session) { # server ####
       saveRDS( Profile, file = file)
     }
   )
+
 
   # Save script .R
 
