@@ -2,7 +2,7 @@
 #'
 #' @description Runs the Data harmonization app
 #'
-#' @importFrom shiny incProgress
+#' @importFrom shiny runApp
 #'
 #' @export
 #'
