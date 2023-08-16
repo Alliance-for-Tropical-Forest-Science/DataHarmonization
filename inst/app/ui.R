@@ -124,47 +124,45 @@ body <- dashboardBody(
                   br(),
 
                  # dropdownButton(width = NULL,
-                 prettyCheckbox(
+                 checkboxInput(
                    inputId = makeUniqueID("ChckLst"),
-                   label = "All relevant data is gathered in one of more tables (measurements, species info, plot info...)",
-                   # value = TRUE,
-                   status = "warning"
+                   label = "All relevant data is gathered in one of more tables (measurements, species info, plot info...)"
+                   # status = "warning"
                  ),
-                 prettyCheckbox(
+                 checkboxInput(
                    inputId = makeUniqueID("ChckLst"),
                    label = "Input table(s) are prepared as CSV file(s).",
-                   # value = TRUE,
-                   status = "warning"
+                   # status = "warning"
                  ),
-                   prettyCheckbox(
+                 checkboxInput(
                      inputId = makeUniqueID("ChckLst"),
-                     label = "If tables will need to be stacked, assure they have the exact same columns and in same order.",
-                     # value = TRUE,
-                     status = "warning"
+                     label = "If tables will need to be stacked, assure they have the exact same columns and in same order."
+                     # status = "warning"
                    ),
-                   prettyCheckbox(
+                 checkboxInput(
                      inputId = makeUniqueID("ChckLst"),
-                     label = "If tables need to be merged, assure you have the list of all key column(s) that are present in both tables.",
-                     # value = TRUE,
-                     status = "warning"
+                     label = "If tables need to be merged, assure you have the list of all key column(s) that are present in both tables."
+                     # status = "warning"
                    ),
-                 prettyCheckbox(
+                 checkboxInput(
                    inputId = makeUniqueID("ChckLst"),
-                   label = "Remove 'empty' columns without column names",
-                   # value = TRUE,
-                   status = "warning"
+                   label = "Remove 'empty' columns without column names"
+                   # status = "warning"
                  ),
-                 prettyCheckbox(
+                 checkboxInput(
                    inputId = makeUniqueID("ChckLst"),
-                   label = "Save your csv in UTF-8 if you have special characters",
-                   # value = TRUE,
-                   status = "warning"
+                   label = "Save your csv in UTF-8 if you have special characters"
+                   # status = "warning"
                  ),
-                 prettyCheckbox(
+                 checkboxInput(
                    inputId = makeUniqueID("ChckLst"),
-                   label = "...",
-                   # value = TRUE,
-                   status = "warning"
+                   label = "If your stem identifiers use points (e.g. 123.1, 123.2, 123.3,..., 123.10), please change '.' to '_' so the columns is read as a character and not as a numeric, which would cause the loss of the infromation of the 10th stem as 123.10 would be changed to 123.1"
+                   # status = "warning"
+                 ),
+                 checkboxInput(
+                   inputId = makeUniqueID("ChckLst"),
+                   label = "..."
+                   # status = "warning"
                  ),
 
                 circle = TRUE, status = "danger",
