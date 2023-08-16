@@ -303,11 +303,11 @@ server <- function(input, output, session) { # server ####
     updatePickerInput(session, "rightTable", choices = options_to_merge, selected =  "")
 
     observeEvent(input$selectLeft, {
-      updateVirtualSelect("leftKey", choices = column_options_list[[input$leftTable]])
+      updateVirtualSelect("leftKey", choices = column_options_list[[input$leftTable]], selected = intersect(column_options_list[[input$leftTable]], column_options_list[[input$rightTable]]))
     })
 
     observeEvent(input$selectRight, {
-      updateVirtualSelect( "rightKey", choices = column_options_list[[input$rightTable]])
+      updateVirtualSelect( "rightKey", choices = column_options_list[[input$rightTable]], selected = intersect(column_options_list[[input$leftTable]], column_options_list[[input$rightTable]]))
     })
 
 
@@ -438,11 +438,11 @@ server <- function(input, output, session) { # server ####
       updatePickerInput(session, "rightTable2", choices = options_to_merge, selected =  "")
 
       observeEvent(input$selectLeft2, {
-        updateVirtualSelect("leftKey2", choices = column_options_list[[input$leftTable2]])
+        updateVirtualSelect("leftKey2", choices = column_options_list[[input$leftTable2]], selected = intersect( column_options_list[[input$leftTable2]],  column_options_list[[input$rightTable2]]))
       })
 
       observeEvent(input$selectRight2, {
-        updateVirtualSelect( "rightKey2", choices = column_options_list[[input$rightTable2]])
+        updateVirtualSelect( "rightKey2", choices = column_options_list[[input$rightTable2]], selected = intersect( column_options_list[[input$leftTable2]],  column_options_list[[input$rightTable2]]))
       })
 
 
