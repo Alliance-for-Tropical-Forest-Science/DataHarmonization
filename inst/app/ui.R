@@ -500,7 +500,8 @@ box(width = 12,
                      strong("  Match your columns to ours (when you can)"),
                      br(),
                      br(),
-
+                     box(width = NULL, title = "Focusing on a subset of columns",
+                         pickerInput("SelectedColumns", "You may select the columns you want to focus on here:", choices = "", options = list(`actions-box` = TRUE),multiple = T)),
                      hidden(actionBttn(
                        inputId = "UseProfile",
                        label = "Click to use your INPUT profile",
@@ -511,6 +512,7 @@ box(width = 12,
                      h4("Check (or fill out if you did not upload a profile) each drop-down menus below."),
                      h4("Work one step at a time."),
                      br(),
+
                      box(
                          width = NULL,
                          # uiOutput("ui1"),

@@ -577,16 +577,21 @@ server <- function(input, output, session) { # server ####
     output$TidyTableSummary <- renderPrint(summary(TidyTable()))
   })
 
-  output$VizForHeaders <- DT::renderDT(TidyTable(), rownames = FALSE,
+  output$VizForHeaders <- DT::renderDT(TidyTable()[, input$SelectedColumns, with = F], rownames = FALSE,
                                        options = list(pageLength = 8, scrollX=TRUE,
                                                       autoWidth = TRUE),
-                                       container = FooterWithHeader(TidyTable()),
+                                       container = FooterWithHeader(TidyTable()[, input$SelectedColumns, with = F]),
                                        selection = "none")
 
   # move on to next tab
   observeEvent(input$SkipTidy, {
     TidyTable(OneTable())
   }, ignoreInit = TRUE)
+
+
+  observe({
+    updatePickerInput(session, "SelectedColumns", choices = colnames(TidyTable()), selected = colnames(TidyTable()))
+  })
 
   observeEvent(input$GoToHeaders | input$SkipTidy, {
     updateTabItems(session, "tabs", "Headers")
@@ -599,7 +604,12 @@ server <- function(input, output, session) { # server ####
 
   # create options to choose from
 
-  ColumnOptions <- eventReactive(TidyTable(), { c("none", colnames(TidyTable())) })
+  # ColumnOptions <- eventReactive(TidyTable(), { c("none", colnames(TidyTable())) })
+
+  ColumnOptions <- eventReactive({
+    TidyTable()
+    input$SelectedColumns
+    }, { list("Focused columns" = as.list(c("none",  input$SelectedColumns)), "others"  = as.list(setdiff(colnames(TidyTable()), input$SelectedColumns))) })
 
   UnitOptions <- eventReactive(TidyTable(),
                                {c("none", "mm", "cm", "dm", "m")
@@ -902,7 +912,10 @@ server <- function(input, output, session) { # server ####
 
   })
 
-  observeEvent(input$UseProfile, {
+  observeEvent({
+    input$UseProfile
+    input$SelectedColumns
+    }, {
 
     if(input$predefinedProfile == "No") {
       file <- input$profile$datapath
@@ -924,6 +937,8 @@ server <- function(input, output, session) { # server ####
         shinyjs::show("UseProfileCodes")
     }
 
+
+    if(!is.null(profile$SelectedColumns)) updatePickerInput(session, "SelectedColumns", selected = profile$SelectedColumns)
 
     ValidItemID <- names(profile)[sapply(profile, function(p) all(p %in% c(names(TidyTable()), "none"))) | grepl("Man", names(profile))] # this is to avoid the app from crashing if we have new items in x, that do not exist in data
 
@@ -2058,7 +2073,7 @@ server <- function(input, output, session) { # server ####
 
                      # Profile ##
 
-                     inputs_to_save <- c(names(input)[names(input) %in% x$ItemID], "MeasLevel", "Tidy", "VariableName", grep("Variablecolumns|TickedMelt|ValueName", names(input), value = T)) # names(input)
+                     inputs_to_save <- c(names(input)[names(input) %in% x$ItemID], "MeasLevel", "Tidy", "VariableName", "SelectedColumns", grep("Variablecolumns|TickedMelt|ValueName", names(input), value = T)) # names(input)
 
                      Profile <- list()
                      for(input.i in inputs_to_save){
@@ -2229,7 +2244,7 @@ server <- function(input, output, session) { # server ####
       paste(gsub(".csv", "", input$file1$name), '_Profile.rds', sep = '')
     },
     content = function(file) {
-      inputs_to_save <- c(names(input)[names(input) %in% x$ItemID], "MeasLevel", "Tidy", "VariableName", grep("Variablecolumns|TickedMelt|ValueName", names(input), value = T)) # names(input)
+      inputs_to_save <- c(names(input)[names(input) %in% x$ItemID], "MeasLevel", "Tidy", "VariableName", "SelectedColumns", grep("Variablecolumns|TickedMelt|ValueName", names(input), value = T)) # names(input)
       Profile <- list()
       for(input.i in inputs_to_save){
         Profile[[input.i]] <-  input[[input.i]]
