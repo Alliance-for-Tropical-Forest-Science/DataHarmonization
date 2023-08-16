@@ -1,440 +1,278 @@
 "Function","Label","ItemID","Default","ItemType","Multiple","Options","Argument","Argument2","argValue","ReactiveArgValue"
 "BotanicalCorrection","<tr valign=""top"">
-<td><code>Sources</code></td>
-
-<td>
-
-<p>Character vector. Taxonomic source(s) to use. Options are c(""tropicos"", ""usda"", ""wfo"", ""wcvp"") and default is all of them.</p>
-
+<td><code>Sources</code></td>
+<td>
+<p>Character vector. Taxonomic source to use. Only option is ""wfo""</p>
 </td>
-</tr>","BotanicalCorrectionSources","c(""tropicos"", ""usda"", ""wfo"", ""wcvp"")","pickerInput","TRUE","list( `actions-box` = TRUE)","choices","selected","c(""tropicos"", ""usda"", ""wfo"", ""wcvp"")",FALSE
+</tr>","BotanicalCorrectionSources","c(""wfo"")","pickerInput","TRUE","list( `actions-box` = TRUE)","choices","selected","c(""wfo"")",FALSE
 "StatusCorrection","<tr valign=""top"">
-<td><code>DeathConfirmation</code></td>
-
-<td>
-
-<p>Number of times (censuses) needed for an unseen tree
-
-to be considered dead (numeric)  (Default = 2 censuses)</p>
-
+<td><code>DeathConfirmation</code></td>
+<td>
+<p>Number of times (censuses) needed for an unseen tree
+to be considered dead (numeric)  (Default = 2 censuses)</p>
 </td>
 </tr>
 ","StatusCorrectionDeathConfirmation","2","numericInput","FALSE","FALSE","value","FALSE","OtherOptions",TRUE
 "StatusCorrection","<tr valign=""top"">
-<td><code>UseSize</code></td>
-
-<td>
-
-<p>Use the size presence  (&gt; min DBH) as a witness of the living status of the
-
-tree (logical) (Default = FALSE)</p>
-
+<td><code>UseSize</code></td>
+<td>
+<p>Use the size presence  (&gt; min DBH) as a witness of the living status of the
+tree (logical) (Default = FALSE)</p>
 </td>
 </tr>
 ","StatusCorrectionUseSize","FALSE","pickerInput","FALSE","list(`live-search` = TRUE)","choices","selected","LogicalOptions",TRUE
 "StatusCorrection","<tr valign=""top"">
-<td><code>AddRowsForForgottenCensuses</code></td>
-
-<td>
-
-<p>TRUE: adds rows for forgotten censuses, FALSE: does not add any rows (logical).</p>
-
+<td><code>AddRowsForForgottenCensuses</code></td>
+<td>
+<p>TRUE: adds rows for forgotten censuses, FALSE: does not add any rows (logical).</p>
 </td>
 </tr>
 ","StatusCorrectionAddRowsForForgottenCensuses","TRUE","pickerInput","FALSE","list(`live-search` = TRUE)","choices","selected","LogicalOptions",TRUE
 "StatusCorrection","<tr valign=""top"">
-<td><code>KeepMeas</code></td>
-
-<td>
-
-<p>In case of <strong>multiple diameter measurements</strong> in the same
-
-census year:
-
-Possible values: ""MaxHOM"", ""MaxDate"" (character).
-
-</p>
-
-
-
+<td><code>KeepMeas</code></td>
+<td>
+<p>In case of <strong>multiple diameter measurements</strong> in the same
+census year:
+Possible values: ""MaxHOM"", ""MaxDate"" (character).
+</p>
+
 <ul>
 <li>
-<p> ""MaxHOM"": apply the correction to the measurement taken at the
-
-<strong>highest POM</strong>
-
-</p>
-
-</li>
-
+<p> ""MaxHOM"": apply the correction to the measurement taken at the
+<strong>highest POM</strong>
+</p>
+</li>
 <li>
-<p> ""MaxDate"": apply the correction to the <strong>most recent measurement</strong> (same
-
-year but more recent date)
-
-</p>
-
+<p> ""MaxDate"": apply the correction to the <strong>most recent measurement</strong> (same
+year but more recent date)
+</p>
 </li>
 </ul>
 </td>
 </tr>","StatusCorrectionKeepMeas","c(""MaxHOM"")","pickerInput","TRUE","list( `actions-box` = TRUE)","choices","selected","c(""MaxHOM"", ""MaxDate"")",FALSE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>UseTaperCorrection</code></td>
-
-<td>
-
-<p>(logical) TRUE: transform the tree diameter measured at a given height
-
-into the diameter corresponding to the default measurement height (<code>DefaultHOM</code>), using an allometry.
-
-FALSE: do not apply a taper correction</p>
-
+<td><code>UseTaperCorrection</code></td>
+<td>
+<p>(logical) TRUE: transform the tree diameter measured at a given height
+into the diameter corresponding to the default measurement height (<code>DefaultHOM</code>), using an allometry.
+FALSE: do not apply a taper correction</p>
 </td>
 </tr>
 ","DiameterCorrectionUseTaperCorrection","TRUE","pickerInput","FALSE","list(`live-search` = TRUE)","choices","selected","LogicalOptions",TRUE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>DefaultHOM</code></td>
-
-<td>
-
-<p>Default Height Of Measurement in meter (Default: 1.3 m)
-
-(numeric, 1 value)</p>
-
+<td><code>DefaultHOM</code></td>
+<td>
+<p>Default Height Of Measurement in meter (Default: 1.3 m)
+(numeric, 1 value)</p>
 </td>
 </tr>
 ","DiameterCorrectionDefaultHOM","1.3","numericInput","FALSE","FALSE","value","FALSE","OtherOptions",TRUE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>TaperParameter</code></td>
-
-<td>
-
-<p>Taper parameter (unitless) formula (function)
-
-Default: <em>TaperParameter = 0.156 - 0.023 log(DAB) - 0.021 log(HOM)</em>
-
-of Cushman et al.2021.
-
-With:
-
-</p>
-
-
-
+<td><code>TaperParameter</code></td>
+<td>
+<p>Taper parameter (unitless) formula (function)
+Default: <em>TaperParameter = 0.156 - 0.023 log(DAB) - 0.021 log(HOM)</em>
+of Cushman et al.2021.
+With:
+</p>
+
 <ul>
-<li> <p><em>DAB</em>: Diameter Above Buttress (in cm)
-
-</p>
-
-</li>
-
-<li> <p><em>HOM</em>: Height Of Measurement (in m)
-
-</p>
-
+<li> <p><em>DAB</em>: Diameter Above Buttress (in cm)
+</p>
+</li>
+<li> <p><em>HOM</em>: Height Of Measurement (in m)
+</p>
 </li>
 </ul>
 </td>
 </tr>
 ","DiameterCorrectionTaperParameter","list(""Default Function"" = ""function(DAB, HOM) 0.156 - 0.023 * log(DAB) - 0.021 * log(HOM)"")","pickerInput","FALSE","list( `actions-box` = TRUE)","choices","selected","list(""Default Function"" = ""function(DAB, HOM) 0.156 - 0.023 * log(DAB) - 0.021 * log(HOM)"")",FALSE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>TaperFormula</code></td>
-
-<td>
-
-<p>Taper formula (function)
-
-Default: <em>DAB / (e^(- TaperParameter (HOM - DefaultHOM)))</em>
-
-of Cushman et al.2021.
-
-With:
-
-</p>
-
-
-
+<td><code>TaperFormula</code></td>
+<td>
+<p>Taper formula (function)
+Default: <em>DAB / (e^(- TaperParameter (HOM - DefaultHOM)))</em>
+of Cushman et al.2021.
+With:
+</p>
+
 <ul>
-<li> <p><em>DAB</em>: Diameter Above Buttress (in cm)
-
-</p>
-
-</li>
-
-<li> <p><em>HOM</em>: Height Of Measurement (in m)
-
-</p>
-
-</li>
-
-<li> <p><em>DefaultHOM</em>:  Default Height Of Measurement (in m)
-
-</p>
-
-</li>
-
-<li> <p><em>TaperParameter</em>: Taper parameter (unitless)
-
-</p>
-
+<li> <p><em>DAB</em>: Diameter Above Buttress (in cm)
+</p>
+</li>
+<li> <p><em>HOM</em>: Height Of Measurement (in m)
+</p>
+</li>
+<li> <p><em>DefaultHOM</em>:  Default Height Of Measurement (in m)
+</p>
+</li>
+<li> <p><em>TaperParameter</em>: Taper parameter (unitless)
+</p>
 </li>
 </ul>
 </td>
 </tr>
 ","DiameterCorrectionTaperFormula","list(""Default Function"" = ""function(DAB, HOM, TaperParameter, DefaultHOM) DAB/(exp(-TaperParameter *     (HOM - DefaultHOM)))"")","pickerInput","FALSE","list( `actions-box` = TRUE)","choices","selected","list(""Default Function"" = ""function(DAB, HOM, TaperParameter, DefaultHOM) DAB/(exp(-TaperParameter *     (HOM - DefaultHOM)))"")",FALSE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>KeepMeas</code></td>
-
-<td>
-
-<p>In case of <strong>multiple diameter measurements</strong> in the same
-
-census:
-
-Possible values: ""MaxHOM"", ""MaxDate"" (character).
-
-</p>
-
-
-
+<td><code>KeepMeas</code></td>
+<td>
+<p>In case of <strong>multiple diameter measurements</strong> in the same
+census:
+Possible values: ""MaxHOM"", ""MaxDate"" (character).
+</p>
+
 <ul>
 <li>
-<p> ""MaxHOM"": apply the correction to the measurement taken at the
-
-<strong>highest POM</strong>
-
-</p>
-
-</li>
-
+<p> ""MaxHOM"": apply the correction to the measurement taken at the
+<strong>highest POM</strong>
+</p>
+</li>
 <li>
-<p> ""MaxDate"": apply the correction to the <strong>most recent measurement</strong> (same
-
-IdCensus but more recent date)
-
-</p>
-
+<p> ""MaxDate"": apply the correction to the <strong>most recent measurement</strong> (same
+IdCensus but more recent date)
+</p>
 </li>
 </ul>
 </td>
 </tr>
 ","DiameterCorrectionKeepMeas","c(""MaxHOM"")","pickerInput","TRUE","list( `actions-box` = TRUE)","choices","selected","c(""MaxHOM"", ""MaxDate"")",FALSE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>MinDBH</code></td>
-
-<td>
-
-<p>Minimum diameter of trees inventoried (in cm) (numeric, 1 value) or
-
-NULL (Default) if you wish to use the MinDBH indicated in your data, which may vary per plot</p>
-
+<td><code>MinDBH</code></td>
+<td>
+<p>Minimum diameter of trees inventoried (in cm) (numeric, 1 value) or
+NULL (Default) if you wish to use the MinDBH indicated in your data, which may vary per plot</p>
 </td>
 </tr>
 ","DiameterCorrectionMinDBH","NULL","numericInput","FALSE","FALSE","value","FALSE","NULL",FALSE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>AddMissedRecruits</code></td>
-
-<td>
-
-<p>(logical) TRUE: adds rows for stem that were supposed
-
-to be recruited at a prior census, based on their estimated diameter (from linear regression)
-
-and MinDBH. FALSE: will only indicate in the comment that the stem was supposed to be
-
-recruited earlier.</p>
-
+<td><code>AddMissedRecruits</code></td>
+<td>
+<p>(logical) TRUE: adds rows for stem that were supposed
+to be recruited at a prior census, based on their estimated diameter (from linear regression)
+and MinDBH. FALSE: will only indicate in the comment that the stem was supposed to be
+recruited earlier.</p>
 </td>
 </tr>
 ","DiameterCorrectionAddMissedRecruits","TRUE","pickerInput","FALSE","list(`live-search` = TRUE)","choices","selected","LogicalOptions",TRUE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>AddMissedStems</code></td>
-
-<td>
-
-<p>(logical) if TRUE, adds rows for trees that were missed between
-
-two censuses, with their estimated diameter (based on linear regression)</p>
-
+<td><code>AddMissedStems</code></td>
+<td>
+<p>(logical) if TRUE, adds rows for trees that were missed between
+two censuses, with their estimated diameter (based on linear regression)</p>
 </td>
 </tr>
 ","DiameterCorrectionAddMissedStems","TRUE","pickerInput","FALSE","list(`live-search` = TRUE)","choices","selected","LogicalOptions",TRUE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>PositiveGrowthThreshold</code></td>
-
-<td>
-
-<p>in cm/year: a tree
-
-widening by more than this value is considered abnormal (numeric, 1 value)</p>
-
+<td><code>PositiveGrowthThreshold</code></td>
+<td>
+<p>in cm/year: a tree
+widening by more than this value is considered abnormal (numeric, 1 value)</p>
 </td>
 </tr>
 ","DiameterCorrectionPositiveGrowthThreshold","5","numericInput","FALSE","FALSE","value","FALSE","OtherOptions",TRUE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>NegativeGrowthThreshold</code></td>
-
-<td>
-
-<p>in cm/census: the possible
-
-positive measurement error (+n) cannot be corrected until the growth
-
-appears abnormal, but a negative measurement error can be allowed until -n
-
-(a tree does not decrease). Thus the positive measurement error (+n) is
-
-""compensated"". (numeric, 1 value)</p>
-
+<td><code>NegativeGrowthThreshold</code></td>
+<td>
+<p>in cm/census: the possible
+positive measurement error (+n) cannot be corrected until the growth
+appears abnormal, but a negative measurement error can be allowed until -n
+(a tree does not decrease). Thus the positive measurement error (+n) is
+""compensated"". (numeric, 1 value)</p>
 </td>
 </tr>
 ","DiameterCorrectionNegativeGrowthThreshold","-2","numericInput","FALSE","FALSE","value","FALSE","OtherOptions",TRUE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>Pioneers</code></td>
-
-<td>
-
-<p>Scientific names of the pioneer species of the site, as in
-
-the <code>ScientificName_DataHarmonizationCor</code> column (characters vector)</p>
-
+<td><code>Pioneers</code></td>
+<td>
+<p>Scientific names of the pioneer species of the site, as in
+the <code>ScientificName_DataHarmonizationCor</code> column (characters vector)</p>
 </td>
 </tr>
 ","DiameterCorrectionPioneers","NULL","pickerInput","TRUE","list( `actions-box` = TRUE)","choices","selected","FormatedScientificNameOptions",TRUE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>PioneersGrowthThreshold</code></td>
-
-<td>
-
-<p>in cm/year: a tree of a pioneer species that
-
-widens by more than this value is considered abnormal (numeric, 1 value)</p>
-
+<td><code>PioneersGrowthThreshold</code></td>
+<td>
+<p>in cm/year: a tree of a pioneer species that
+widens by more than this value is considered abnormal (numeric, 1 value)</p>
 </td>
 </tr>
 ","DiameterCorrectionPioneersGrowthThreshold","7.5","numericInput","FALSE","FALSE","value","FALSE","OtherOptions",TRUE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>WhatToCorrect</code></td>
-
-<td>
-
-<p>Possible values: ""POM change"", ""Abnormal growth""
-
-(character). All are complementary and recommended.
-
-</p>
-
-
-
+<td><code>WhatToCorrect</code></td>
+<td>
+<p>Possible values: ""POM change"", ""Abnormal growth""
+(character). All are complementary and recommended.
+</p>
+
 <ul>
 <li>
-<p> ""POM change"": detect POM change in the column <code>POM</code> and correct the
-
-Diameter values from it. (Ignored if taper correction is applied)
-
-</p>
-
-</li>
-
+<p> ""POM change"": detect POM change in the column <code>POM</code> and correct the
+Diameter values from it. (Ignored if taper correction is applied)
+</p>
+</li>
 <li>
-<p> ""Abnormal growth"": detect if the growth is greater than PositiveGrowthThreshold ('PioneersGrowthThreshold' if species belongs to 'Pioneers')
-
-or smaller than NegativeGrowthThreshold and correct it by <code>CorrectionType</code>
-
-</p>
-
+<p> ""Abnormal growth"": detect if the growth is greater than PositiveGrowthThreshold ('PioneersGrowthThreshold' if species belongs to 'Pioneers')
+or smaller than NegativeGrowthThreshold and correct it by <code>CorrectionType</code>
+</p>
 </li>
 </ul>
 </td>
 </tr>
 ","DiameterCorrectionWhatToCorrect","c(""POM change"", ""Abnormal growth"")","pickerInput","TRUE","list( `actions-box` = TRUE)","choices","selected","c(""POM change"", ""Abnormal growth"")",FALSE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>CorrectionType</code></td>
-
-<td>
-
-<p>Possible values: ""individual"", ""phylogenetic
-
-hierarchical"" (character, 1 value).
-
-</p>
-
-
-
+<td><code>CorrectionType</code></td>
+<td>
+<p>Possible values: ""individual"", ""phylogenetic
+hierarchical"" (character, 1 value).
+</p>
+
 <ul>
 <li>
-<p> ""individual"": replace abnormal growth by interpolation from the
-
-individual values.
-
-</p>
-
-</li>
-
+<p> ""individual"": replace abnormal growth by interpolation from the
+individual values.
+</p>
+</li>
 <li>
-<p> ""phylogenetic hierarchical"": replace abnormal growth with the average
-
-growth of other trees in the dataset, at the specific, genus, family
-
-or stand level, within a DBH range of x cm (<em>DBHRange</em> argument).
-
-If the number of these trees &lt; n (<em>MinIndividualNbr</em> argument)
-
-at the specific level, we switch to the genus level etc.
-
-</p>
-
+<p> ""phylogenetic hierarchical"": replace abnormal growth with the average
+growth of other trees in the dataset, at the specific, genus, family
+or stand level, within a DBH range of x cm (<em>DBHRange</em> argument).
+If the number of these trees &lt; n (<em>MinIndividualNbr</em> argument)
+at the specific level, we switch to the genus level etc.
+</p>
 </li>
 </ul>
 </td>
 </tr>
 ","DiameterCorrectionCorrectionType","c(""individual"")","pickerInput","FALSE","list( `actions-box` = TRUE)","choices","selected","c(""individual"", ""phylogenetic hierarchical"")",FALSE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>DBHRange</code></td>
-
-<td>
-
-<p>DBH range in cm to take into account to select other trees in
-
-the dataset to apply ""phylogenetic hierarchical"" correction (Default: 10
-
-cm) (numeric, 1 value)</p>
-
+<td><code>DBHRange</code></td>
+<td>
+<p>DBH range in cm to take into account to select other trees in
+the dataset to apply ""phylogenetic hierarchical"" correction (Default: 10
+cm) (numeric, 1 value)</p>
 </td>
 </tr>
 ","DiameterCorrectionDBHRange","10","numericInput","FALSE","FALSE","value","FALSE","OtherOptions",TRUE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>MinIndividualNbr</code></td>
-
-<td>
-
-<p>Minimum number of individuals to take into account in
-
-""phylogenetic hierarchical"" correction (Default: 5) (numeric, 1 value)</p>
-
+<td><code>MinIndividualNbr</code></td>
+<td>
+<p>Minimum number of individuals to take into account in
+""phylogenetic hierarchical"" correction (Default: 5) (numeric, 1 value)</p>
 </td>
 </tr>
 ","DiameterCorrectionMinIndividualNbr","5","numericInput","FALSE","FALSE","value","FALSE","OtherOptions",TRUE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>DBHCorForDeadTrees</code></td>
-
-<td>
-
-<p>(logical) TRUE: return DBHCor also for dead trees.
-
-FALSE: do not return DBHCor for dead trees. In this case it is advisable to
-
-have corrected the tree life status with the <em>StatusCorrection()</em> function.</p>
-
+<td><code>DBHCorForDeadTrees</code></td>
+<td>
+<p>(logical) TRUE: return DBHCor also for dead trees.
+FALSE: do not return DBHCor for dead trees. In this case it is advisable to
+have corrected the tree life status with the <em>StatusCorrection()</em> function.</p>
 </td>
 </tr>
 ","DiameterCorrectionDBHCorForDeadTrees","TRUE","pickerInput","FALSE","list(`live-search` = TRUE)","choices","selected","LogicalOptions",TRUE
 "DiameterCorrection","<tr valign=""top"">
-<td><code>coef</code></td>
-
-<td>
-
-<p>(numeric, 1 value) This is used in individual corrections, to calculate weight of the growths by temporal proximity</p>
-
+<td><code>coef</code></td>
+<td>
+<p>(numeric, 1 value) This is used in individual corrections, to calculate weight of the growths by temporal proximity</p>
 </td>
 </tr>","DiameterCorrectioncoef","0.9","numericInput","FALSE","FALSE","value","FALSE","OtherOptions",TRUE

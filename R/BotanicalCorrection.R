@@ -10,6 +10,7 @@ toUpperFirst <- function(x) {
 #' Botanical Correction
 #'
 #' @param Data Dataset (data.frame or data.table); it must contain Site and IdTree
+#' @param Sources Character vector. Taxonomic source to use. Only option is "wfo"
 #'
 #' @return A list with a complete log of the botanical corrections and Data with new columns:
 #'   - `Accepted_family_DataHarmonizationCor` (character): corrected family name
@@ -43,7 +44,7 @@ toUpperFirst <- function(x) {
 #'}
 #'
 #'
-BotanicalCorrection <- function(Data) {
+BotanicalCorrection <- function(Data, Sources = c("wfo")) {
 
   ThisIsShinyApp =  shiny::isRunning() # this is for internal use when function used by Shiny app
 
@@ -250,7 +251,7 @@ BotanicalCorrection <- function(Data) {
   pass.this.unique <- unique(pass.this)
 
   tnrs <- TNRS::TNRS(pass.this.unique,
-                     sources = "wfo",
+                     sources = Sources,
                      classification = "wfo")
 if(length(pass.this.unique) !=  nrow(tnrs)) stop("some species did not pass through") else tnrs$Name_submitted <- pass.this.unique # this necessary when there is special characters
 

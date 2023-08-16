@@ -4,10 +4,12 @@
 \alias{BotanicalCorrection}
 \title{Botanical Correction}
 \usage{
-BotanicalCorrection(Data)
+BotanicalCorrection(Data, Sources = c("wfo"))
 }
 \arguments{
 \item{Data}{Dataset (data.frame or data.table); it must contain Site and IdTree}
+
+\item{Sources}{Character vector. Taxonomic source to use. Only option is "wfo"}
 }
 \value{
 A list with a complete log of the botanical corrections and Data with new columns:
