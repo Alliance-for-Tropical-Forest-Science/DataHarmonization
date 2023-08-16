@@ -503,7 +503,7 @@ server <- function(input, output, session) { # server ####
     groupNames <- split(names(OneTable()), cutree(hclust(stringdistmatrix(names(OneTable()))), h = 2))
     groupNames <- groupNames[sapply(groupNames, length) > 1]
     names(groupNames) <- sapply(groupNames, function(x) paste(Reduce(intersect, strsplit(x,"")), collapse=""))
-    groupNames[(length(groupNames)+1):(length(groupNames)+2)] <- ""
+    groupNames[(length(groupNames)+1):(length(groupNames)+(ncol(OneTable())/2))] <- ""
 
     output$uiMelt <- renderUI({
       lapply(c(1:length(groupNames)), function(i)
