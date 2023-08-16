@@ -154,12 +154,18 @@ body <- dashboardBody(
                    # value = TRUE,
                    status = "warning"
                  ),
-                   prettyCheckbox(
-                     inputId = makeUniqueID("ChckLst"),
-                     label = "...",
-                     # value = TRUE,
-                     status = "warning"
-                   ),
+                 prettyCheckbox(
+                   inputId = makeUniqueID("ChckLst"),
+                   label = "Save your csv in UTF-8 if you have special characters",
+                   # value = TRUE,
+                   status = "warning"
+                 ),
+                 prettyCheckbox(
+                   inputId = makeUniqueID("ChckLst"),
+                   label = "...",
+                   # value = TRUE,
+                   status = "warning"
+                 ),
 
                 circle = TRUE, status = "danger",
                 label  = tags$h2("Checklist before you upload"),
