@@ -4,7 +4,7 @@ At this stage, we want to make sure your data has **one row per observation and 
 
 
 **Example:**
-<img src="TidyExample.png" alt="isolated" width="100%"/>
+<img src="TidyExample.png" alt="isolated" width="60%"/>
 
 If you collected the same type of information in several columns (e.g. you added a column each time you visited a tree, or for each stem of the tree etc...), you need to "tidy" your table (also called wide-to-long reshaping). 
 
