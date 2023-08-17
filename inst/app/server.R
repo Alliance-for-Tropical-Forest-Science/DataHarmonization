@@ -303,11 +303,15 @@ server <- function(input, output, session) { # server ####
     updatePickerInput(session, "rightTable", choices = options_to_merge, selected =  "")
 
     observeEvent(input$selectLeft, {
-      updateVirtualSelect("leftKey", choices = column_options_list[[input$leftTable]], selected = intersect(column_options_list[[input$leftTable]], column_options_list[[input$rightTable]]))
+      commonColumns <- intersect(column_options_list[[input$leftTable]], column_options_list[[input$rightTable]])
+
+      updateVirtualSelect("leftKey", choices = column_options_list[[input$leftTable]], selected = ifelse(length(commonColumns)>0, commonColumns, ""))
     })
 
     observeEvent(input$selectRight, {
-      updateVirtualSelect( "rightKey", choices = column_options_list[[input$rightTable]], selected = intersect(column_options_list[[input$leftTable]], column_options_list[[input$rightTable]]))
+      commonColumns <- intersect(column_options_list[[input$leftTable]], column_options_list[[input$rightTable]])
+
+      updateVirtualSelect( "rightKey", choices = column_options_list[[input$rightTable]], selected =  ifelse(length(commonColumns)>0, commonColumns, ""))
     })
 
 
@@ -438,11 +442,15 @@ server <- function(input, output, session) { # server ####
       updatePickerInput(session, "rightTable2", choices = options_to_merge, selected =  "")
 
       observeEvent(input$selectLeft2, {
-        updateVirtualSelect("leftKey2", choices = column_options_list[[input$leftTable2]], selected = intersect( column_options_list[[input$leftTable2]],  column_options_list[[input$rightTable2]]))
+        commonColumns <- intersect( column_options_list[[input$leftTable2]],  column_options_list[[input$rightTable2]])
+
+        updateVirtualSelect("leftKey2", choices = column_options_list[[input$leftTable2]], selected = ifelse(length(commonColumns)>0, commonColumns, ""))
       })
 
       observeEvent(input$selectRight2, {
-        updateVirtualSelect( "rightKey2", choices = column_options_list[[input$rightTable2]], selected = intersect( column_options_list[[input$leftTable2]],  column_options_list[[input$rightTable2]]))
+        commonColumns <- intersect( column_options_list[[input$leftTable2]],  column_options_list[[input$rightTable2]])
+
+        updateVirtualSelect( "rightKey2", choices = column_options_list[[input$rightTable2]], selected =  ifelse(length(commonColumns)>0, commonColumns, ""))
       })
 
 
