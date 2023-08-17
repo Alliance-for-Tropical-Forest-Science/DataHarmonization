@@ -29,7 +29,7 @@
 #'\dontrun{
 #' data(TestData)
 #' Rslt <- StatusCorrection(TestData)
-#' StatusCorrectionPlot(Rslt, SeveralWindows = FALSE)
+#' StatusCorrectionPlot(Rslt, SeveralWindows = TRUE)
 #'}
 #'
 StatusCorrectionPlot <- function(

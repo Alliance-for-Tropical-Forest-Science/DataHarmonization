@@ -35,7 +35,7 @@ Plot life status correction result
 \dontrun{
 data(TestData)
 Rslt <- StatusCorrection(TestData)
-StatusCorrectionPlot(Rslt, SeveralWindows = FALSE)
+StatusCorrectionPlot(Rslt, SeveralWindows = TRUE)
 }
 
 }
