@@ -2,6 +2,10 @@
 
 At this stage, we want to make sure your data has **one row per observation and one variable per column.**
 
+
+**Example:**
+<img src="TidyExample.png" alt="isolated" width="100%"/>
+
 If you collected the same type of information in several columns (e.g. you added a column each time you visited a tree, or for each stem of the tree etc...), you need to "tidy" your table (also called wide-to-long reshaping). 
 
  1. In the top-most box, use the radio-buttons to indicate the reason you added new columns for a new observation.
