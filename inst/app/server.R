@@ -2081,7 +2081,7 @@ server <- function(input, output, session) { # server ####
 
                      # Profile ##
 
-                     inputs_to_save <- c(names(input)[names(input) %in% x$ItemID], "MeasLevel", "Tidy", "VariableName", "SelectedColumns", grep("Variablecolumns|TickedMelt|ValueName", names(input), value = T)) # names(input)
+                     inputs_to_save <- c(names(input)[names(input) %in% x$ItemID], "MeasLevel", "Tidy", "VariableName", "SelectedColumns", grep("Variablecolumns|TickedMelt|ValueName", names(input), value = T)) #, names(input)[names(input) %in% c(unique(xCorr$Function), xCorr$ItemID)]) # names(input)
 
                      Profile <- list()
                      for(input.i in inputs_to_save){
@@ -2110,6 +2110,20 @@ server <- function(input, output, session) { # server ####
                      if("processed/output_profile.rds" %in% list.files(recursive = T)) cat("processed/output_profile.rds was saved\n")
 
                      incProgress(1/15)
+
+                     # Correction info ##
+                     corrInfo <- reactiveValuesToList(input)[xCorr$ItemID][reactiveValuesToList(input)[xCorr$Function] %in% "Yes"]
+
+                     if(length(corrInfo) >0) {
+                       corrInfoDT<- data.table(xCorr[match(names(corrInfo), xCorr$ItemID), c("Function", "ItemID")])
+
+                       corrInfoDT[, Parameter := gsub(Function, "", ItemID), by=seq_len(nrow(corrInfoDT))]
+
+                       corrInfoDT[, Value := unlist(corrInfo)]
+                       corrInfoDT[, ItemID := NULL]
+
+                       write.csv(corrInfoDT, "CorrectionParametersApplied.csv", row.names = F)
+                     }
 
                      # Metadata ##
 
