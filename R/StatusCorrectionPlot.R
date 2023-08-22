@@ -99,6 +99,7 @@ StatusCorrectionPlot <- function(
   if(n<3) { i = 1
   }else{ i = 3}
 
+  if( n > 0 ) {
 
   # Plot --------------------------------------------------------------------------------------------------------------
 
@@ -176,5 +177,16 @@ StatusCorrectionPlot <- function(
 
 
   # return(Pl)
+  } else {
+    p <- list(ggplot() + geom_text(aes(x=0,y=0,label = "no status corrections detected")) +theme_void())
 
+    if(ThisIsShinyApp) {
+    return(list(p = p, nPages = 1, ID = ID, n = n, i = i))
+    } else {
+      if(SeveralWindows == TRUE) dev.new()
+
+      print(p)
+    }
+
+}
 }
