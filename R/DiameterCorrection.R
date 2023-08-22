@@ -283,7 +283,7 @@ DiameterCorrection <- function(
             We advise you to correct your diameters also from the 'POM change' ('WhatToCorrect' argument)")
 
   # 'POM change' correction needs 'POM' or 'HOM' values
-  if(!any(c("POM", "HOM") %in% names(Data)) | (all(is.na(Data$POM)) &  all(is.na(Data$HOM))) )
+  if((!any(c("POM", "HOM") %in% names(Data)) | (all(is.na(Data$POM)) &  all(is.na(Data$HOM)))) & 'POM change' %in% WhatToCorrect )
     stop("You have chosen to make a 'POM change' correction,
        but you do not have the necessary 'POM' or HOM' column in your dataset or they are empty")
 
