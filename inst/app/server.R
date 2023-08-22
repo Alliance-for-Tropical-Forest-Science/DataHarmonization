@@ -223,11 +223,15 @@ server <- function(input, output, session) { # server ####
 
       if(input$nTable == 1 & length(Data()) == 1) {
         updateTabItems(session, "tabs", "Tidying")
+        shinyjs::runjs("window.scrollTo(0, 0)")
+
       } else {
         updateCheckboxGroupButtons(session, "TablesToStack",
                                    choices = unname(reactiveValuesToList(input)[paste0("TableName", 1:input$nTable)]))
 
         updateTabItems(session, "tabs", "Stacking")
+        shinyjs::runjs("window.scrollTo(0, 0)")
+
       }
 
     }
@@ -284,6 +288,8 @@ server <- function(input, output, session) { # server ####
 
 
     updateTabItems(session, "tabs", "Merging")
+    shinyjs::runjs("window.scrollTo(0, 0)")
+
 
 
 
@@ -483,7 +489,9 @@ server <- function(input, output, session) { # server ####
   # move on to next tab
 
   observeEvent(input$GoToTidy | input$SkipMerge, {
-    updateTabItems(session, "tabs", "Tidying")}, ignoreInit = T)
+    updateTabItems(session, "tabs", "Tidying")
+    shinyjs::runjs("window.scrollTo(0, 0)")
+  }, ignoreInit = T)
 
 
   # tidy tab ####
@@ -603,6 +611,7 @@ server <- function(input, output, session) { # server ####
 
   observeEvent(input$GoToHeaders | input$SkipTidy, {
     updateTabItems(session, "tabs", "Headers")
+    shinyjs::runjs("window.scrollTo(0, 0)")
 
   }, ignoreInit = T)
 
@@ -1086,11 +1095,17 @@ server <- function(input, output, session) { # server ####
   observeEvent(input$GoToCodes, {
     if(length(input$TreeCodes) > 0) {
       updateTabItems(session, "tabs", "Codes")
+      shinyjs::runjs("window.scrollTo(0, 0)")
+
     } else {
       if(input$MeasLevel %in% c("Tree", "Stem")) {
         updateTabItems(session, "tabs", "Correct")
+        shinyjs::runjs("window.scrollTo(0, 0)")
+
       } else {
         updateTabItems(session, "tabs", "OutputFormat")
+        shinyjs::runjs("window.scrollTo(0, 0)")
+
         DataDone(DataFormated())
       }
     }
@@ -1200,6 +1215,8 @@ server <- function(input, output, session) { # server ####
   # move on to next tab
   observeEvent(input$GoToCorrect, {
     updateTabItems(session, "tabs", "Correct")
+    shinyjs::runjs("window.scrollTo(0, 0)")
+
   }, ignoreInit = TRUE)
 
 
@@ -1288,6 +1305,7 @@ server <- function(input, output, session) { # server ####
 
             p <- list(eval(str2lang(paste0(f, "Plot(Rslt)"))))
             names(p) <- f
+
 
             CorrectionPlots(append(CorrectionPlots(), p))
 
@@ -1438,6 +1456,9 @@ server <- function(input, output, session) { # server ####
                  DataDone(DataFormated())
                  updateTabItems(session, "tabs", "OutputFormat")
 
+                 shinyjs::runjs("window.scrollTo(0, 0)")
+
+
                })
 
   observeEvent(input$ApplyCorrections,{
@@ -1449,10 +1470,14 @@ server <- function(input, output, session) { # server ####
   # move on to next tab
   observeEvent(input$GoToOutput, {
     updateTabItems(session, "tabs", "OutputFormat")
+    shinyjs::runjs("window.scrollTo(0, 0)")
+
 
   })
   observeEvent(input$GoToDownload, {
     updateTabItems(session, "tabs", "Save")
+    shinyjs::runjs("window.scrollTo(0, 0)")
+
 
 
   }, ignoreInit = T)
