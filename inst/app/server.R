@@ -77,9 +77,9 @@ js <- c( # --- this is to edit CODES table
 
 
 # start server code here
+onStop(function() {cat("Session stopped\n") ;close_sink_and_quit()})
 
 server <- function(input, output, session) { # server ####
-  onStop(function() {cat("Session stopped\n") ;close_sink_and_quit()})
 
 
   # open browser #
