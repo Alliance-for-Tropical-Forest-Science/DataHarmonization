@@ -1044,7 +1044,7 @@ server <- function(input, output, session) { # server ####
   DataFormated <- reactiveVal()
 
 
-  observeEvent(input$LaunchFormating | input$UpdateTable, {
+  observeEvent(input$LaunchFormating, {
   # DataFormated <- eventReactive(input$LaunchFormating | input$UpdateTable, {
 
     withCallingHandlers({
@@ -1056,8 +1056,6 @@ server <- function(input, output, session) { # server ####
     error = function(err){
       shiny:::reactiveStop(showNotification(gsub("in RequiredFormat\\(Data = TidyTable\\(\\), isolate\\(reactiveValuesToList\\(input\\)\\),", "", err), type = 'err', duration = NULL))
     })
-
-
 
   }, ignoreInit = T)
 
@@ -1256,6 +1254,13 @@ server <- function(input, output, session) { # server ####
 
   observeEvent(input$ApplyCorrections, {
 
+    removeTab(inputId = "CorrectionPlots", target = "BotanicalCorrection")
+    removeTab(inputId = "CorrectionPlots", target = "StatusCorrection")
+    removeTab(inputId = "CorrectionPlots", target = "DiameterCorrection")
+
+    CorrectionPlots(NULL)
+
+
   # DataCorrected <- eventReactive(input$ApplyCorrections, {
     Rslt <- DataFormated()
     lapply(
@@ -1363,25 +1368,34 @@ server <- function(input, output, session) { # server ####
   observe({
 
     req(length(CorrectionPlots())> 0)
-    req(input$CorrectionPlots)
+    # req(input$CorrectionPlots) %in% c("StatusCorrection", "DiameterCorrection")
     req(input[[paste0(input$CorrectionPlots, "IndCorrPlots")]])
 
-    p <- CorrectionPlots()[[input$CorrectionPlots]]
 
+    if(  req(input$CorrectionPlots) %in% c("StatusCorrection", "DiameterCorrection")) {
+       p <- CorrectionPlots()[[input$CorrectionPlots]]
 
+    print(input$CorrectionPlots )
 
         output[[paste0("IndCorrPlot", input$CorrectionPlots)]]<- renderPlot({
           # p$p +   ggforce::facet_wrap_paginate(vars(get(p$ID), ScientificName), scales = "free", ncol = min(p$n,3), nrow = p$i, page = as.numeric(gsub("Page ", "", input[[paste0(input$CorrectionPlots, "IndCorrPlots")]])))
           p$p[[as.numeric(gsub("Page ", "", input[[paste0(input$CorrectionPlots, "IndCorrPlots")]]))]]
         })
+    }
+
 
 
   })
 
+  observe({print(input$CorrectionPlots )})
 
-  observeEvent(input$ApplyCorrections, {
+
+  observe({
+
     req(DataCorrected())
     req(input$BotanicalCorrection %in% "Yes")
+    req(input$CorrectionPlots  %in% "BotanicalCorrection")
+
     Rslt <- BotanicalCorrectionPlot(DataCorrected())
     DataCor <- Rslt$DataCor
     DataCorIncongruence <- Rslt$DataCorIncongruence
@@ -1430,7 +1444,7 @@ server <- function(input, output, session) { # server ####
         )
       )
     )
-  })
+  }, priority = 1)
 
 
   # observe({
