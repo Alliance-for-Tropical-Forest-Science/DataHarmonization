@@ -32,8 +32,8 @@ close_sink_and_quit <- function(){
   stopApp()
 }
 
-options(error = close_sink_and_quit)
-options(shiny.error = close_sink_and_quit)
+# options(error = close_sink_and_quit)
+# options(shiny.error = close_sink_and_quit)
 
 flog <- file("log.txt", open = "wt")
 sink(file = flog, split = TRUE)
