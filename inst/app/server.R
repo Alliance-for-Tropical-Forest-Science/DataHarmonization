@@ -551,8 +551,16 @@ server <- function(input, output, session) { # server ####
   })
 
   observe({
-    if(!is.null(input$VariableName)) shinyjs::hide("SkipTidy")
-    if(is.null(input$VariableName)) shinyjs::show("SkipTidy")
+    if(!is.null(input$VariableName)) {
+      shinyjs::hide("SkipTidy")
+      shinyjs::show("Tidy")
+
+    }
+    if(is.null(input$VariableName)) {
+      shinyjs::show("SkipTidy")
+      shinyjs::hide("Tidy")
+
+    }
 
 
   })
