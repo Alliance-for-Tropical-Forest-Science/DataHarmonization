@@ -995,6 +995,9 @@ server <- function(input, output, session) { # server ####
     # }
 
     UserProfile(profile)
+
+    shinyjs::runjs('document.getElementById("LaunchFormating").scrollIntoView({ behavior: "instant", block: "end", inline: "end" })')
+
   })
 
 
