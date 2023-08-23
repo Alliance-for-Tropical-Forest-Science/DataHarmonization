@@ -434,6 +434,19 @@ box(width = 12,
               style = "material-flat",
               color = "warning"
             ),
+
+            hidden(actionBttn(
+              inputId = "Tidy",
+              label = "Tidy",
+              style = "material-flat",
+              color = "success"
+            ),
+            hidden( actionBttn(
+              inputId = "GoToHeaders",
+              label = "Go To Headers",
+              style = "material-flat",
+              color = "success"
+            ))),
             box(width = 12,
                 radioButtons(
               "VariableName",
@@ -447,19 +460,6 @@ box(width = 12,
 ,            h3("Tick the grouping(s) that should be applied and fix the prefilled information if necessary."),
 
             uiOutput("uiMelt"),
-
-            actionBttn(
-              inputId = "Tidy",
-              label = "Tidy",
-              style = "material-flat",
-              color = "success"
-            ),
-            hidden( actionBttn(
-              inputId = "GoToHeaders",
-              label = "Go To Headers",
-              style = "material-flat",
-              color = "success"
-            )),
 
 
 
