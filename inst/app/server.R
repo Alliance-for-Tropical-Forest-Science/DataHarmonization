@@ -2165,21 +2165,24 @@ server <- function(input, output, session) { # server ####
                      corrInfo <- reactiveValuesToList(input)[xCorr$ItemID][reactiveValuesToList(input)[xCorr$Function] %in% "Yes"]
 
                      if(length(corrInfo) >0) {
+
+                       corrInfo[sapply(corrInfo, is.null)] <- NULL # to avoid having fewer elements when unlisting
+
                        corrInfoDT<- data.table(xCorr[match(names(corrInfo), xCorr$ItemID), c("Function", "ItemID")])
 
                        corrInfoDT[, Parameter := gsub(Function, "", ItemID), by=seq_len(nrow(corrInfoDT))]
 
-                       corrInfoDT[, Value := unlist(corrInfo)]
+                       corrInfoDT[, value := unlist(corrInfo)]
                        corrInfoDT[, ItemID := NULL]
 
-                       write.csv(corrInfoDT, "CorrectionParametersApplied.csv", row.names = F)
+                       write.csv(corrInfoDT, "processed/CorrectionParametersApplied.csv", row.names = F)
 
                        if("CorrectionParametersApplied.csv" %in% list.files(recursive = T)) cat("CorrectionParametersApplied.csv was saved\n")
                      }
 
                      # Metadata ##
 
-                     OurStandardColumn <- colnames(DataOutput())
+                     OurStandardColumn <- colnames(DataDone())
 
                      idxOriginal <- grep("Original$", OurStandardColumn)
                      idxTreeCodes <- grep("^Original_", OurStandardColumn)
@@ -2254,6 +2257,12 @@ server <- function(input, output, session) { # server ####
                      Metadata <- Metadata[apply(setDT(DataOutput())[, Metadata$OutputColumn, with = F], 2, function(x) !all(is.na(x))), ] # keep only the columns that are not all NAs
 
 
+                     incProgress(1/15)
+
+                     Metadata <- unique(Metadata) # keep only unique rowa
+
+
+
                      write.csv(Metadata, file = "processed/metadata.csv", row.names = F)
                      if("processed/metadata.csv" %in% list.files(recursive = T)) cat("processed/metadata.csv was saved\n")
 
@@ -2265,9 +2274,9 @@ server <- function(input, output, session) { # server ####
                      lapply(names(Data()), function(i) write.csv(Data()[[i]], paste0("original/", i, ".csv"), row.names = F))
                      # Formatted data ###
                      DataToSave <- DataOutput()
-                     setDF(DataToSave)
+                     # setDF(DataToSave)
 
-                     write.csv(DataToSave[,Metadata$OutputColumn], file = "processed/output_data.csv", row.names = FALSE)
+                     write.csv(DataToSave[,Metadata$OutputColumn, with = F], file = "processed/output_data.csv", row.names = FALSE)
                      if("processed/output_data.csv" %in% list.files(recursive = T)) cat("processed/output_data.csv was saved\n")
 
                      incProgress(1/15)
