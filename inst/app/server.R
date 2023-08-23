@@ -2173,11 +2173,13 @@ server <- function(input, output, session) { # server ####
                        corrInfoDT[, ItemID := NULL]
 
                        write.csv(corrInfoDT, "CorrectionParametersApplied.csv", row.names = F)
+
+                       if("CorrectionParametersApplied.csv" %in% list.files(recursive = T)) cat("CorrectionParametersApplied.csv was saved\n")
                      }
 
                      # Metadata ##
 
-                     OurStandardColumn <- colnames(DataDone())
+                     OurStandardColumn <- colnames(DataOutput())
 
                      idxOriginal <- grep("Original$", OurStandardColumn)
                      idxTreeCodes <- grep("^Original_", OurStandardColumn)
