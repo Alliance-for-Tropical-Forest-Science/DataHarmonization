@@ -29,11 +29,8 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Suggests:
     knitr,
-    rmarkdown,
     testthat (>= 3.0.4), 
-    bslib, 
     shinytest,
-    lubridate,
     markdown
 VignetteBuilder: knitr
 Depends: 
@@ -41,6 +38,9 @@ Depends:
 Config/testthat/edition: 3
 Imports: 
     kableExtra,
+    rmarkdown,
+    bslib,
+    lubridate,
     units,
     htmlTable,
     data.table (>= 1.14.2),
