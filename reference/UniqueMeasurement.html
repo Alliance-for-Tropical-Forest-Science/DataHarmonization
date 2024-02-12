@@ -3,7 +3,7 @@
 keep only the measurements (rows)
 taken at the highest POM (KeepMeas = "MaxHOM"),
 and/or the most recent measurement (same census but more recent date)
-(KeepMeas = "MaxDate")'><title>UniqueMeasurement — UniqueMeasurement • DataHarmonization</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="UniqueMeasurement — UniqueMeasurement"><meta property="og:description" content='Of the repeated measurements of an individual in the same census,
+(KeepMeas = "MaxDate")'><title>UniqueMeasurement — UniqueMeasurement • DataHarmonization</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="UniqueMeasurement — UniqueMeasurement"><meta property="og:description" content='Of the repeated measurements of an individual in the same census,
 keep only the measurements (rows)
 taken at the highest POM (KeepMeas = "MaxHOM"),
 and/or the most recent measurement (same census but more recent date)
@@ -96,7 +96,7 @@ census but more recent date)</p></li>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">Data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span> <span class="co"># 7 rows</span></span></span>
+<span class="r-in"><span><span class="va">Data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span> <span class="co"># 7 rows</span></span></span>
 <span class="r-in"><span>IdStem <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"c"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>IdCensus <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">2000</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fl">2001</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">2000</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>Date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2000-01-10"</span>, <span class="st">"2000-01-20"</span>, <span class="st">"2000-01-30"</span>, <span class="st">"2001-01-10"</span>,</span></span>
@@ -104,53 +104,58 @@ census but more recent date)</p></li>
 <span class="r-in"><span>HOM <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">Data</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    IdStem IdCensus       Date HOM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:      a     2000 2000-01-10   1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2:      a     2000 2000-01-20   1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3:      a     2000 2000-01-30   1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4:      a     2001 2001-01-10   2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5:      b     2000 2000-01-10   1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6:      b     2000 2000-01-10   2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7:      c     2000 2000-01-10   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    IdStem IdCensus       Date   HOM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;char&gt;    &lt;num&gt;     &lt;Date&gt; &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:      a     2000 2000-01-10     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2:      a     2000 2000-01-20     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3:      a     2000 2000-01-30     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4:      a     2001 2001-01-10     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5:      b     2000 2000-01-10     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6:      b     2000 2000-01-10     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7:      c     2000 2000-01-10     1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">UniqueMeasurement</span><span class="op">(</span><span class="va">TestData</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       MinDBH IdCensus Year Month Day       Date    Site Cluster Plot PlotArea</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:  10.03     2016 2016     9  14 2016-09-14 Paracou    &lt;NA&gt;    6     6.25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:  10.03     2017 2017     7  19 2017-07-19 Paracou    &lt;NA&gt;    6     6.25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:  10.03     2018 2018     7   8 2018-07-08 Paracou    &lt;NA&gt;    6     6.25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:  10.03     2019 2019     6   7 2019-06-07 Paracou    &lt;NA&gt;    6     6.25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:  10.03     2020 2020     6   4 2020-06-04 Paracou    &lt;NA&gt;    6     6.25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4850:  10.03     2020 2020     6   4 2020-06-04 Paracou    &lt;NA&gt;    6     6.25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4851:  10.03     2020 2020     6   4 2020-06-04 Paracou    &lt;NA&gt;    6     6.25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4852:  10.03     2020 2020     6   4 2020-06-04 Paracou    &lt;NA&gt;    6     6.25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4853:  10.03     2020 2020     6   4 2020-06-04 Paracou    &lt;NA&gt;    6     6.25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4854:  10.03     2020 2020     6   4 2020-06-04 Paracou    &lt;NA&gt;    6     6.25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       PlotElevation Subplot SubplotArea PlotViewID PlotLat PlotLon XPlotUTM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:            NA       1          NA       &lt;NA&gt;      NA      NA       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:            NA       1          NA       &lt;NA&gt;      NA      NA       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:            NA       1          NA       &lt;NA&gt;      NA      NA       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:            NA       1          NA       &lt;NA&gt;      NA      NA       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:            NA       1          NA       &lt;NA&gt;      NA      NA       NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       MinDBH IdCensus  Year Month   Day       Date    Site Cluster   Plot</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;num&gt;    &lt;ord&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt;     &lt;Date&gt;  &lt;char&gt;  &lt;char&gt; &lt;char&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:  10.03     2016  2016     9    14 2016-09-14 Paracou    &lt;NA&gt;      6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:  10.03     2017  2017     7    19 2017-07-19 Paracou    &lt;NA&gt;      6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:  10.03     2018  2018     7     8 2018-07-08 Paracou    &lt;NA&gt;      6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:  10.03     2019  2019     6     7 2019-06-07 Paracou    &lt;NA&gt;      6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:  10.03     2020  2020     6     4 2020-06-04 Paracou    &lt;NA&gt;      6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4850:  10.03     2020  2020     6     4 2020-06-04 Paracou    &lt;NA&gt;      6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4851:  10.03     2020  2020     6     4 2020-06-04 Paracou    &lt;NA&gt;      6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4852:  10.03     2020  2020     6     4 2020-06-04 Paracou    &lt;NA&gt;      6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4853:  10.03     2020  2020     6     4 2020-06-04 Paracou    &lt;NA&gt;      6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4854:  10.03     2020  2020     6     4 2020-06-04 Paracou    &lt;NA&gt;      6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       PlotArea PlotElevation Subplot SubplotArea PlotViewID PlotLat PlotLon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          &lt;num&gt;         &lt;num&gt;  &lt;char&gt;       &lt;num&gt;     &lt;char&gt;   &lt;num&gt;   &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:     6.25            NA       1          NA       &lt;NA&gt;      NA      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:     6.25            NA       1          NA       &lt;NA&gt;      NA      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:     6.25            NA       1          NA       &lt;NA&gt;      NA      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:     6.25            NA       1          NA       &lt;NA&gt;      NA      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:     6.25            NA       1          NA       &lt;NA&gt;      NA      NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4850:            NA       1          NA       &lt;NA&gt;      NA      NA       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4851:            NA       1          NA       &lt;NA&gt;      NA      NA       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4852:            NA       1          NA       &lt;NA&gt;      NA      NA       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4853:            NA       1          NA       &lt;NA&gt;      NA      NA       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4854:            NA       1          NA       &lt;NA&gt;      NA      NA       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       YPlotUTM SubplotLat SubplotLon XSubplotUTM YSubplotUTM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:       NA         NA         NA          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:       NA         NA         NA          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:       NA         NA         NA          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:       NA         NA         NA          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:       NA         NA         NA          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4850:       NA         NA         NA          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4851:       NA         NA         NA          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4852:       NA         NA         NA          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4853:       NA         NA         NA          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4854:       NA         NA         NA          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4850:     6.25            NA       1          NA       &lt;NA&gt;      NA      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4851:     6.25            NA       1          NA       &lt;NA&gt;      NA      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4852:     6.25            NA       1          NA       &lt;NA&gt;      NA      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4853:     6.25            NA       1          NA       &lt;NA&gt;      NA      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4854:     6.25            NA       1          NA       &lt;NA&gt;      NA      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       XPlotUTM YPlotUTM SubplotLat SubplotLon XSubplotUTM YSubplotUTM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          &lt;num&gt;    &lt;num&gt;      &lt;num&gt;      &lt;num&gt;       &lt;num&gt;       &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:       NA       NA         NA         NA          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:       NA       NA         NA         NA          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:       NA       NA         NA         NA          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:       NA       NA         NA         NA          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:       NA       NA         NA         NA          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4850:       NA       NA         NA         NA          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4851:       NA       NA         NA         NA          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4852:       NA       NA         NA         NA          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4853:       NA       NA         NA         NA          NA          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4854:       NA       NA         NA         NA          NA          NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   ScientificName      VernName        Family        Genus</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           &lt;char&gt;        &lt;char&gt;        &lt;char&gt;       &lt;char&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    1:      Sandwithia guyanensis     wata tiki Euphorbiaceae   Sandwithia</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    2:      Sandwithia guyanensis     wata tiki Euphorbiaceae   Sandwithia</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    3:      Sandwithia guyanensis     wata tiki Euphorbiaceae   Sandwithia</span>
@@ -163,6 +168,7 @@ census but more recent date)</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4853:        Pseudolmedia laevis satine rubane      Moraceae Pseudolmedia</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4854:          Inga lomatophylla    kodia weko      Fabaceae         Inga</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Species Subspecies Variety Voucher IdLevel Authority CommercialSp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;char&gt;     &lt;char&gt;  &lt;char&gt;  &lt;char&gt;  &lt;char&gt;    &lt;char&gt;       &lt;lgcl&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    1:     guyanensis       &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;      &lt;NA&gt;        FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    2:     guyanensis       &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;      &lt;NA&gt;        FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    3:     guyanensis       &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;      &lt;NA&gt;        FALSE</span>
@@ -175,6 +181,7 @@ census but more recent date)</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4853:         laevis       &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;      &lt;NA&gt;         TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4854:   lomatophylla       &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;      &lt;NA&gt;        FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LifeForm TreeFieldNum IdTree StemFieldNum        IdStem TreeLat TreeLon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;char&gt;       &lt;char&gt; &lt;char&gt;       &lt;char&gt;        &lt;char&gt;   &lt;num&gt;   &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    1:     tree            1 100621         &lt;NA&gt; 100621_1_auto      NA      NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    2:     tree            1 100621         &lt;NA&gt; 100621_1_auto      NA      NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    3:     tree            1 100621         &lt;NA&gt; 100621_1_auto      NA      NA</span>
@@ -187,6 +194,7 @@ census but more recent date)</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4853:     tree         3011 418634         &lt;NA&gt; 418634_1_auto      NA      NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4854:     tree         3012 418635         &lt;NA&gt; 418635_1_auto      NA      NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       XTreeUTM YTreeUTM XTreePlot YTreePlot XTreeSubplot YTreeSubplot</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          &lt;num&gt;    &lt;num&gt;     &lt;num&gt;     &lt;num&gt;        &lt;num&gt;        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    1:       NA       NA        NA        NA           NA           NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    2:       NA       NA        NA        NA           NA           NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    3:       NA       NA        NA        NA           NA           NA</span>
@@ -198,42 +206,45 @@ census but more recent date)</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4852:       NA       NA        NA        NA           NA           NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4853:       NA       NA        NA        NA           NA           NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4854:       NA       NA        NA        NA           NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       LifeStatus DeadStatus Diameter BD Circ BCirc HOM  POM BHOM BPOM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:       TRUE         NA    13.37 NA 42.0    NA 1.3 &lt;NA&gt;   NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:       TRUE         NA    13.37 NA 42.0    NA 1.3 &lt;NA&gt;   NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:       TRUE         NA    13.37 NA 42.0    NA 1.3 &lt;NA&gt;   NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:       TRUE         NA    13.37 NA 42.0    NA 1.3 &lt;NA&gt;   NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:      FALSE         NA    13.37 NA 42.0    NA 1.3 &lt;NA&gt;   NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4850:       TRUE         NA    10.19 NA 32.0    NA 1.3 &lt;NA&gt;   NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4851:       TRUE         NA    10.03 NA 31.5    NA 1.3 &lt;NA&gt;   NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4852:       TRUE         NA    10.03 NA 31.5    NA 1.3 &lt;NA&gt;   NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4853:       TRUE         NA    10.19 NA 32.0    NA 1.3 &lt;NA&gt;   NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4854:       TRUE         NA    10.19 NA 32.0    NA 1.3 &lt;NA&gt;   NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       TreeHeight TreeFieldNumOriginal IdTreeOriginal CommercialSpOriginal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:         NA                    1         100621                FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:         NA                    1         100621                FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:         NA                    1         100621                FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:         NA                    1         100621                FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:         NA                    1         100621                FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       LifeStatus DeadStatus Diameter    BD  Circ BCirc   HOM    POM  BHOM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;lgcl&gt;     &lt;lgcl&gt;    &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;num&gt; &lt;char&gt; &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:       TRUE         NA    13.37    NA  42.0    NA   1.3   &lt;NA&gt;    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:       TRUE         NA    13.37    NA  42.0    NA   1.3   &lt;NA&gt;    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:       TRUE         NA    13.37    NA  42.0    NA   1.3   &lt;NA&gt;    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:       TRUE         NA    13.37    NA  42.0    NA   1.3   &lt;NA&gt;    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:      FALSE         NA    13.37    NA  42.0    NA   1.3   &lt;NA&gt;    NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4850:         NA                 3008         418631                FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4851:         NA                 3009         418632                FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4852:         NA                 3010         418633                FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4853:         NA                 3011         418634                 TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4854:         NA                 3012         418635                FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       DateOriginal LifeStatusOriginal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:   2016-09-14               TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:   2017-07-19               TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:   2018-07-08               TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:   2019-06-07               TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:   2020-06-04              FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4850:   2020-06-04               TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4851:   2020-06-04               TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4852:   2020-06-04               TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4853:   2020-06-04               TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4854:   2020-06-04               TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4850:       TRUE         NA    10.19    NA  32.0    NA   1.3   &lt;NA&gt;    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4851:       TRUE         NA    10.03    NA  31.5    NA   1.3   &lt;NA&gt;    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4852:       TRUE         NA    10.03    NA  31.5    NA   1.3   &lt;NA&gt;    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4853:       TRUE         NA    10.19    NA  32.0    NA   1.3   &lt;NA&gt;    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4854:       TRUE         NA    10.19    NA  32.0    NA   1.3   &lt;NA&gt;    NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         BPOM TreeHeight TreeFieldNumOriginal IdTreeOriginal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;char&gt;      &lt;num&gt;                &lt;num&gt;          &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:   &lt;NA&gt;         NA                    1         100621</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:   &lt;NA&gt;         NA                    1         100621</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:   &lt;NA&gt;         NA                    1         100621</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:   &lt;NA&gt;         NA                    1         100621</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:   &lt;NA&gt;         NA                    1         100621</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4850:   &lt;NA&gt;         NA                 3008         418631</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4851:   &lt;NA&gt;         NA                 3009         418632</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4852:   &lt;NA&gt;         NA                 3010         418633</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4853:   &lt;NA&gt;         NA                 3011         418634</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4854:   &lt;NA&gt;         NA                 3012         418635</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       CommercialSpOriginal DateOriginal LifeStatusOriginal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     &lt;lgcl&gt;       &lt;char&gt;             &lt;lgcl&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                FALSE   2016-09-14               TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                FALSE   2017-07-19               TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                FALSE   2018-07-08               TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                FALSE   2019-06-07               TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                FALSE   2020-06-04              FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4850:                FALSE   2020-06-04               TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4851:                FALSE   2020-06-04               TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4852:                FALSE   2020-06-04               TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4853:                 TRUE   2020-06-04               TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4854:                FALSE   2020-06-04               TRUE</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
