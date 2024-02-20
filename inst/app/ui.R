@@ -43,6 +43,7 @@ header <- dashboardHeader(title = "Data harmonisation",
 # sidebar contains menu items
 sidebar <- dashboardSidebar(
   useShinyjs(),
+  askBeforeClose(),
   sidebarMenu(id = "tabs", # see here for icons https://fontawesome.com/v5/search
               menuItem("Upload your file(s)", tabName = "Upload", icon = icon("upload")),
               menuItem("Stack tables", tabName = "Stacking", icon = icon("layer-group")),

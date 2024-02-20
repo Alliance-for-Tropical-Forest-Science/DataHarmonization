@@ -116,6 +116,29 @@ myTableFooter <- function (names, escape = TRUE)
 }
 
 
+# UI javascript script for asking confirmation when browser window is about to close
+# call function anywhere in UI
+# example
+# fluidPage(
+#   askBeforeClose()
+# )
+askBeforeClose <- function() {
+  tags$head(tags$script("
+    Shiny.connected=true;
+    $(function() {
+      $(document).on('shiny:disconnected', function(event) {
+        Shiny.connected=false;
+      })
+    });
+    window.addEventListener('beforeunload', function (e) {
+      if(Shiny.connected) {
+        e.preventDefault();
+        e.returnValue = 'unload';
+      };
+    });"
+  ))
+}
+
 # SERVER auto close application when session ends
 # only if run locally (ie not on a remote server)
 # call function for example at start of server function
