@@ -1,10 +1,6 @@
 
 # Fichier pour gérer les interactions de l'application Shiny
 
-# install and load libraries
-# devtools::install_github("Alliance-for-Tropical-Forest-Science/DataHarmonization")
-library(DataHarmonization)
-
 
 # increase size limit to 191MB
 options(shiny.maxRequestSize=1910*1024^2)
