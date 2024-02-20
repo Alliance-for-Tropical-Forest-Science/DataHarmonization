@@ -116,3 +116,19 @@ myTableFooter <- function (names, escape = TRUE)
 }
 
 
+# SERVER auto close application when session ends
+# only if run locally (ie not on a remote server)
+# call function for example at start of server function
+# example
+# function(input, output) {
+#   autoCloseApp()
+# }
+autoCloseApp <- function(session=getDefaultReactiveDomain()) {
+  # detect local run (from unexported shiny:::inShinyServer)
+  isLocal <- Sys.getenv("SHINY_PORT") == ""
+  if(isLocal) {
+    session$onSessionEnded(function() {
+      stopApp()
+    })
+  }
+}

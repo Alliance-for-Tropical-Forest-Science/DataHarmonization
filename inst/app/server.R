@@ -81,6 +81,8 @@ onStop(function() {cat("Session stopped\n") ;close_sink_and_quit()})
 
 server <- function(input, output, session) { # server ####
 
+  # automatically close SERVER when user closes the UI if run locally
+  autoCloseApp()
 
   # open browser #
 
