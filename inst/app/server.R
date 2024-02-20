@@ -77,7 +77,9 @@ js <- c( # --- this is to edit CODES table
 
 
 # start server code here
-onStop(function() {cat("Session stopped\n") ;close_sink_and_quit()})
+if(isDebugging()) {
+  onStop(function() {cat("Session stopped\n") ;close_sink_and_quit()})
+}
 
 server <- function(input, output, session) { # server ####
 
@@ -86,9 +88,11 @@ server <- function(input, output, session) { # server ####
 
   # open browser #
 
-  observeEvent(input$browser,{
-    browser()
-  })
+  if(isDebugging()) {
+    observeEvent(input$browser,{
+      browser()
+    })
+  }
 
   # upload tab ####
 

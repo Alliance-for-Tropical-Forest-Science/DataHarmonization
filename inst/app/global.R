@@ -23,21 +23,27 @@ useSweetAlert()
 
 # to log warnings and errors
 
-shiny::devmode()
-
-close_sink_and_quit <- function(){
-  sink(file = NULL,type = "message")
-  sink(file = NULL,type = "output")
-  close(con = flog)
-  stopApp()
+isDebugging <- function() {
+  getOption("DataHarmonization.debug", FALSE)
 }
 
-# options(error = close_sink_and_quit)
-# options(shiny.error = close_sink_and_quit)
+if(isDebugging()) {
+  shiny::devmode()
 
-flog <- file("log.txt", open = "wt")
-sink(file = flog, split = TRUE)
-sink(file = flog, type = "message")
+  close_sink_and_quit <- function(){
+    sink(file = NULL,type = "message")
+    sink(file = NULL,type = "output")
+    close(con = flog)
+    stopApp()
+  }
+
+  # options(error = close_sink_and_quit)
+  # options(shiny.error = close_sink_and_quit)
+
+  flog <- file("log.txt", open = "wt")
+  sink(file = flog, split = TRUE)
+  sink(file = flog, type = "message")
+}
 
 # read in csv file that has all we want to ask about the headers
 xall <- read.csv("data/interactive_items.csv")

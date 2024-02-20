@@ -20,8 +20,9 @@ header <- dashboardHeader(title = "Data harmonisation",
                                                headerText = "App Information"
                                   )
                                   ,
-
-                                  tags$li(class = "dropdown", actionButton("browser", "browser", icon  =  icon("r-project")))
+                                  if(isDebugging()) {
+                                    tags$li(class = "dropdown", actionButton("browser", "browser", icon  =  icon("r-project")))
+                                  }
                           )
                           # tags$li(class = "dropdown",
                           #
