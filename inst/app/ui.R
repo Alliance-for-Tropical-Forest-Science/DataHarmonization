@@ -93,7 +93,7 @@ body <- dashboardBody(
             fluidRow(
               box(width = 12,
               actionBttn(
-                inputId = makeUniqueID("inactive"),
+                inputId = "inactive1",
                 label = div(
                   strong("If your connexion is slow and/or your data is very large, you may want to run this app locally. For that, open R Studio and type:"),
                   br()),
@@ -125,42 +125,42 @@ body <- dashboardBody(
 
                  # dropdownButton(width = NULL,
                  checkboxInput(
-                   inputId = makeUniqueID("ChckLst"),
+                   inputId = "ChckLst1",
                    label = "All relevant data is gathered in one of more tables (measurements, species info, plot info...)"
                    # status = "warning"
                  ),
                  checkboxInput(
-                   inputId = makeUniqueID("ChckLst"),
+                   inputId = "ChckLst2",
                    label = "Input table(s) are prepared as CSV file(s).",
                    # status = "warning"
                  ),
                  checkboxInput(
-                     inputId = makeUniqueID("ChckLst"),
+                     inputId = "ChckLst3",
                      label = "If tables will need to be stacked, assure they have the exact same columns and in same order."
                      # status = "warning"
                    ),
                  checkboxInput(
-                     inputId = makeUniqueID("ChckLst"),
+                     inputId = "ChckLst4",
                      label = "If tables need to be merged, assure you have the list of all key column(s) that are present in both tables."
                      # status = "warning"
                    ),
                  checkboxInput(
-                   inputId = makeUniqueID("ChckLst"),
+                   inputId = "ChckLst5",
                    label = "Remove 'empty' columns without column names"
                    # status = "warning"
                  ),
                  checkboxInput(
-                   inputId = makeUniqueID("ChckLst"),
+                   inputId = "ChckLst6",
                    label = "Save your csv in UTF-8 if you have special characters"
                    # status = "warning"
                  ),
                  checkboxInput(
-                   inputId = makeUniqueID("ChckLst"),
+                   inputId = "ChckLst7",
                    label = "If your stem identifiers use points (e.g. 123.1, 123.2, 123.3,..., 123.10), please change '.' to '_' so the columns is read as a character and not as a numeric, which would cause the loss of the infromation of the 10th stem as 123.10 would be changed to 123.1"
                    # status = "warning"
                  ),
                  checkboxInput(
-                   inputId = makeUniqueID("ChckLst"),
+                   inputId = "ChckLst8",
                    label = "..."
                    # status = "warning"
                  ),
@@ -182,7 +182,7 @@ body <- dashboardBody(
 
               column(width = 6,
                      actionBttn(
-                       inputId =  makeUniqueID("inactive"),
+                       inputId =  "inactive2",
                        label = "1",
                        style = "pill",
                        color = "warning"),
@@ -196,7 +196,7 @@ body <- dashboardBody(
               ),
               column(width = 6,
                      actionBttn(
-                       inputId =  makeUniqueID("inactive"),
+                       inputId =  "inactive3",
                        label = "2",
                        style = "pill",
                        color = "warning"),
@@ -215,7 +215,7 @@ body <- dashboardBody(
 
               column(width = 6,
                      actionBttn(
-                       inputId =  makeUniqueID("inactive"),
+                       inputId =  "inactive4",
                        label = "3",
                        style = "pill",
                        color = "warning"),
@@ -296,7 +296,7 @@ box(width = 12,
 
               div(
                 actionBttn(
-                  inputId =  makeUniqueID("inactive"),
+                  inputId =  "inactive5",
                   label = " ! ",
                   style = "pill",
                   color = "danger"),
@@ -353,7 +353,7 @@ box(width = 12,
 
             div(
               actionBttn(
-                inputId =  makeUniqueID("inactive"),
+                inputId =  "inactive6",
                 label = " ! ",
                 style = "pill",
                 size ='xs',
@@ -497,7 +497,7 @@ box(width = 12,
 
               column(width = 6,
                      actionBttn(
-                       inputId = makeUniqueID("inactive"),
+                       inputId = "inactive7",
                        label = "1",
                        style = "pill",
                        color = "warning"),
@@ -553,7 +553,7 @@ box(width = 12,
 
               column(width = 6,
                      actionBttn(
-                       inputId = makeUniqueID("inactive"),
+                       inputId = "inactive8",
                        label = "Info",
                        style = "pill",
                        color = "default"),
@@ -568,7 +568,7 @@ box(width = 12,
               column(width = 12,
                      div(
                        actionBttn(
-                         inputId = makeUniqueID("inactive"),
+                         inputId = "inactive9",
                          label = "2",
                          style = "pill",
                          color = "warning")
@@ -578,7 +578,7 @@ box(width = 12,
                        hidden(div( id = "AttentionDates",
                                    box(width = 12,
                                        actionBttn(
-                                         inputId =  makeUniqueID("inactive"),
+                                         inputId =  "inactive10",
                                          label = "!",
                                          style = "pill",
                                          color = "danger"),
@@ -614,7 +614,7 @@ box(width = 12,
                            }))
                        ,
                        div(actionBttn(
-                         inputId = makeUniqueID("inactive"),
+                         inputId = "inactive11",
                          label = "3",
                          style = "pill",
                          color = "warning"),
