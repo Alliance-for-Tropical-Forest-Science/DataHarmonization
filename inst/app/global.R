@@ -1,43 +1,48 @@
-#list of packages required
-library(shinydashboard)
-library(bslib)
-library(DT)
-library(shiny)
-library(shinyjs)
-library(shinyWidgets)
-library(data.tree)
-library(stringr)
-library(stringdist)
-library(data.table)
-library(DataHarmonization)
-library(shinycssloaders)
-library(htmlTable)
-library(DataHarmonization)
-library(markdown)
-library(lubridate)
-library(ggplot2)
-library(ggforce)
-library(ggrepel)
-
-useSweetAlert()
+suppressPackageStartupMessages({
+  #list of packages required
+  library(shinydashboard)
+  library(bslib)
+  library(DT)
+  library(shiny)
+  library(shinyjs)
+  library(shinyWidgets)
+  library(data.tree)
+  library(stringr)
+  library(stringdist)
+  library(data.table)
+  library(DataHarmonization)
+  library(shinycssloaders)
+  library(htmlTable)
+  library(markdown)
+  library(lubridate)
+  library(ggplot2)
+  library(ggforce)
+  library(ggrepel)
+})
 
 # to log warnings and errors
 
-shiny::devmode()
-
-close_sink_and_quit <- function(){
-  sink(file = NULL,type = "message")
-  sink(file = NULL,type = "output")
-  close(con = flog)
-  stopApp()
+isDebugging <- function() {
+  getOption("DataHarmonization.debug", FALSE)
 }
 
-# options(error = close_sink_and_quit)
-# options(shiny.error = close_sink_and_quit)
+if(isDebugging()) {
+  shiny::devmode()
 
-flog <- file("log.txt", open = "wt")
-sink(file = flog, split = TRUE)
-sink(file = flog, type = "message")
+  close_sink_and_quit <- function(){
+    sink(file = NULL,type = "message")
+    sink(file = NULL,type = "output")
+    close(con = flog)
+    stopApp()
+  }
+
+  # options(error = close_sink_and_quit)
+  # options(shiny.error = close_sink_and_quit)
+
+  flog <- file("log.txt", open = "wt")
+  sink(file = flog, split = TRUE)
+  sink(file = flog, type = "message")
+}
 
 # read in csv file that has all we want to ask about the headers
 xall <- read.csv("data/interactive_items.csv")
@@ -116,3 +121,42 @@ myTableFooter <- function (names, escape = TRUE)
 }
 
 
+# UI javascript script for asking confirmation when browser window is about to close
+# call function anywhere in UI
+# example
+# fluidPage(
+#   askBeforeClose()
+# )
+askBeforeClose <- function() {
+  tags$head(tags$script("
+    Shiny.connected=true;
+    $(function() {
+      $(document).on('shiny:disconnected', function(event) {
+        Shiny.connected=false;
+      })
+    });
+    window.addEventListener('beforeunload', function (e) {
+      if(Shiny.connected) {
+        e.preventDefault();
+        e.returnValue = 'unload';
+      };
+    });"
+  ))
+}
+
+# SERVER auto close application when session ends
+# only if run locally (ie not on a remote server)
+# call function for example at start of server function
+# example
+# function(input, output) {
+#   autoCloseApp()
+# }
+autoCloseApp <- function(session=getDefaultReactiveDomain()) {
+  # detect local run (from unexported shiny:::inShinyServer)
+  isLocal <- Sys.getenv("SHINY_PORT") == ""
+  if(isLocal) {
+    session$onSessionEnded(function() {
+      stopApp()
+    })
+  }
+}
