@@ -17,7 +17,7 @@ ForestGeoProfile <-
     IdStem = "stemID",
     PlotMan = "ForestGEO",
     Species = "Species",
-    ScientificNameSepMan = "",
+    ScientificNameSepMan = " ",
     YTreePlot = "gy",
     YTreeSubplot = "none",
     CircUnitMan = "none",
