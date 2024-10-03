@@ -723,7 +723,7 @@ server <- function(input, output, session) { # server ####
     observe({
       itemsToUpdate(c(x2$ItemID[reactiveValuesToList(input)[x2$if_X1_is_none] %in% "none"],
 
-                      x3$itemID[reactiveValuesToList(input)[x3$if_X1_is_none] %in% "none" &
+                      x3$ItemID[reactiveValuesToList(input)[x3$if_X1_is_none] %in% "none" &
                                   !reactiveValuesToList(input)[x3$if_X2_isnot_none] %in% "none"],
 
                       x4$ItemID[!reactiveValuesToList(input)[x4$if_X2_isnot_none] %in% "none"],
