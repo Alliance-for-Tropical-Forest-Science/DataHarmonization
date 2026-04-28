@@ -1,6 +1,8 @@
-# Applying corrections
+# Applying corrections (DEPRECATED)
 
-If you select "Yes" to any of these corrections, you will be able to change the default parameters.
+Please click on "SKIP CORRECTION" to continue
+
+<!-- If you select "Yes" to any of these corrections, you will be able to change the default parameters.
 
 These functions will add new columns to your data (indicated with `_DataHarmonizationCor` suffix) and won't alter your original columns.
 
@@ -9,3 +11,4 @@ Note that some of these function are quite slow and it can take a few minutes fo
 **You may want to use the app in two folds: first without applying corrections, to get your data in the intended format, second to apply correction on the "master" dataset (after you've merge your data with your collaborator's data.)**
 
 
+ -->
