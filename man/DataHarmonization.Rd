@@ -2,8 +2,8 @@
 % Please edit documentation in R/DataHarmonization-package.R
 \docType{package}
 \name{DataHarmonization}
-\alias{DataHarmonization}
 \alias{DataHarmonization-package}
+\alias{DataHarmonization}
 \title{DataHarmonization-package}
 \description{
 Forest Inventories Harmonization & Correction
