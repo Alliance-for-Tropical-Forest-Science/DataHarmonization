@@ -1,10 +1,6 @@
 
 # Fichier pour gérer les interactions de l'application Shiny
 
-# install and load libraries
-# devtools::install_github("Alliance-for-Tropical-Forest-Science/DataHarmonization")
-library(DataHarmonization)
-
 
 # increase size limit to 191MB
 options(shiny.maxRequestSize=1910*1024^2)
@@ -77,16 +73,22 @@ js <- c( # --- this is to edit CODES table
 
 
 # start server code here
-onStop(function() {cat("Session stopped\n") ;close_sink_and_quit()})
+if(isDebugging()) {
+  onStop(function() {cat("Session stopped\n") ;close_sink_and_quit()})
+}
 
 server <- function(input, output, session) { # server ####
 
+  # automatically close SERVER when user closes the UI if run locally
+  autoCloseApp()
 
   # open browser #
 
-  observeEvent(input$browser,{
-    browser()
-  })
+  if(isDebugging()) {
+    observeEvent(input$browser,{
+      browser()
+    })
+  }
 
   # upload tab ####
 

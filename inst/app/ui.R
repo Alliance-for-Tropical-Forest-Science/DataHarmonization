@@ -20,8 +20,9 @@ header <- dashboardHeader(title = "Data harmonisation",
                                                headerText = "App Information"
                                   )
                                   ,
-
-                                  tags$li(class = "dropdown", actionButton("browser", "browser", icon  =  icon("r-project")))
+                                  if(isDebugging()) {
+                                    tags$li(class = "dropdown", actionButton("browser", "browser", icon  =  icon("r-project")))
+                                  }
                           )
                           # tags$li(class = "dropdown",
                           #
@@ -43,6 +44,7 @@ header <- dashboardHeader(title = "Data harmonisation",
 # sidebar contains menu items
 sidebar <- dashboardSidebar(
   useShinyjs(),
+  askBeforeClose(),
   sidebarMenu(id = "tabs", # see here for icons https://fontawesome.com/v5/search
               menuItem("Upload your file(s)", tabName = "Upload", icon = icon("upload")),
               menuItem("Stack tables", tabName = "Stacking", icon = icon("layer-group")),
